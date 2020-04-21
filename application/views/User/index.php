@@ -82,3 +82,5 @@
         </div>
         <!-- /.sidebar -->
     </aside>
+
+    <h4>Halo</h4>
