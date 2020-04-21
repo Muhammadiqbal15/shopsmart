@@ -1,0 +1,7 @@
+.tabel {
+
+	background-color: tomato;
+	overflow: scroll;
+	overflow-x: hidden;
+
+}

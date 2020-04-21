@@ -1,0 +1,11 @@
+.bungkus {
+
+	background-color: white;
+	height: 500px;
+	width: 1200px;
+	margin: auto;
+	overflow: scroll;
+	overflow-x: hidden;
+	padding: 20px;
+
+}
