@@ -1,5 +1,5 @@
 const regist = $('.regist').data('regist');
-console.log(regist);
+
 
 if (regist) {
   Swal.fire({

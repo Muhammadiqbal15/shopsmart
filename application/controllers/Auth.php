@@ -38,18 +38,28 @@ class Auth extends CI_Controller
                 if (password_verify($pass, $user['password'])) {
                     $data = [
                         'email' => $user['email'],
-                        'role_id' => $user['role_id']
+                        'role_id' => $user['role_id'],
+                        'status' => 'login'
                     ];
                     $this->session->set_userdata($data);
-                    redirect('User/index');
+                    redirect('Home/Home');
                 } else {
-                    echo 'pw salah';
+                    $this->session->set_flashdata('eroremail', '<div class="alert alert-danger" role="alert">
+                    Password salah
+                    </div>');
+                    redirect('Auth/index');
                 }
             } else {
-                echo 'tidak aktif';
+                $this->session->set_flashdata('eroremail', '<div class="alert alert-danger" role="alert">
+                Email belum diaktifasi
+                </div>');
+                redirect('Auth/index');
             }
         } else {
-            echo 'eror';
+            $this->session->set_flashdata('eroremail', '<div class="alert alert-danger" role="alert">
+            Email belum terdaftar
+            </div>');
+            redirect('Auth/index');
         }
     }
 
@@ -109,11 +119,12 @@ class Auth extends CI_Controller
 
     public function logout()
     {
+        $this->session->unset_userdata('status');
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
         $this->session->unset_userdata('password');
 
 
-        redirect('Auth/index');
+        redirect('Home/index');
     }
 }

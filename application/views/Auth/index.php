@@ -7,6 +7,7 @@
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Login To Your Account</p>
+            <?= $this->session->flashdata('eroremail'); ?>
             <form action="<?= base_url() ?>Auth/index" method="post">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Email" name="email" value="<?= set_value('email'); ?>">
