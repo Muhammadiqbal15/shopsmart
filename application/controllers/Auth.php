@@ -42,7 +42,7 @@ class Auth extends CI_Controller
                         'status' => 'login'
                     ];
                     $this->session->set_userdata($data);
-                    redirect('Home/Home');
+                    redirect('Home/index');
                 } else {
                     $this->session->set_flashdata('eroremail', '<div class="alert alert-danger" role="alert">
                     Password salah
@@ -89,7 +89,7 @@ class Auth extends CI_Controller
             $data = [
                 'nama' => htmlspecialchars($this->input->post('nama', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
-                'foto' => 'default.jpg',
+                'foto' => 'default.png',
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'notelp' => htmlspecialchars($this->input->post('nomortlp', true)),
                 'provinsi' => htmlspecialchars($this->input->post('Provinsi', true)),
@@ -97,6 +97,7 @@ class Auth extends CI_Controller
                 'kecamatan' => htmlspecialchars($this->input->post('Kecamatan', true)),
                 'kelurahan' => htmlspecialchars($this->input->post('Kelurahan', true)),
                 'alamat' => htmlspecialchars($this->input->post('alamat', true)),
+                'tgllahir' => htmlspecialchars($this->input->post('tgllahir', true)),
                 'role_id' => 2,
                 'is_active' => 1,
                 'date_created' => time()

@@ -10,7 +10,7 @@
             <form action="<?= base_url(); ?>Auth/registrasi" method="post">
 
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Full name" name="nama" value="<?= set_value('nama'); ?>">
+                    <input type="text" class="form-control" placeholder="Nama" name="nama" value="<?= set_value('nama'); ?>">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -43,7 +43,7 @@
                     <?= form_error('password'); ?>
                 </small>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Retype password" name="re-pass">
+                    <input type="password" class="form-control" placeholder="Ulangi password" name="re-pass">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -54,7 +54,7 @@
                     <?= form_error('re-pass'); ?>
                 </small>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Phone Number" name="nomortlp">
+                    <input type="text" class="form-control" placeholder="Nomor telepon" name="nomortlp" value="<?= set_value('nomortlp'); ?>">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-phone"></span>
@@ -64,10 +64,18 @@
                 <small class="text-danger">
                     <?= form_error('nomortlp'); ?>
                 </small>
+                <div class="input-group mb-3">
+                    <input type="date" class="form-control" placeholder="Tanggal lahir" name="tgllahir">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="far fa-calendar-alt"></span>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-row">
                     <div class="col">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Provinsi" name="Provinsi">
+                            <input type="text" class="form-control" placeholder="Provinsi" name="Provinsi" value="<?= set_value('Provinsi'); ?>">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-phone"></span>
@@ -80,7 +88,7 @@
                     </div>
                     <div class="col">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Kabupaten/Kota" name="Kota">
+                            <input type="text" class="form-control" placeholder="Kabupaten/Kota" name="Kota" value="<?= set_value('Kota'); ?>">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-phone"></span>
@@ -95,7 +103,7 @@
                 <div class="form-row mt-3 mb-3">
                     <div class="col">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Kecamatan" name="Kecamatan">
+                            <input type="text" class="form-control" placeholder="Kecamatan" name="Kecamatan" value="<?= set_value('Kecamatan'); ?>">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-phone"></span>
@@ -108,7 +116,7 @@
                     </div>
                     <div class="col">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Kelurahan/Desa" name="Kelurahan">
+                            <input type="text" class="form-control" placeholder="Kelurahan/Desa" name="Kelurahan" value="<?= set_value('Kelurahan'); ?>">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-phone"></span>
@@ -122,7 +130,7 @@
                 </div>
 
                 <div class="form-group">
-                    <textarea class="form-control" id="alamat" rows="3" name="alamat" placeholder="Alamat Lengkap"></textarea>
+                    <textarea class="form-control" id="alamat" rows="3" name="alamat" placeholder="Alamat Lengkap" value="<?= set_value('alamat'); ?>"></textarea>
                     <small class="text-danger">
                         <?= form_error('alamat'); ?>
                     </small>

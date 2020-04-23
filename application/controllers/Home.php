@@ -58,62 +58,9 @@ class Home extends CI_Controller
         if ($this->input->post('keyword')) {
             $data['Barang'] = $this->barang_model->caribarang1();
         }
-        $this->load->view('TemplateHome/Header', $data);
-        $this->load->view('Home/index', $data);
-        $this->load->view('TemplateHome/Footer');
-    }
-
-    public function home()
-    {
-        $data['judul'] = 'Home';
-        //load library
-        $this->load->library('pagination');
-
-        //config pagination
-        $config['base_url'] = 'http://localhost/shopsmart/Home/index';
-        $config['total_rows'] = $this->barang_model->countallbarang();
-        $config['per_page'] = 6;
-
-        //style pagination
-        $config['full_tag_open'] = '<nav><ul class="pagination">';
-        $config['full_tag_close'] = ' </ul></nav>';
-
-        $config['first_link'] = 'First';
-        $config['first_tag_open'] = '<li class="page-item">';
-        $config['first_tag_close'] = '</li>';
-
-        $config['last_link'] = 'Last';
-        $config['last_tag_open'] = '<li class="page-item">';
-        $config['last_tag_close'] = '</li>';
-
-        $config['next_link'] = 'Next';
-        $config['next_tag_open'] = '<li class="page-item">';
-        $config['next_tag_close'] = '</li>';
-
-        $config['prev_link'] = 'Prev';
-        $config['prev_tag_open'] = '<li class="page-item">';
-        $config['prev_tag_close'] = '</li>';
-
-        $config['cur_tag_open'] = '<li class="page-item active"> <a class="page-link" href="#">';
-        $config['cur_tag_close'] = '</a></li>';
-
-        $config['num_tag_open'] = '<li class="page-item">';
-        $config['num_tag_close'] = '</li>';
-
-        $config['attributes'] = array('class' => 'page-link');
-
-        //initialize 
-        $this->pagination->initialize($config);
-
-
-        $data['start'] = $this->uri->segment(3);
-        $data['Barang'] = $this->barang_model->getbarang($config['per_page'], $data['start']);
-        if ($this->input->post('keyword')) {
-            $data['Barang'] = $this->barang_model->caribarang1();
-        }
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('TemplateHome/Header', $data);
-        $this->load->view('Home/Home', $data);
+        $this->load->view('Home/index', $data);
         $this->load->view('TemplateHome/Footer');
     }
 
@@ -259,6 +206,7 @@ class Home extends CI_Controller
         if ($this->input->post('keyword')) {
             $data['barang'] = $this->barang_model->caribarang2();
         }
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('TemplateHome/Header', $data);
         $this->load->view('Home/Laptop', $data);
         $this->load->view('TemplateHome/Footer');
@@ -312,6 +260,7 @@ class Home extends CI_Controller
         if ($this->input->post('keyword')) {
             $data['barang'] = $this->barang_model->caribarang2();
         }
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('TemplateHome/Header', $data);
         $this->load->view('Home/Mouse', $data);
         $this->load->view('TemplateHome/Footer');
@@ -365,6 +314,7 @@ class Home extends CI_Controller
         if ($this->input->post('keyword')) {
             $data['barang'] = $this->barang_model->caribarang2();
         }
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('TemplateHome/Header', $data);
         $this->load->view('Home/Keyboard', $data);
         $this->load->view('TemplateHome/Footer');
@@ -418,6 +368,7 @@ class Home extends CI_Controller
         if ($this->input->post('keyword')) {
             $data['barang'] = $this->barang_model->caribarang2();
         }
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('TemplateHome/Header', $data);
         $this->load->view('Home/Mousepad', $data);
         $this->load->view('TemplateHome/Footer');
@@ -471,6 +422,7 @@ class Home extends CI_Controller
         if ($this->input->post('keyword')) {
             $data['barang'] = $this->barang_model->caribarang2();
         }
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('TemplateHome/Header', $data);
         $this->load->view('Home/Smartphone', $data);
         $this->load->view('TemplateHome/Footer');
@@ -524,6 +476,7 @@ class Home extends CI_Controller
         if ($this->input->post('keyword')) {
             $data['barang'] = $this->barang_model->caribarang2();
         }
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('TemplateHome/Header', $data);
         $this->load->view('Home/Headset', $data);
         $this->load->view('TemplateHome/Footer');
