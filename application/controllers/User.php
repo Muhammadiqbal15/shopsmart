@@ -9,7 +9,7 @@ class User extends CI_Controller
     {
         parent::__construct();
 
-        if ($this->session->userdata('status') != "login") {
+        if (!$this->session->userdata('email')) {
             redirect(base_url("Auth/index"));
         }
     }

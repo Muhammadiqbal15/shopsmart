@@ -24,14 +24,8 @@
             <li class="nav-item active">
                 <a class="nav-link" href="<?= base_url() ?>Home/Headset">Headset&Earphone<span class="sr-only">(current)</span></a>
             </li>
-            <li>
-                <form class="form-inline mt-1" method="POST">
-                    <input class="form-control-sm" mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" autocomplete="off">
-                    <button class="btn btn-outline-primary btn-sm my-2 my-sm-0 ml-3 mt-1" type="submit"><i class="fas fa-search"></i></button>
-                </form>
-            </li>
         </ul>
-        <?php if ($this->session->userdata('status') != "login") : ?>
+        <?php if (!$this->session->userdata('email')) : ?>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="<?= base_url() ?>Auth/index">Login<span class="sr-only">(current)</span></a>
@@ -49,37 +43,44 @@
         <?php endif; ?>
     </div>
 </nav>
-<br>
-<?php if (empty($barang)) : ?>
-    <div class="alert alert-danger" role="alert">
-        Barang Tidak Ditemukan atau Tidak Ada
+
+<<form class="form-inline mt-1 mb-5 justify-content-center" method="POST">
+    <div class="input-group input-group-lg col-lg-8 mt-5">
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" type="search" placeholder="Search" aria-label="Search" name="keyword" autocomplete="off">
+        <button class="btn btn-outline-primary btn-sm my-2 my-sm-0 mt-1 col-lg-2" type=" submit"><i class="fas fa-search"></i></button>
     </div>
-<?php endif; ?>
-<br>
-<div class="container">
-    <div class="row">
-        <?php foreach ($barang as $brg) : ?>
-            <div class="col-lg-4 mt-3 mb-3">
-                <div class="card h-100">
-                    <img class="card-img-top" src="<?= base_url(); ?>assets/img/<?= $brg->gambar ?>" alt="" style="width: 343px; height:300px;">
-                    <div class="card-body">
-                        <h4><?= $brg->nama_barang ?></h4>
-                        <h5>Rp.<?= $brg->harga_barang ?></h5>
-                        <a href="<?= base_url() ?>Home/cart/<?= $brg->id_barang ?>" id="pesan" class="btn btn-primary mt-3">
-                            Pesan
-                        </a>
-                        <a href="<?= base_url() ?>Home/detailmouse/<?= $brg->id_barang ?>" class="btn btn-success mt-3">Detail</a>
+    </form>
+
+    <?php if (empty($barang)) : ?>
+        <div class="alert alert-danger" role="alert">
+            Barang Tidak Ditemukan atau Tidak Ada
+        </div>
+    <?php endif; ?>
+    <br>
+    <div class="container">
+        <div class="row">
+            <?php foreach ($barang as $brg) : ?>
+                <div class="col-lg-4 mt-3 mb-3">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="<?= base_url(); ?>assets/img/<?= $brg->gambar ?>" alt="" style="width: 343px; height:300px;">
+                        <div class="card-body">
+                            <h4><?= $brg->nama_barang ?></h4>
+                            <h5>Rp.<?= $brg->harga_barang ?></h5>
+                            <a href="<?= base_url() ?>Home/cart/<?= $brg->id_barang ?>" id="pesan" class="btn btn-primary mt-3">
+                                Pesan
+                            </a>
+                            <a href="<?= base_url() ?>Home/detailmouse/<?= $brg->id_barang ?>" class="btn btn-success mt-3">Detail</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
+        <?= $this->pagination->create_links(); ?>
     </div>
-    <?= $this->pagination->create_links(); ?>
-</div>
 
-<br>
-<footer class="py-5 col-lg-12 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-</footer>
+    <br>
+    <footer class="py-5 col-lg-12 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+        </div>
+    </footer>

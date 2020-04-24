@@ -39,13 +39,13 @@
                             <li class="nav-item">
                                 <a href="<?= base_url(); ?>Admin/index" class="nav-link">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>Data Barang</p>
+                                    <p>Data User</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="<?= base_url(); ?>Admin/Pembeli" class="nav-link">
                                     <i class="nav-icon fas fa-cash-register"></i>
-                                    <p>Data Pembeli</p>
+                                    <p>Data User Terblock</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -62,13 +62,13 @@
             </aside>
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
+            <div class="content-wrapper mt-5">
                 <!-- Content Header (Page header) -->
                 <div class="content-header">
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0 text-dark">Data Pembeli</h1>
+                                <h1 class="m-0 text-dark">Data User Terblock</h1>
                             </div><!-- /.col -->
                         </div><!-- /.row -->
                     </div><!-- /.container-fluid -->
@@ -78,88 +78,30 @@
                 <!-- Main content -->
                 <section class="content">
                     <div class="container-fluid">
-                        <!-- Small boxes (Stat box) -->
                         <div class="row">
-                            <div class="col-lg-4 col-6">
-                                <div class="small-box bg-success">
-                                    <div class="inner">
-                                        <?php foreach ($sumBarang as $sb) ?>
-                                        <h3><?= $sb->jumlah; ?></h3>
-                                        <p>Barang Masuk</p>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="fas fa-tag "></i>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- Left col -->
 
-                            <div class="col-lg-4 col-6">
-                                <div class="small-box bg-info">
-                                    <div class="inner">
-                                        <?php foreach ($sumPembeli as $sp) ?>
-                                        <h3><?= $sp->jmlfixed_pembeli; ?></h3>
-                                        <p>Pembeli</p>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="fas fa-user-plus"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-6">
-                                <div class="small-box bg-warning">
-                                    <div class="inner">
-                                        <?php foreach ($sumbarangterjual as $sbt) ?>
-                                        <h3><?= $sbt->jumlah_brg; ?></h3>
-                                        <p>Barang Yang Terjual</p>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="fas fa-shopping-cart"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.row -->
-                        <!-- Main row -->
-                        <div class="row">
                             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+                            <div class="popuplogin" data-popuplogin="<?= $this->session->flashdata('popup'); ?>"></div>
                             <section class="col-lg-12 connectedSortable">
                                 <div class="card">
                                     <div class="card-body table-responsive p-0">
-                                        <table class="table table-bordered table-head-fixed" id="table">
+                                        <table class="table table-bordered table-head-fixed mt-3" id="table">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Id</th>
-                                                    <th>Nama Pembeli</th>
-                                                    <th>No.Telp</th>
+                                                    <th>Nama</th>
+                                                    <th>Email</th>
+                                                    <th>Foto</th>
+                                                    <th>Tanggal Lahir</th>
                                                     <th>Alamat</th>
-                                                    <th>Barang Pesanan</th>
-                                                    <th>Harga</th>
-                                                    <th>Jumlah</th>
-                                                    <th>Pengiriman</th>
-                                                    <th>Opsi</th>
+                                                    <th>Notelp</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ($pembeli as $pb) :  ?>
-                                                    <tr>
-                                                        <th scope="row"><?= ++$start; ?></th>
-                                                        <td><?= $pb->id_pembeli ?></td>
-                                                        <td><?= $pb->nama ?></td>
-                                                        <td><?= $pb->notelp ?></td>
-                                                        <td>
-                                                            <a href="" id="detail" class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModal" data-provinsi="<?= $pb->nama_provinsi ?>" data-kota="<?= $pb->nama_kota ?>" data-kecamatan="<?= $pb->nama_kecamatan; ?>" data-kelurahan="<?= $pb->nama_kelurahan ?>" data-alamat="<?= $pb->alamat ?>"><i class="fas fa-eye"></i> Detail</a>
-                                                        </td>
-                                                        <td><?= $pb->nama_brg ?></td>
-                                                        <td><?= $pb->harga_brg ?></td>
-                                                        <td><?= $pb->jumlah_brg ?></td>
-                                                        <td><?= $pb->pengiriman ?></td>
-                                                        <td>
-                                                            <a href="<?= base_url(); ?>Admin/hapuspembeli/<?= $pb->id_pembeli ?>" class="btn btn-danger btn-sm hapus_pembeli"><i class="fas fa-trash-alt"></i> Hapus</a>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
+                                                <tr>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>

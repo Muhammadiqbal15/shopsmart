@@ -39,13 +39,13 @@
             <li class="nav-item">
               <a href="<?= base_url(); ?>Admin/index" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Data Barang</p>
+                <p>Data User</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="<?= base_url(); ?>Admin/Pembeli" class="nav-link">
                 <i class="nav-icon fas fa-cash-register"></i>
-                <p>Data Pembeli</p>
+                <p>Data User Terblock</p>
               </a>
             </li>
             <li class="nav-item">
@@ -69,7 +69,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Data Barang</h1>
+              <h1 class="m-0 text-dark">Data User</h1>
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -79,90 +79,9 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-4 col-6">
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <?php foreach ($sumBarang as $sb) ?>
-                  <h3><?= $sb->jumlah; ?></h3>
-                  <p>Barang</p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-tag "></i>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-6">
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <?php foreach ($sumPembeli as $sp) ?>
-                  <h3><?= $sp->jmlfixed_pembeli; ?></h3>
-                  <p>Pembeli</p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-user-plus"></i>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-6">
-              <div class="small-box bg-warning">
-                <div class="inner">
-                  <?php foreach ($sumbarangterjual as $sbt) ?>
-                  <h3><?= $sbt->jumlah_brg; ?></h3>
-                  <p>Barang Yang Terjual</p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-shopping-cart"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- /.row -->
-          <?php if (validation_errors() == true) : ?>
-            <div class="container">
-              <h6 class="text-danger">Kesalahan Menginput Data Barang</h6>
-              <div class="row">
-                <div class="col-lg-3">
-                  <div class="alert alert-danger" role="alert">
-                    <?= form_error('namabrg'); ?>
-                    <?= form_error('hargabrg'); ?>
-                    <?= form_error('jml'); ?>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <?php endif; ?>
-          <!-- Main row -->
           <div class="row">
             <!-- Left col -->
 
-            <div class="col-lg-2">
-              <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
-                <i class="nav-icon fas fa-plus"></i>
-                Tambah Data
-              </button>
-            </div>
-            <br>
-            <div class="col-lg-6">
-              <form action="" method="post">
-                <div class="form-inline">
-                  <select class="form-control" name="keyword">
-                    <option>--JENIS BARANG--</option>
-                    <option>Laptop</option>
-                    <option>Mouse</option>
-                    <option>Keyboard</option>
-                    <option>Mousepad</option>
-                    <option>Smartphone</option>
-                    <option>Headset&Earphone</option>
-                  </select>
-                  <button class="btn btn-primary ml-1" name="filter" type="submit">Filter</button>
-                </div>
-              </form>
-            </div>
-            <br>
             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
             <div class="popuplogin" data-popuplogin="<?= $this->session->flashdata('popup'); ?>"></div>
             <section class="col-lg-12 connectedSortable">
@@ -174,42 +93,17 @@
                         <th>No</th>
                         <th>Id</th>
                         <th>Nama</th>
-                        <th>Harga</th>
+                        <th>Email</th>
                         <th>Foto</th>
-                        <th>Jenis</th>
-                        <th>Keterangan</th>
-                        <th>Jumlah</th>
-                        <th>Satuan</th>
-                        <th>Edit</th>
-                        <th>Hapus</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Alamat</th>
+                        <th>Notelp</th>
+                        <th>Opsi</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($Barang as $brg) :  ?>
-                        <tr>
-                          <td><?= ++$start; ?></td>
-                          <td><?= $brg['id_barang']; ?></td>
-                          <td><?= $brg['nama_barang']; ?></td>
-                          <td><?= $brg['harga_barang']; ?></td>
-                          <td>
-                            <a class="thumbnail btn btn-success btn-sm" href="#image-gallery" data-image-id="" data-toggle="modal" data-title="<?= $brg['nama_barang']; ?>" data-image="<?= base_url() ?>assets/img/<?= $brg['gambar']; ?>" data-target="#image-gallery">
-                              <i class="fas fa-image"></i>
-                              Foto
-                            </a>
-                          </td>
-                          <td><?= $brg['jenis_barang']; ?></td>
-                          <td><?= $brg['ket_barang']; ?></td>
-                          <td><?= $brg['jumlah']; ?></td>
-                          <td><?= $brg['UOM']; ?></td>
-                          <td>
-                            <a href="<?= base_url(); ?>Admin/<?= $brg['id_barang']; ?>" data-toggle="modal" data-target="#exampleModal1" id="edit" class="btn btn-primary btn-sm" data-idbarang="<?= $brg['id_barang']; ?>" data-namabrg="<?= $brg['nama_barang']; ?>" data-harga="<?= $brg['harga_barang']; ?>" data-jumlah="<?= $brg['jumlah']; ?>" data-satuan="<?= $brg['UOM']; ?>" data-jenis="<?= $brg['jenis_barang']; ?>" data-ket="<?= $brg['ket_barang']; ?>" data-idbarang="<?= $brg['id_barang']; ?>"> <i class="fas fa-trash"></i> Edit</a>
-                            <!-- <a href="<?= base_url(); ?>Admin/ubah/<?= $brg['id_barang']; ?>">edit</a> -->
-                          </td>
-                          <td>
-                            <a href="<?= base_url(); ?>Admin/hapus/<?= $brg['id_barang']; ?>" class="btn btn-danger btn-sm tombol-hapus"><i class="fas fa-trash-alt"></i> Hapus</a>
-                          </td>
-                        </tr>
-                      <?php endforeach; ?>
+                      <tr>
+                      </tr>
                     </tbody>
                   </table>
                 </div>

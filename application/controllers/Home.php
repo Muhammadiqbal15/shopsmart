@@ -67,7 +67,7 @@ class Home extends CI_Controller
     public function cart($id_barang)
     {
 
-        if ($this->session->userdata('status') != "login") {
+        if (!$this->session->userdata('email')) {
             redirect(base_url("Auth/regislog"));
         }
         $data['judul'] = 'Beli';

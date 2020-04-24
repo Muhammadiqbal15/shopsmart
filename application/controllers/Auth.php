@@ -38,11 +38,14 @@ class Auth extends CI_Controller
                 if (password_verify($pass, $user['password'])) {
                     $data = [
                         'email' => $user['email'],
-                        'role_id' => $user['role_id'],
-                        'status' => 'login'
+                        'role_id' => $user['role_id']
                     ];
                     $this->session->set_userdata($data);
-                    redirect('Home/index');
+                    if ($user['role_id'] == 1) {
+                        redirect('Admin/index');
+                    } else {
+                        redirect('Home/index');
+                    }
                 } else {
                     $this->session->set_flashdata('eroremail', '<div class="alert alert-danger" role="alert">
                     Password salah
@@ -120,12 +123,19 @@ class Auth extends CI_Controller
 
     public function logout()
     {
-        $this->session->unset_userdata('status');
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
         $this->session->unset_userdata('password');
 
 
         redirect('Home/index');
+    }
+
+    public function blok()
+    {
+        $data['judul'] = "Page Not Found";
+        $this->load->view('TemplateAuth/HeaderAuth', $data);
+        $this->load->view('Auth/blok');
+        $this->load->view('TemplateAuth/FooterAuth');
     }
 }

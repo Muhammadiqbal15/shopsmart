@@ -203,10 +203,6 @@ class barang_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('pembeli');
-        $this->db->join('provinsi', 'provinsi.id_provinsi=pembeli.provinsi');
-        $this->db->join('kota', 'kota.id_kota=pembeli.kota');
-        $this->db->join('kecamatan', 'kecamatan.id_kecamatan=pembeli.kecamatan');
-        $this->db->join('kelurahan', 'kelurahan.id_kelurahan=pembeli.kelurahan');
         $this->db->limit($limit, $start);
         $query = $this->db->get();
         return $query->result();

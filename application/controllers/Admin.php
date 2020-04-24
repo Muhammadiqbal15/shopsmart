@@ -9,8 +9,15 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('barang_model');
-        
+        if (!$this->session->userdata('email')) {
+            redirect(base_url("Auth/index"));
+        } else {
 
+            $role = $this->session->userdata('role_id');
+            if ($role > 1) {
+                redirect('Auth/blok');
+            }
+        }
         $this->load->library('form_validation');
     }
 

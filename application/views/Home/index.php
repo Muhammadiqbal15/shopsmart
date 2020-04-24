@@ -29,15 +29,8 @@
 
                 </div>
             </li>
-
-            <li>
-                <form class="form-inline mt-1" method="POST">
-                    <input class="form-control-sm" mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" autocomplete="off">
-                    <button class="btn btn-outline-primary btn-sm my-2 my-sm-0 ml-3 mt-1" type="submit"><i class="fas fa-search"></i></button>
-                </form>
-            </li>
         </ul>
-        <?php if ($this->session->userdata('status') != "login") : ?>
+        <?php if (!$this->session->userdata('email')) : ?>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="<?= base_url() ?>Auth/index">Login<span class="sr-only">(current)</span></a>
@@ -87,8 +80,13 @@
     </a>
 </div>
 
+<form class="form-inline mt-1 mb-5 justify-content-center" method="POST">
+    <div class="input-group input-group-lg col-lg-8 mt-5">
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" type="search" placeholder="Search" aria-label="Search" name="keyword" autocomplete="off">
+        <button class="btn btn-outline-primary btn-sm my-2 my-sm-0 mt-1 col-lg-2" type=" submit"><i class="fas fa-search"></i></button>
+    </div>
+</form>
 
-<br><br>
 
 <div class="container">
     <div class="row">
