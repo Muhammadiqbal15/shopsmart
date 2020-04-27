@@ -87,6 +87,8 @@
     </div>
 </form>
 
+<div class="login" data-login="<?= $this->session->flashdata('login'); ?>"></div>
+<div class="logout" data-logout="<?= $this->session->flashdata('logout'); ?>"></div>
 
 <div class="container">
     <div class="row">

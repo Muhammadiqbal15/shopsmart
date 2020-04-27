@@ -222,4 +222,19 @@ class barang_model extends CI_Model
     {
         return $this->db->get('pembeli')->num_rows();
     }
+
+    public function getuserbyid($id)
+    {
+        return $this->db->get_where('user', ['id' => $id])->row_array();
+    }
+
+    public function updateuser($data, $kondisi)
+    {
+        $this->db->update('user', $data, $kondisi);
+    }
+
+    public function getalluser()
+    {
+        return $this->db->get('user')->result_array();
+    }
 }

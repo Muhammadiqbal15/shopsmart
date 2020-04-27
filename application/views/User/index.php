@@ -17,6 +17,8 @@
   </nav>
   <!-- /.navbar -->
 
+
+  <div class="edit" data-edit="<?= $this->session->flashdata('edit'); ?>"></div>
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
@@ -25,7 +27,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?= base_url(); ?>assets/foto/<?= $user['foto']; ?>" class="card-img-top" alt="Foto Profile" class="img-fluid">
+          <img src="<?= base_url(); ?>assets/img/<?= $user['foto']; ?>" class="card-img-top rounded-circle mt-2 img-fluid" alt="Foto Profile">
         </div>
         <div class="info">
           <h5 style="color: white;">Selamat Datang <br><?= $user['nama']; ?></h3>
@@ -103,8 +105,8 @@
             <div class="card mb-3">
               <div class="row no-gutters">
                 <div class="col-md-4">
-                  <img src="<?= base_url(); ?>assets/foto/<?= $user['foto']; ?>" class="card-img-top" alt="Foto Profile" class="img-fluid">
-                  <a href="" class="btn btn-primary mt-3 mb-3 ml-2"><i class="fas fa-user-edit"></i> Edit Profile</a>
+                  <img src="<?= base_url(); ?>assets/img/<?= $user['foto']; ?>" class="card-img-top" alt="Foto Profile" class="img-fluid">
+                  <a href="<?= base_url(); ?>User/editprofile/<?= $user['id']; ?>" class="btn btn-primary mt-3 mb-3 ml-2"><i class="fas fa-user-edit"></i> Edit Profile</a>
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">

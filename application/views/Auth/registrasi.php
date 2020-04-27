@@ -10,7 +10,7 @@
             <form action="<?= base_url(); ?>Auth/registrasi" method="post">
 
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Nama" name="nama" value="<?= set_value('nama'); ?>">
+                    <input type="text" class="form-control" placeholder="Nama/NamaToko" name="nama" value="<?= set_value('nama'); ?>">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -78,7 +78,7 @@
                             <input type="text" class="form-control" placeholder="Provinsi" name="Provinsi" value="<?= set_value('Provinsi'); ?>">
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    <span class="fas fa-phone"></span>
+                                    <span class="fas fa-map-marker-alt mr-3"></span>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                             <input type="text" class="form-control" placeholder="Kabupaten/Kota" name="Kota" value="<?= set_value('Kota'); ?>">
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    <span class="fas fa-phone"></span>
+                                    <span class="fas fa-map-marker-alt mr-3"></span>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                             <input type="text" class="form-control" placeholder="Kecamatan" name="Kecamatan" value="<?= set_value('Kecamatan'); ?>">
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    <span class="fas fa-phone"></span>
+                                    <span class="fas fa-map-marker-alt mr-3"></span>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                             <input type="text" class="form-control" placeholder="Kelurahan/Desa" name="Kelurahan" value="<?= set_value('Kelurahan'); ?>">
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    <span class="fas fa-phone"></span>
+                                    <span class="fas fa-map-marker-alt mr-3"></span>
                                 </div>
                             </div>
                         </div>

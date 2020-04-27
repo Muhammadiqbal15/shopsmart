@@ -29,24 +29,22 @@
 
                 </div>
             </li>
-
-            <li>
-                <form class="form-inline mt-1" method="POST">
-                    <input class="form-control-sm" mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" autocomplete="off">
-                    <button class="btn btn-outline-primary btn-sm my-2 my-sm-0 ml-3 mt-1" type="submit"><i class="fas fa-search"></i></button>
-                </form>
-            </li>
         </ul>
     </div>
 </nav>
-<br><br><br><br>
 
+<form class="form-inline mt-5 mb-5 justify-content-center" method="POST">
+    <div class="input-group input-group-lg col-lg-8 mt-5">
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" type="search" placeholder="Search" aria-label="Search" name="keyword" autocomplete="off">
+        <button class="btn btn-outline-primary btn-sm my-2 my-sm-0 mt-1 col-lg-2" type=" submit"><i class="fas fa-search"></i></button>
+    </div>
+</form>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <img src="<?= base_url() ?>assets/img/<?= $barang->gambar; ?>" alt="" class="img-fluid shadow">
             <h4 class="mt-3"><?= $barang->nama_barang; ?></h4>
-            <h4 class="mt-3">Rp.<?= $barang->harga_barang;?></h4>
+            <h4 class="mt-3">Rp.<?= $barang->harga_barang; ?></h4>
             <a href="<?= base_url() ?>Home/index" class="btn btn-success mt-3 btn-block shadow">Home</a>
         </div>
         <div class="col-lg-6">

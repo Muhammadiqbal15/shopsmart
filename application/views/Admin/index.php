@@ -101,10 +101,23 @@
                         <th>Opsi</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                      </tr>
-                    </tbody>
+                    <?php foreach ($user as $usr) : ?>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td><?= $usr['id']; ?></td>
+                          <td><?= $usr['nama']; ?></td>
+                          <td><?= $usr['email']; ?></td>
+                          <td><img src="<?= base_url(); ?>assets/img/<?= $usr['foto']; ?>" alt="" width="70" height="70"></td>
+                          <td><?= $usr['tgllahir']; ?></td>
+                          <td><?= $usr['alamat']; ?></td>
+                          <td><?= $usr['notelp']; ?></td>
+                          <td>
+                            <a href="" class="btn btn-danger">Block</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    <?php endforeach; ?>
                   </table>
                 </div>
               </div>

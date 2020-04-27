@@ -44,6 +44,7 @@ class Auth extends CI_Controller
                     if ($user['role_id'] == 1) {
                         redirect('Admin/index');
                     } else {
+                        $this->session->set_flashdata('login', $user['nama']);
                         redirect('Home/index');
                     }
                 } else {
@@ -127,7 +128,7 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('role_id');
         $this->session->unset_userdata('password');
 
-
+        $this->session->set_flashdata('logout', 'Berhasil Logout');
         redirect('Home/index');
     }
 

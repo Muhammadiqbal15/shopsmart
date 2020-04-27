@@ -66,11 +66,7 @@ class Admin extends CI_Controller
 
         $data['start'] = $this->uri->segment(3);
         $data['Barang'] = $this->barang_model->getbarang($config['per_page'], $data['start']);
-        $data['sumBarang'] = $this->sumBarang();
-        $data['sumPembeli'] = $this->sumPembeli();
-        $data['sumbarangterjual'] = $this->sumbarangterjual();
-        $data['jenisbrg'] = ['Laptop', 'Mouse', 'Keyboard', 'Mousepad', 'Smartphone', 'Headset&Earphone'];
-        $data['keterangan'] = ['Ada', 'Kosong'];
+        $data['user'] = $this->barang_model->getalluser();
         if ($this->input->post('keyword')) {
             $data['Barang'] = $this->barang_model->caribarang();
         }
