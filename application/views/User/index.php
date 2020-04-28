@@ -43,7 +43,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url(); ?>Admin/Pembeli" class="nav-link">
+            <a href="<?= base_url(); ?>User/baranguser" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Barang</p>
             </a>

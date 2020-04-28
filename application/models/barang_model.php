@@ -6,7 +6,16 @@ class barang_model extends CI_Model
 
     public function getAllBarang()
     {
-        return $this->db->get('barang')->result_array();
+        $id = $this->input->post('user');
+        // $this->db->select('*');
+        // $this->db->from('barang');
+        // $this->db->where('user' ,);
+        // $query = $this->db->get();
+        // return $query->result_array();
+
+        // return $this->db->get_where('barang', ['user' => $id])->result_array();
+
+        return $this->db->query("SELECT barang. * from user,barang WHERE user.id = barang.user AND user.id=8")->result_array();
     }
 
     public function tambah($data)
