@@ -73,6 +73,7 @@ class Home extends CI_Controller
         $data['judul'] = 'Beli';
         $kondisi = array('id_barang' => $id_barang);
         $data['barang'] = $this->barang_model->getbyid($kondisi);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('TemplateHome/Header', $data);
         $this->load->view('Home/Cart', $data);
         $this->load->view('TemplateHome/Footer');

@@ -35,11 +35,20 @@
                 </li>
             </ul>
         <?php else : ?>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="<?= base_url() ?>User/index"><i class="far fa-user"></i> <?= $user['nama']; ?><span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
+            <?php $role = $this->session->userdata('role_id');  ?>
+            <?php if ($role > 1) : ?>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= base_url() ?>User/index"><i class="far fa-user"></i> <?= $user['nama']; ?><span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            <?php else : ?>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= base_url() ?>Admin/index"><i class="far fa-user"></i> <?= $user['nama']; ?><span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            <?php endif; ?>
         <?php endif; ?>
     </div>
 </nav>

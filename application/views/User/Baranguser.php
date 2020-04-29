@@ -175,7 +175,6 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Id</th>
                                             <th>Nama Barang</th>
                                             <th>Harga Barang</th>
                                             <th>Foto</th>
@@ -189,7 +188,6 @@
                                         <tbody>
                                             <tr>
                                                 <td>1</td>
-                                                <td><?= $brg['id_barang']; ?></td>
                                                 <td><?= $brg['nama_barang']; ?></td>
                                                 <td><?= $brg['harga_barang']; ?></td>
                                                 <td><img src="<?= base_url(); ?>assets/img/<?= $brg['gambar']; ?>" alt="" width="70" height="70"></td>
@@ -197,8 +195,8 @@
                                                 <td><?= $brg['ket_barang']; ?></td>
                                                 <td><?= $brg['jumlah']; ?></td>
                                                 <td>
-                                                    <a href="" class="btn btn-danger btn-sm">Hapus</a>
-                                                    <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                                    <a href="<?= base_url(); ?>/User/hapus/<?= $brg['id_barang']; ?>" class="btn btn-danger btn-sm">Hapus</a>
+                                                    <a href="<?= base_url(); ?>/User/editbarang/<?= $brg['id_barang']; ?>" class="btn btn-primary btn-sm">Edit</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -243,7 +241,7 @@
                             <input type="text" class="form-control" id="hargabrg" name="hargabrg">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Foto Gambar</label>
+                            <label for="exampleFormControlFile1">Foto Barang</label>
                             <input type="file" class="form-control-file" id="foto" name="foto">
                         </div>
                         <div class="form-group">

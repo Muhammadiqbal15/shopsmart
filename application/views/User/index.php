@@ -27,8 +27,11 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?= base_url(); ?>assets/img/<?= $user['foto']; ?>" class="card-img-top rounded-circle mt-2 img-fluid" alt="Foto Profile">
+          <img src="<?= base_url(); ?>assets/img/<?= $user['foto']; ?>" class="rounded-circle mt-2 img-fluid" alt="Foto Profile">
         </div>
+      </div>
+
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
           <h5 style="color: white;">Selamat Datang <br><?= $user['nama']; ?></h3>
         </div>

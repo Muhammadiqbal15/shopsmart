@@ -91,59 +91,67 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Edit Profile</h1>
+                        <h1 class="m-0 text-dark">Edit Barang</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
-        <!-- /.content-header -->
-
-        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
                     <section class="col-lg-6 connectedSortable">
                         <div class="card mb-3 p-4">
-                            <?php echo form_open_multipart('User/updateprofil') ?>
-                            <input type="hidden" name="id" value="<?= $useredit['id']; ?>">
-                            <input type="hidden" name="filelama" value="<?= $useredit['foto']; ?>">
+                            <?php echo form_open_multipart('User/updatebarang') ?>
+                            <input type="hidden" name="id" value="<?= $barang->id_barang; ?>">
+                            <input type="hidden" name="filelama" value="">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nama/Nama Toko</label>
-                                <input type="text" class="form-control" id="nama" name="nama" value="<?= $useredit['nama']; ?>">
+                                <label for="exampleInputEmail1">Nama Barang</label>
+                                <input type="text" class="form-control" id="namabrg" aria-describedby="emailHelp" name="namabrg" value="<?= $barang->nama_barang; ?>">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal Lahir</label>
-                                <input type="date" class="form-control" id="tgllahir" name="tgllahir" value="<?= $useredit['tgllahir']; ?>">
+                                <label for="exampleInputPassword1">Harga Barang</label>
+                                <input type="text" class="form-control" id="hargabrg" name="hargabrg" value="<?= $barang->harga_barang; ?>">
                             </div>
+                            <img src="<?= base_url(); ?>/assets/img/<?= $barang->gambar; ?>" alt="" class="img-fluid">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nomor Telepon</label>
-                                <input type="text" class="form-control" id="notelp" name="notelp" value="<?= $useredit['notelp']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlFile1">Foto</label>
+                                <label for="exampleFormControlFile1">Foto Barang</label>
                                 <input type="file" class="form-control-file" id="foto" name="foto">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Provinsi</label>
-                                <input type="text" class="form-control" id="provinsi" name="provinsi" value="<?= $useredit['provinsi']; ?>">
+                                <label for="stok">Jumlah Barang</label>
+                                <input type="text" class="form-control" id="jml" name="jml" value="<?= $barang->jumlah ?>" autocomplete="off">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Kabupaten/Kota</label>
-                                <input type="text" class="form-control" id="kota" name="kota" value="<?= $useredit['kota']; ?>">
+                                <label for="jenis">Satuan Barang</label>
+                                <select class="form-control" id="jenis" name="uom">
+                                    <option>Unit</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Kecamatan</label>
-                                <input type="text" class="form-control" id="kecamatan" name="kecamatan" value="<?= $useredit['kecamatan']; ?>">
+                                <label for="jenis">Jenis Barang</label>
+                                <select class="form-control" id="jenis" name="jenis">
+                                    <?php foreach ($jenisbarang as $jb) : ?>
+                                        <?php if ($jb ==  $barang->jenis_barang) : ?>
+                                            <option value="<?= $jb; ?>" selected><?= $jb; ?></option>
+                                        <?php else : ?>
+                                            <option value="<?= $jb; ?>"><?= $jb; ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Kelurahan</label>
-                                <input type="text" class="form-control" id="alamat" name="kelurahan" value="<?= $useredit['kelurahan']; ?>">
+                                <label for="Keterangan">Keterangan Barang</label>
+                                <select class="form-control" id="keterangan" name="ket">
+                                    <?php foreach ($keterangan as $ket) : ?>
+                                        <?php if ($ket ==  $barang->ket_barang) : ?>
+                                            <option value="<?= $ket; ?>" selected><?= $ket; ?></option>
+                                        <?php else : ?>
+                                            <option value="<?= $ket; ?>"><?= $ket; ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Alamat</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="alamat"><?= $useredit['alamat']; ?></textarea>
-                            </div>
-                            <a href="<?= base_url(); ?>User/index" class="btn btn-primary">Kembali</a>
+                            <a href="<?= base_url(); ?>User/baranguser" class="btn btn-primary">Kembali</a>
                             <button class="btn btn-success" type="submit" name="edit">Edit</button>
                             <?php echo form_close(); ?>
                         </div>

@@ -94,13 +94,13 @@ class User extends CI_Controller
 
     public function tambah()
     {
-        $namabrg = $this->input->post('namabrg', true);
-        $hrgbrg = $this->input->post('hargabrg', true);
-        $jenis = $this->input->post('jenis', true);
-        $ket = $this->input->post('ket', true);
-        $jml = $this->input->post('jml', true);
-        $uom = $this->input->post('uom', true);
-        $user = $this->input->post('user', true);
+        $namabrg = htmlspecialchars($this->input->post('namabrg', true));
+        $hrgbrg = htmlspecialchars($this->input->post('hargabrg', true));
+        $jenis = htmlspecialchars($this->input->post('jenis', true));
+        $ket = htmlspecialchars($this->input->post('ket', true));
+        $jml = htmlspecialchars($this->input->post('jml', true));
+        $uom = htmlspecialchars($this->input->post('uom', true));
+        $user = htmlspecialchars($this->input->post('user', true));
         $gambar = $_FILES['foto'];
         if ($gambar == '') {
         } else {
@@ -128,6 +128,67 @@ class User extends CI_Controller
         );
 
         $this->barang_model->tambah($data);
+        redirect('User/baranguser');
+    }
+
+    public function hapus($id_barang)
+    {
+        $this->barang_model->hapusbarang($id_barang);
+        redirect('User/baranguser');
+    }
+
+    public function editbarang($id_barang)
+    {
+        $kondisi = array('id_barang' => $id_barang);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['barang'] = $this->barang_model->getbyid($kondisi);
+        $data['jenisbarang'] = ['Laptop', 'Mouse', 'Keyboard', 'Mousepad', 'Smartphone', 'Headset&Earphone'];
+        $data['keterangan'] = ['Ada', 'Kosong'];
+        $data['judul'] = 'Edit Barang';
+        $this->load->view('TemplateUser/HeaderUser', $data);
+        $this->load->view('User/Editbarang', $data);
+        $this->load->view('TemplateUser/FooterUser');
+    }
+
+    public function updatebarang()
+    {
+        $namabrg = htmlspecialchars($this->input->post('namabrg', true));
+        $hrgbrg = htmlspecialchars($this->input->post('hargabrg', true));
+        $jenis = htmlspecialchars($this->input->post('jenis', true));
+        $ket = htmlspecialchars($this->input->post('ket', true));
+        $jml = htmlspecialchars($this->input->post('jml', true));
+        $uom = htmlspecialchars($this->input->post('uom', true));
+        $gambar = $_FILES['foto'];
+        if ($gambar == '') {
+        } else {
+            $config['upload_path'] = './assets/img';
+            $config['allowed_types'] = 'jpg|png|jfif|gif|jpeg';
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('foto')) {
+                die();
+            } else {
+                $gambar = $this->upload->data('file_name');
+            }
+        }
+
+        $data = array(
+
+            'nama_barang'       => $namabrg,
+            'harga_barang'      => $hrgbrg,
+            'gambar'            => $gambar,
+            'jenis_barang'      => $jenis,
+            'ket_barang'        => $ket,
+            'jumlah'            => $jml,
+            'UOM'               => $uom,
+        );
+
+        $path = './assets/img/';
+        @unlink($path . $this->input->post('filelama'));
+        $id = $this->input->post('id');
+
+        $kondisi = $this->db->where('id_barang', $id);
+        $this->barang_model->updatebarang($data, $kondisi);
         redirect('User/baranguser');
     }
 }

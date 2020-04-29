@@ -15,7 +15,13 @@ class barang_model extends CI_Model
 
         // return $this->db->get_where('barang', ['user' => $id])->result_array();
 
-        return $this->db->query("SELECT barang. * from user,barang WHERE user.id = barang.user AND user.id=8")->result_array();
+        // return $this->db->query("SELECT barang. * from user,barang WHERE user.id = barang.user AND user.id=8")->result_array();
+        // $this->db->select('*');
+        // $this->db->from('barang');
+        // $this->db->where('user', $this->session->userdata('user'));
+        // $query = $this->db->get();
+        // return $query->result_array(); 
+        return $this->db->get('barang')->result_array();
     }
 
     public function tambah($data)
@@ -23,7 +29,7 @@ class barang_model extends CI_Model
         $this->db->insert('barang', $data);
     }
 
-    public function hapus($id_barang)
+    public function hapusbarang($id_barang)
     {
         $this->db->where('id_barang', $id_barang);
         $this->db->delete('barang');
@@ -43,7 +49,7 @@ class barang_model extends CI_Model
         return $query->row();
     }
 
-    public function update($data, $kondisi)
+    public function updatebarang($data, $kondisi)
     {
         $this->db->update('barang', $data, $kondisi);
     }
