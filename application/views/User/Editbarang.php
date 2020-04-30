@@ -44,7 +44,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url(); ?>Admin/Pembeli" class="nav-link">
+                        <a href="<?= base_url(); ?>User/baranguser" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>Barang</p>
                         </a>
@@ -119,7 +119,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="stok">Jumlah Barang</label>
-                                <input type="text" class="form-control" id="jml" name="jml" value="<?= $barang->jumlah ?>" autocomplete="off">
+                                <input type="text" class="form-control" id="jml " name="jml" value="<?= $barang->jumlah ?>" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label for="jenis">Satuan Barang</label>

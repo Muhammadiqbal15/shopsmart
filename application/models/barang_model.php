@@ -16,12 +16,21 @@ class barang_model extends CI_Model
         // return $this->db->get_where('barang', ['user' => $id])->result_array();
 
         // return $this->db->query("SELECT barang. * from user,barang WHERE user.id = barang.user AND user.id=8")->result_array();
-        // $this->db->select('*');
-        // $this->db->from('barang');
-        // $this->db->where('user', $this->session->userdata('user'));
-        // $query = $this->db->get();
-        // return $query->result_array(); 
-        return $this->db->get('barang')->result_array();
+        $this->db->select('*');
+        $this->db->from('barang');
+        $this->db->where('user', $this->session->userdata('id'));
+        $query = $this->db->get();
+        return $query->result_array();
+        // return $this->db->get('barang')->result_array();
+    }
+
+    public function getnamapenjual()
+    {
+        $this->db->select('*');
+        $this->db->from('barang');
+        $this->db->join('user', 'user.id=barang.user');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function tambah($data)
@@ -44,6 +53,7 @@ class barang_model extends CI_Model
     public function getbyid($kondisi)
     {
         $this->db->from('barang');
+        $this->db->join('user', 'user.id = barang.user');
         $this->db->where($kondisi);
         $query = $this->db->get();
         return $query->row();
@@ -178,39 +188,11 @@ class barang_model extends CI_Model
         return $this->db->get('pembeli')->result_array();
     }
 
-    public function caribarang()
-    {
-        $keyword = $this->input->post('keyword', true);
-        $this->db->like('jenis_barang', $keyword);
-        return  $this->db->get('barang')->result_array();
-    }
-
-    public function caripembeli()
-    {
-        $keyword = $this->input->post('keyword', true);
-        $this->db->like('nama', $keyword);
-        $this->db->or_like('nama_brg', $keyword);
-        $this->db->or_like('id_pembeli', $keyword);
-        $this->db->or_like('pengiriman', $keyword);
-        $this->db->join('provinsi', 'provinsi.id_provinsi=pembeli.provinsi');
-        $this->db->join('kota', 'kota.id_kota=pembeli.kota');
-        $this->db->join('kecamatan', 'kecamatan.id_kecamatan=pembeli.kecamatan');
-        $this->db->join('kelurahan', 'kelurahan.id_kelurahan=pembeli.kelurahan');
-        return  $this->db->get('pembeli')->result();
-    }
-
     public function caribarang1()
     {
         $keyword = $this->input->post('keyword', true);
         $this->db->like('nama_barang', $keyword);
         return  $this->db->get('barang')->result_array();
-    }
-
-    public function caribarang2()
-    {
-        $keyword = $this->input->post('keyword', true);
-        $this->db->like('nama_barang', $keyword);
-        return  $this->db->get('barang')->result_object();
     }
 
 

@@ -5,6 +5,7 @@
             <img src="<?= base_url() ?>assets/img/<?= $barang->gambar ?>" alt="" class="img-fluid mt-5 ">
         </div>
         <div class="col-lg-6 mt-5">
+            <h4 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Penjual: <?= $barang->nama ?></h4>
             <h4 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Nama Barang : <?= $barang->nama_barang ?></h4>
             <h4 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Harga Barang : Rp.<?= $barang->harga_barang ?></h4>
             <h4 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Jenis Barang : <?= $barang->jenis_barang ?></h4>

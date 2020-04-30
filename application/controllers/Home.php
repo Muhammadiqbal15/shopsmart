@@ -84,7 +84,6 @@ class Home extends CI_Controller
         $kondisi = array('id_barang' => $id_barang);
         $data['judul'] = 'Detail';
         $data['barang'] = $this->barang_model->getbyid($kondisi);
-
         $this->load->view('TemplateHome/Header', $data);
         $this->load->view('Home/Detail', $data);
         $this->load->view('TemplateHome/Footer');

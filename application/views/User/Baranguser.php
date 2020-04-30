@@ -18,7 +18,7 @@
     <!-- /.navbar -->
 
 
-    <div class="edit" data-edit="<?= $this->session->flashdata('edit'); ?>"></div>
+    <div class="crud" data-crud="<?= $this->session->flashdata('crud'); ?>"></div>
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
@@ -195,7 +195,7 @@
                                                 <td><?= $brg['ket_barang']; ?></td>
                                                 <td><?= $brg['jumlah']; ?></td>
                                                 <td>
-                                                    <a href="<?= base_url(); ?>/User/hapus/<?= $brg['id_barang']; ?>" class="btn btn-danger btn-sm">Hapus</a>
+                                                    <a href="<?= base_url(); ?>/User/hapus/<?= $brg['id_barang']; ?>" class="btn btn-danger btn-sm tombol-hapus">Hapus</a>
                                                     <a href="<?= base_url(); ?>/User/editbarang/<?= $brg['id_barang']; ?>" class="btn btn-primary btn-sm">Edit</a>
                                                 </td>
                                             </tr>

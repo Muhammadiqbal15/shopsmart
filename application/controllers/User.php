@@ -128,12 +128,14 @@ class User extends CI_Controller
         );
 
         $this->barang_model->tambah($data);
+        $this->session->set_flashdata('crud', 'Dijual');
         redirect('User/baranguser');
     }
 
     public function hapus($id_barang)
     {
         $this->barang_model->hapusbarang($id_barang);
+        $this->session->set_flashdata('crud', 'Dihapus');
         redirect('User/baranguser');
     }
 
@@ -189,6 +191,7 @@ class User extends CI_Controller
 
         $kondisi = $this->db->where('id_barang', $id);
         $this->barang_model->updatebarang($data, $kondisi);
+        $this->session->set_flashdata('crud', 'Diubah');
         redirect('User/baranguser');
     }
 }
