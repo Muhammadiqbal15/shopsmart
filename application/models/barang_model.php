@@ -24,13 +24,11 @@ class barang_model extends CI_Model
         // return $this->db->get('barang')->result_array();
     }
 
-    public function getnamapenjual()
+
+
+    public function tambahpmbyrn($data)
     {
-        $this->db->select('*');
-        $this->db->from('barang');
-        $this->db->join('user', 'user.id=barang.user');
-        $query = $this->db->get();
-        return $query->result_array();
+        $this->db->update('user', $data);
     }
 
     public function tambah($data)
@@ -185,7 +183,11 @@ class barang_model extends CI_Model
 
     public function getPembeli()
     {
-        return $this->db->get('pembeli')->result_array();
+        $this->db->select('*');
+        $this->db->from('pembeli');
+        $this->db->where('usr_penjual', $this->session->userdata('id'));
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function caribarang1()

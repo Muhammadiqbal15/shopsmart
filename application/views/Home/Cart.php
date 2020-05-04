@@ -69,6 +69,8 @@
             <img src="<?= base_url() ?>assets/img/<?= $barang->gambar; ?>" alt="" class="img-fluid shadow">
             <h4 class="mt-3"><?= $barang->nama_barang; ?></h4>
             <h4 class="mt-3">Rp.<?= $barang->harga_barang; ?></h4>
+            <h4 class="mt-3">Penjual : <?= $barang->nama; ?></h4>
+            <h4 class="mt-3">Terima Pembayaran : <?= $barang->ebanking;   ?>&<?= $barang->emoney; ?></h4>
             <a href="<?= base_url() ?>Home/index" class="btn btn-success mt-3 btn-block shadow">Home</a>
         </div>
         <div class="col-lg-6">
@@ -77,7 +79,7 @@
                     Pemesanan
                 </div>
                 <div class="card-body">
-                    <form action="<?= base_url() ?>Home/insertcart/<?= $barang->id_barang; ?>" method="post" id="formbeli">
+                    <form action="<?= base_url() ?>Home/insertcart" method="post" id="formbeli">
                         <h5>Barang : </h5>
                         <div class="form-row">
                             <div class="col">
@@ -88,135 +90,45 @@
                                 <label for="hrgbrg">Harga Barang:</label>
                                 <input type="text" class="form-control" id="hrgbrg" name="hrgbrg" value="<?= $barang->harga_barang; ?>">
                             </div>
+                            <input type="hidden" name="penjual" class="form-control" value="<?= $barang->id ?>">
                         </div>
                         <h5 class="mt-2">Pembeli : </h5>
-                        <div class="form-group">
-                            <label for="nama">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label for="nomor">No.Telp / HP</label>
-                            <input type="text" class="form-control" id="nomor" name="nomor" autocomplete="off">
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="nama">Nama</label>
+                                <input type="text" class="form-control" id="nama" name="nama" autocomplete="off" value="<?= $user['nama']; ?>">
+                            </div>
+                            <div class="col">
+                                <label for="nomor">No.Telp / HP</label>
+                                <input type="text" class="form-control" id="nomor" name="nomor" autocomplete="off" value="<?= $user['notelp']; ?>">
+                            </div>
                         </div>
                         <small class="text-danger">
                             <?= form_error('nomor'); ?>
                         </small>
                         <div class="form-row">
                             <div class="col">
-                                <label for="provinsi">Provinsi</label>
-                                <select class="form-control" id="provinsi" name="Provinsi">
-                                    <option value="">--Pilih Proivinsi--</option>
-                                    <?php foreach ($provinsi as $row) : ?>
-                                        <option value="<?php echo $row->id_provinsi; ?>"><?php echo $row->nama_provinsi; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <label for="nomor">Provinsi</label>
+                                <input type="text" class="form-control" id="nomor" name="provinsi" autocomplete="off" value="<?= $user['provinsi']; ?>">
                             </div>
                             <div class="col">
                                 <label for="kota">Kota/Kabupaten</label>
-                                <select class="form-control" id="kota" name="Kota">
-                                    <option value="">--Pilih Kota/Kabupaten</option>
-                                </select>
+                                <input type="text" class="form-control" id="nomor" name="kota" autocomplete="off" value="<?= $user['kota']; ?>">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col">
                                 <label for="kota">Kecamatan</label>
-                                <select class="form-control" id="kecamatan" name="kecamatan">
-                                    <option value="">--Pilih Kecamatan--</option>
-                                </select>
+                                <input type="text" class="form-control" id="nomor" name="kecamatan" autocomplete="off" value="<?= $user['kecamatan']; ?>">
                             </div>
                             <div class="col">
                                 <label for="kota">Kelurahan/Desa</label>
-                                <select class="form-control" id="kelurahan" name="kelurahan">
-                                    <option value="">--Pilih Kelurahan/Desa</option>
-                                </select>
+                                <input type="text" class="form-control" id="nomor" name="kelurahan" autocomplete="off" value="<?= $user['kelurahan']; ?>">
                             </div>
                         </div>
-                        <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery.min.js"></script>
-
-                        <script type="text/javascript">
-                            $(document).ready(function() {
-
-                                $('#provinsi').change(function() {
-                                    var id = $(this).val();
-                                    $.ajax({
-                                        url: "<?php echo site_url('Home/get_kota_list'); ?>",
-                                        method: "POST",
-                                        data: {
-                                            id: id
-                                        },
-                                        async: true,
-                                        dataType: 'json',
-
-                                        success: function(data) {
-                                            console.log(data);
-                                            var html = '';
-                                            var i;
-                                            for (i = 0; i < data.length; i++) {
-                                                html += '<option value=' + data[i].id_kota + '>' + data[i].nama_kota + '</option>';
-                                            }
-                                            $('#kota').html(html);
-
-                                        }
-                                    });
-                                    return false;
-                                });
-
-                                $('#kota').change(function() {
-                                    var id = $(this).val();
-                                    $.ajax({
-                                        url: "<?php echo site_url('Home/get_kecamatan_list'); ?>",
-                                        method: "POST",
-                                        data: {
-                                            id: id
-                                        },
-                                        async: true,
-                                        dataType: 'json',
-
-                                        success: function(data) {
-                                            console.log(data);
-                                            var html = '';
-                                            var i;
-                                            for (i = 0; i < data.length; i++) {
-                                                html += '<option value=' + data[i].id_kecamatan + '>' + data[i].nama_kecamatan + '</option>';
-                                            }
-                                            $('#kecamatan').html(html);
-
-                                        }
-                                    });
-                                    return false;
-                                });
-
-                                $('#kecamatan').change(function() {
-                                    var id = $(this).val();
-                                    $.ajax({
-                                        url: "<?php echo site_url('Home/get_kelurahan_list'); ?>",
-                                        method: "POST",
-                                        data: {
-                                            id: id
-                                        },
-                                        async: true,
-                                        dataType: 'json',
-
-                                        success: function(data) {
-                                            console.log(data);
-                                            var html = '';
-                                            var i;
-                                            for (i = 0; i < data.length; i++) {
-                                                html += '<option value=' + data[i].id_kelurahan + '>' + data[i].nama_kelurahan + '</option>';
-                                            }
-                                            $('#kelurahan').html(html);
-
-                                        }
-                                    });
-                                    return false;
-                                });
-
-                            });
-                        </script>
                         <div class="form-group">
                             <label for="Alamat">Alamat</label>
-                            <textarea class="form-control" id="alamat" rows="3" name="alamat"></textarea>
+                            <textarea class="form-control" id="alamat" rows="3" name="alamat"><?= $user['alamat']; ?></textarea>
                         </div>
                         <small class="text-danger">
                             <?= form_error('alamat'); ?>
@@ -234,6 +146,18 @@
                                 <option>J&T</option>
                                 <option>JNE</option>
                                 <option>Ninja Express</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="bayar">Pembayaran</label>
+                            <select class="form-control" id="bayar" name="pembayaran">
+                                <option>BNI Mobile Banking</option>
+                                <option>BCA Mobile Banking</option>
+                                <option>BRI Mobile Banking</option>
+                                <option>Mandiri Mobile Banking</option>
+                                <option>OVO</option>
+                                <option>Gopay</option>
+                                <option>Paypal</option>
                             </select>
                         </div>
                         <input type="hidden" name="jumlahpembeli" value="1">

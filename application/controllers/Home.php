@@ -84,6 +84,7 @@ class Home extends CI_Controller
         $kondisi = array('id_barang' => $id_barang);
         $data['judul'] = 'Detail';
         $data['barang'] = $this->barang_model->getbyid($kondisi);
+
         $this->load->view('TemplateHome/Header', $data);
         $this->load->view('Home/Detail', $data);
         $this->load->view('TemplateHome/Footer');
@@ -482,56 +483,46 @@ class Home extends CI_Controller
         $this->load->view('TemplateHome/Footer');
     }
 
-    public function insertcart($id_barang)
+    public function insertcart()
     {
 
-        $this->form_validation->set_rules('nama', 'Nama', 'required|alpha');
-        $this->form_validation->set_rules('nomor', 'Nomor', 'required|numeric|max_length[12]|min_length[12]');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
 
-        if ($this->form_validation->run() ==  false) {
 
-            $data['judul'] = 'Beli';
-            $kondisi = array('id_barang' => $id_barang);
-            $data['barang'] = $this->barang_model->getbyid($kondisi);
-            $this->load->view('TemplateHome/Header', $data);
-            $this->load->view('Home/Cart', $data);
-            $this->load->view('TemplateHome/Footer');
-        } else {
+        $nmbrg = $this->input->post('nmbrg', true);
+        $hrgbrg = $this->input->post('hrgbrg', true);
+        $pembeli = $this->input->post('nama', true);
+        $nomortlp = $this->input->post('nomor', true);
+        $alamat = $this->input->post('alamat', true);
+        $jml = $this->input->post('jumlah', true);
+        $kirim = $this->input->post('pengiriman', true);
+        $prov = $this->input->post('provinsi', true);
+        $kot = $this->input->post('kota', true);
+        $kec = $this->input->post('kecamatan', true);
+        $kel = $this->input->post('kelurahan', true);
+        $bayar = $this->input->post('pembayaran', true);
+        $jmlfixedpembeli = $this->input->post('jumlahpembeli', true);
+        $usr_penjual = $this->input->post('penjual', true);
 
-            $nmbrg = $this->input->post('nmbrg', true);
-            $hrgbrg = $this->input->post('hrgbrg', true);
-            $pembeli = $this->input->post('nama', true);
-            $nomortlp = $this->input->post('nomor', true);
-            $alamat = $this->input->post('alamat', true);
-            $jml = $this->input->post('jumlah', true);
-            $kirim = $this->input->post('pengiriman', true);
-            $prov = $this->input->post('Provinsi', true);
-            $kot = $this->input->post('Kota', true);
-            $kec = $this->input->post('kecamatan', true);
-            $kel = $this->input->post('kelurahan', true);
-            $jmlfixedpembeli = $this->input->post('jumlahpembeli', true);
+        $data = array(
+            'nama'    => $pembeli,
+            'noTelp'   => $nomortlp,
+            'alamat' => $alamat,
+            'nama_brg' => $nmbrg,
+            'harga_brg' => $hrgbrg,
+            'jumlah_brg' => $jml,
+            'pengiriman' => $kirim,
+            'jmlfixed_pembeli' => $jmlfixedpembeli,
+            'provinsi' => $prov,
+            'kota'  => $kot,
+            'kecamatan' => $kec,
+            'kelurahan' => $kel,
+            'pembayaran' => $bayar,
+            'usr_penjual' => $usr_penjual
+        );
 
-            $data = array(
-                'nama'    => $pembeli,
-                'noTelp'   => $nomortlp,
-                'alamat' => $alamat,
-                'nama_brg' => $nmbrg,
-                'harga_brg' => $hrgbrg,
-                'jumlah_brg' => $jml,
-                'pengiriman' => $kirim,
-                'jmlfixed_pembeli' => $jmlfixedpembeli,
-                'provinsi' => $prov,
-                'kota'  => $kot,
-                'kecamatan' => $kec,
-                'kelurahan' => $kel
-            );
-
-            $this->barang_model->pembeli($data);
-            $this->session->set_flashdata('flash', 'Barang');
-            redirect('Home/sukses');
-        }
+        $this->barang_model->pembeli($data);
+        $this->session->set_flashdata('flash', 'Barang');
+        redirect('Home/sukses');
     }
 
 

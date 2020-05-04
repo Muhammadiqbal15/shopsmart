@@ -19,6 +19,7 @@
 
 
   <div class="edit" data-edit="<?= $this->session->flashdata('edit'); ?>"></div>
+  <div class="pembayaran" data-pembayaran="<?= $this->session->flashdata('pembayaran'); ?>"></div>
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
@@ -52,7 +53,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
+            <a href="<?= base_url(); ?>User/Pembeliuser" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>Pembeli</p>
             </a>
@@ -110,6 +111,15 @@
                 <div class="col-md-4">
                   <img src="<?= base_url(); ?>assets/img/<?= $user['foto']; ?>" class="card-img-top" alt="Foto Profile" class="img-fluid">
                   <a href="<?= base_url(); ?>User/editprofile/<?= $user['id']; ?>" class="btn btn-primary mt-3 mb-3 ml-2"><i class="fas fa-user-edit"></i> Edit Profile</a>
+                  <ul class="list-group-flush">
+                    <li class="list-group-item">
+                      <h5><i class="fas fa-money-check-alt"></i> <?= $user['ebanking']; ?></h5>
+                    </li>
+                    <i class=></i>
+                    <li class="list-group-item">
+                      <h5><i class="fas fa-money-bill-wave-alt"></i> <?= $user['emoney']; ?></h5>
+                    </li>
+                  </ul>
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
@@ -119,9 +129,6 @@
                       </li>
                       <li class="list-group-item">
                         <h5><i class="far fa-envelope mr-3"></i> <?= $user['email']; ?></h5>
-                      </li>
-                      <li class="list-group-item">
-                        <h5><i class="far fa-calendar-alt mr-3"></i> <?= $user['tgllahir']; ?></h5>
                       </li>
                       <li class="list-group-item">
                         <h5><i class="fas fa-phone mr-3"></i> <?= $user['notelp']; ?></h5>
@@ -146,6 +153,38 @@
                     </ul>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                Menerima Metode Pembayaran
+              </div>
+              <div class="card-body">
+                <form action="<?= base_url(); ?>User/methodpmbyrn" method="POST">
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="">Mobile Banking</label>
+                      <select class="form-control" id="exampleFormControlSelect1" name="banking">
+                        <option>BCA Mobile Banking</option>
+                        <option>Mandiri Mobile Banking</option>
+                        <option>BNI Mobile Banking</option>
+                        <option>BRI Mobile Banking</option>
+                      </select>
+                    </div>
+                    <div class="col">
+                      <label for="">E-Money</label>
+                      <select class="form-control" id="exampleFormControlSelect1" name="money">
+                        <option>OVO</option>
+                        <option>Gopay</option>
+                        <option>Paypal</option>
+                      </select>
+                    </div>
+                    <div class="col">
+                      <br>
+                      <button class="btn btn-primary mt-2" type="submit" name="bayar">Simpan</button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           </section>

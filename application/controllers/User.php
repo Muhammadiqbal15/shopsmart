@@ -39,7 +39,6 @@ class User extends CI_Controller
     public function updateprofil()
     {
         $nama = htmlspecialchars($this->input->post('nama', true));
-        $tgl = htmlspecialchars($this->input->post('tgllahir', true));
         $no = htmlspecialchars($this->input->post('notelp', true));
         $prov = htmlspecialchars($this->input->post('provinsi', true));
         $kota = htmlspecialchars($this->input->post('kota', true));
@@ -63,7 +62,6 @@ class User extends CI_Controller
         $data = array(
 
             'nama' => $nama,
-            'tgllahir' => $tgl,
             'notelp' => $no,
             'provinsi' => $prov,
             'kota' => $kota,
@@ -193,5 +191,30 @@ class User extends CI_Controller
         $this->barang_model->updatebarang($data, $kondisi);
         $this->session->set_flashdata('crud', 'Diubah');
         redirect('User/baranguser');
+    }
+
+    public function methodpmbyrn()
+    {
+        $banking = $this->input->post('banking', true);
+        $money = $this->input->post('money', true);
+
+        $data = array(
+
+            'ebanking' => $banking,
+            'emoney' => $money
+        );
+        $this->barang_model->tambahpmbyrn($data);
+        $this->session->set_flashdata('pembayaran', 'Tersimpan');
+        redirect('User/index');
+    }
+
+    public function Pembeliuser()
+    {
+        $data['judul'] = 'Pembeli';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['pembeli'] = $this->barang_model->getPembeli();
+        $this->load->view('TemplateUser/HeaderUser', $data);
+        $this->load->view('User/Pembeliuser', $data);
+        $this->load->view('TemplateUser/FooterUser');
     }
 }

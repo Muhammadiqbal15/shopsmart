@@ -112,10 +112,6 @@
                                 <input type="text" class="form-control" id="nama" name="nama" value="<?= $useredit['nama']; ?>">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal Lahir</label>
-                                <input type="date" class="form-control" id="tgllahir" name="tgllahir" value="<?= $useredit['tgllahir']; ?>">
-                            </div>
-                            <div class="form-group">
                                 <label for="exampleInputEmail1">Nomor Telepon</label>
                                 <input type="text" class="form-control" id="notelp" name="notelp" value="<?= $useredit['notelp']; ?>">
                             </div>
@@ -141,7 +137,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Alamat</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="alamat"><?= $useredit['alamat']; ?></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="alamat"></textarea>
                             </div>
                             <a href="<?= base_url(); ?>User/index" class="btn btn-primary">Kembali</a>
                             <button class="btn btn-success" type="submit" name="edit">Edit</button>

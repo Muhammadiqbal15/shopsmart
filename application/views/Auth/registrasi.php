@@ -64,14 +64,6 @@
                 <small class="text-danger">
                     <?= form_error('nomortlp'); ?>
                 </small>
-                <div class="input-group mb-3">
-                    <input type="date" class="form-control" placeholder="Tanggal lahir" name="tgllahir">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="far fa-calendar-alt"></span>
-                        </div>
-                    </div>
-                </div>
                 <div class="form-row">
                     <div class="col">
                         <div class="input-group mb-3">
@@ -135,7 +127,6 @@
                         <?= form_error('alamat'); ?>
                     </small>
                 </div>
-
                 <div class="row">
                     <!-- /.col -->
                     <div class="col-12">

@@ -102,7 +102,6 @@ class Auth extends CI_Controller
                 'kecamatan' => htmlspecialchars($this->input->post('Kecamatan', true)),
                 'kelurahan' => htmlspecialchars($this->input->post('Kelurahan', true)),
                 'alamat' => htmlspecialchars($this->input->post('alamat', true)),
-                'tgllahir' => htmlspecialchars($this->input->post('tgllahir', true)),
                 'role_id' => 2,
                 'is_active' => 1,
                 'date_created' => time()

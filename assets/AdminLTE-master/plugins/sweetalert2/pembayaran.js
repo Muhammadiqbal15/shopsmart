@@ -1,13 +1,11 @@
-const edit = $('.edit').data('edit');
 const pembayaran = $('.pembayaran').data('pembayaran');
 
 console.log(pembayaran);
-
-if (edit) {
+if (pembayaran) {
   Swal.fire({
-    title: 'Profil Mu',
-    text: 'Berhasi ' + edit,
+    title: 'Metode Pembayran',
+    text: 'Telah ' + pembayaran,
     type: 'success',
     icons: 'success'
-  })
+  });
 }
