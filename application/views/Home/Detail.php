@@ -11,6 +11,7 @@
             <h4 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Stok Barang : <?= $barang->jumlah ?> <?= $barang->UOM  ?></h4>
             <a href="<?= base_url() ?>Home/cart/<?= $barang->id_barang ?>" class="btn btn-primary mb-2">Pesan</a>
             <a href="<?= base_url() ?>Home/index" class="btn btn-success mb-2">Kembali</a>
+            <a href="<?= base_url() ?>User/Toko/<?= $barang->id ?>" class="btn btn-warning mb-2">LihatToko</a>
         </div>
     </div>
 </div>

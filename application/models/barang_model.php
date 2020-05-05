@@ -236,4 +236,31 @@ class barang_model extends CI_Model
     {
         return $this->db->get('user')->result_array();
     }
+
+    public function fortoko($id)
+    {
+        $this->db->select('*');
+        $this->db->from('barang');
+        $this->db->join('user', 'user.id = barang.user');
+        $this->db->where('user', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function jml()
+    {
+        $jmlpmbli = $this->input->post('jumlah', true);
+        $this->db->select('*');
+        $this->db->from('barang');
+        $this->db->where('jumlah');
+        $query = $this->db->get()->row();
+        return $query - $jmlpmbli;
+    }
+
+    public function hasiljml()
+    {
+        $data = $this->jml();
+
+        return $this->db->update('barang', $data)->num_rows();
+    }
 }

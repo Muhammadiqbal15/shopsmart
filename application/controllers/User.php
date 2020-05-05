@@ -85,6 +85,7 @@ class User extends CI_Controller
         $data['judul'] = 'Barang';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['barang'] = $this->barang_model->getAllBarang();
+        $data['jml'] = $this->barang_model->hasiljml();
         $this->load->view('TemplateUser/HeaderUser', $data);
         $this->load->view('User/Baranguser', $data);
         $this->load->view('TemplateUser/FooterUser');
@@ -215,6 +216,17 @@ class User extends CI_Controller
         $data['pembeli'] = $this->barang_model->getPembeli();
         $this->load->view('TemplateUser/HeaderUser', $data);
         $this->load->view('User/Pembeliuser', $data);
+        $this->load->view('TemplateUser/FooterUser');
+    }
+
+    public function toko($id)
+    {
+        $data['judul'] = 'Toko';
+
+        $data['barang'] = $this->barang_model->fortoko($id);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('TemplateUser/HeaderUser', $data);
+        $this->load->view('User/Toko', $data);
         $this->load->view('TemplateUser/FooterUser');
     }
 }

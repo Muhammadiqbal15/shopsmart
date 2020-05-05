@@ -193,7 +193,7 @@
                                                 <td><img src="<?= base_url(); ?>assets/img/<?= $brg['gambar']; ?>" alt="" width="70" height="70"></td>
                                                 <td><?= $brg['jenis_barang']; ?></td>
                                                 <td><?= $brg['ket_barang']; ?></td>
-                                                <td><?= $brg['jumlah']; ?></td>
+                                                <td><?= $jml; ?></td>
                                                 <td>
                                                     <a href="<?= base_url(); ?>/User/hapus/<?= $brg['id_barang']; ?>" class="btn btn-danger btn-sm tombol-hapus">Hapus</a>
                                                     <a href="<?= base_url(); ?>/User/editbarang/<?= $brg['id_barang']; ?>" class="btn btn-primary btn-sm">Edit</a>

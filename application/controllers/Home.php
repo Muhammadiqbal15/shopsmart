@@ -520,6 +520,7 @@ class Home extends CI_Controller
             'usr_penjual' => $usr_penjual
         );
 
+
         $this->barang_model->pembeli($data);
         $this->session->set_flashdata('flash', 'Barang');
         redirect('Home/sukses');
