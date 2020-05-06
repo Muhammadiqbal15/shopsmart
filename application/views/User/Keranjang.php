@@ -17,6 +17,9 @@
     </nav>
     <!-- /.navbar -->
 
+
+    <div class="edit" data-edit="<?= $this->session->flashdata('edit'); ?>"></div>
+    <div class="pembayaran" data-pembayaran="<?= $this->session->flashdata('pembayaran'); ?>"></div>
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
@@ -91,69 +94,49 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Edit Barang</h1>
+                        <h1 class="m-0 text-dark">Keranjang Belanja</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <section class="col-lg-6 connectedSortable">
-                        <div class="card mb-3 p-4">
-                            <?php echo form_open_multipart('User/updatebarang') ?>
-                            <input type="hidden" name="id" value="<?= $barang->id_barang; ?>">
-                            <input type="hidden" name="filelama" value="">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Nama Barang</label>
-                                <input type="text" class="form-control" id="namabrg" aria-describedby="emailHelp" name="namabrg" value="<?= $barang->nama_barang; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Harga Barang</label>
-                                <input type="text" class="form-control" id="hargabrg" name="hargabrg" value="<?= $barang->harga_barang; ?>">
-                            </div>
-                            <img src="<?= base_url(); ?>/assets/img/<?= $barang->gambar; ?>" alt="" class="img-fluid">
-                            <div class="form-group">
-                                <label for="exampleFormControlFile1">Foto Barang</label>
-                                <input type="file" class="form-control-file" id="foto" name="foto">
-                            </div>
-                            <div class="form-group">
-                                <label for="stok">Jumlah Barang</label>
-                                <input type="text" class="form-control" id="jml " name="jml" value="<?= $barang->jumlah ?>" autocomplete="off">
-                            </div>
-                            <div class="form-group">
-                                <label for="jenis">Satuan Barang</label>
-                                <select class="form-control" id="jenis" name="uom">
-                                    <option>Unit</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="jenis">Jenis Barang</label>
-                                <select class="form-control" id="jenis" name="jenis">
-                                    <?php foreach ($jenisbarang as $jb) : ?>
-                                        <?php if ($jb ==  $barang->jenis_barang) : ?>
-                                            <option value="<?= $jb; ?>" selected><?= $jb; ?></option>
-                                        <?php else : ?>
-                                            <option value="<?= $jb; ?>"><?= $jb; ?></option>
-                                        <?php endif; ?>
+                    <section class="col-lg-12 connectedSortable">
+                        <div class="card">
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-bordered table-head-fixed mt-3" id="table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Barang</th>
+                                            <th>Jumlah</th>
+                                            <th>Harga</th>
+                                            <th>Sub-Total</th>
+                                            <th>Opsi</th>
+                                        </tr>
+                                    </thead>
+                                    <?php foreach ($this->cart->contents() as $items) : ?>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td><?= $items['name']; ?></td>
+                                                <td><?= $items['qty']; ?></td>
+                                                <td><?= $items['price']; ?></td>
+                                                <td><?= $items['subtotal']; ?></td>
+                                                <td>
+                                                    <a href="" class="btn btn-danger btn-sm tombol-hapus">Hapus</a>
+                                                    <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                                    <a href="" class="btn btn-warning btn-sm">Chat</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                     <?php endforeach; ?>
-                                </select>
+                                </table>
                             </div>
-                            <div class="form-group">
-                                <label for="Keterangan">Keterangan Barang</label>
-                                <select class="form-control" id="keterangan" name="ket">
-                                    <?php foreach ($keterangan as $ket) : ?>
-                                        <?php if ($ket ==  $barang->ket_barang) : ?>
-                                            <option value="<?= $ket; ?>" selected><?= $ket; ?></option>
-                                        <?php else : ?>
-                                            <option value="<?= $ket; ?>"><?= $ket; ?></option>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <a href="<?= base_url(); ?>User/baranguser" class="btn btn-primary">Kembali</a>
-                            <button class="btn btn-success" type="submit" name="edit">Edit</button>
-                            <?php echo form_close(); ?>
                         </div>
                     </section>
                 </div>

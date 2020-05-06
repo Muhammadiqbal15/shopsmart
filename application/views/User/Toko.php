@@ -48,7 +48,7 @@
         <button class="btn btn-outline-primary btn-sm my-2 my-sm-0 mt-1 col-lg-2" type=" submit"><i class="fas fa-search"></i></button>
     </div>
 </form>
-<div class="container overflow-auto" style="height: 500px;">
+<div class="container overflow-auto" style="height: 400px;">
     <div class="row">
         <?php foreach ($barang as $brg) : ?>
             <div class="col-lg-4 col-md-4 mt-5 mb-4">
@@ -63,6 +63,7 @@
                             Pesan
                         </a>
                         <a href="<?= base_url() ?>Home/detail/<?= $brg->id_barang; ?>" class="btn btn-success mt-3">Detail</a>
+                        <a href="" class="btn btn-danger mt-3">Cart</a>
                     </div>
                 </div>
             </div>

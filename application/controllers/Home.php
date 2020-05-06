@@ -64,7 +64,7 @@ class Home extends CI_Controller
         $this->load->view('TemplateHome/Footer');
     }
 
-    public function cart($id_barang)
+    public function beli($id_barang)
     {
 
         if (!$this->session->userdata('email')) {
@@ -75,7 +75,7 @@ class Home extends CI_Controller
         $data['barang'] = $this->barang_model->getbyid($kondisi);
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('TemplateHome/Header', $data);
-        $this->load->view('Home/Cart', $data);
+        $this->load->view('Home/Beli', $data);
         $this->load->view('TemplateHome/Footer');
     }
 

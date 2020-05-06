@@ -85,7 +85,7 @@ class User extends CI_Controller
         $data['judul'] = 'Barang';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['barang'] = $this->barang_model->getAllBarang();
-        $data['jml'] = $this->barang_model->hasiljml();
+        $data['jml'] = $this->barang_model->jml();
         $this->load->view('TemplateUser/HeaderUser', $data);
         $this->load->view('User/Baranguser', $data);
         $this->load->view('TemplateUser/FooterUser');
@@ -227,6 +227,30 @@ class User extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('TemplateUser/HeaderUser', $data);
         $this->load->view('User/Toko', $data);
+        $this->load->view('TemplateUser/FooterUser');
+    }
+
+    public function keranjang($id_barang)
+    {
+        $barang = $this->barang_model->find($id_barang);
+        $data = array(
+            'id'      => $barang->id_barang,
+            'qty'     => 1,
+            'price'   => $barang->harga_barang,
+            'name'    => $barang->nama_barang
+        );
+
+        $this->cart->insert($data);
+        redirect('User/keranjanguser');
+    }
+
+    public function keranjanguser()
+    {
+        $data['judul'] = 'Keranjang Anda';
+
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('TemplateUser/HeaderUser', $data);
+        $this->load->view('User/Keranjang', $data);
         $this->load->view('TemplateUser/FooterUser');
     }
 }

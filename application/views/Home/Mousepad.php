@@ -39,7 +39,13 @@
             <?php if ($role > 1) : ?>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?= base_url() ?>User/index"><i class="far fa-user"></i> <?= $user['nama']; ?><span class="sr-only">(current)</span></a>
+                        <?php $keranjang = $this->cart->total_items(); ?>
+                        <a class="nav-link mt-2" href="<?= base_url() ?>User/index">Keranjang Belanja <?= $keranjang; ?> items</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= base_url() ?>User/index"><?= $user['nama']; ?>
+                            <img src="<?= base_url(); ?>/assets/img/<?= $user['foto']; ?>" alt="" width="40" height="40" class="rounded-circle ml-1 "><span class="sr-only">(current)</span>
+                        </a>
                     </li>
                 </ul>
             <?php else : ?>
@@ -75,10 +81,11 @@
                     <div class="card-body">
                         <h4><?= $brg->nama_barang ?></h4>
                         <h5>Rp.<?= $brg->harga_barang ?></h5>
-                        <a href="?= base_url() ?>Home/cart/<?= $brg->id_barang ?>" id="pesan" class="btn btn-primary mt-3">
-                            Pesan
+                        <a href="<?= base_url() ?>Home/beli/<?= $brg->id_barang ?>" id="pesan" class="btn btn-primary mt-3 beli_barang">
+                            Beli
                         </a>
                         <a href="<?= base_url() ?>Home/detailmousepad/<?= $brg->id_barang ?>" class="btn btn-success mt-3">Detail</a>
+                        <a href="<?= base_url() ?>User/keranjang/<?= $brg->id_barang; ?>" class="btn btn-danger mt-3">Keranjang</a>
                     </div>
                 </div>
             </div>

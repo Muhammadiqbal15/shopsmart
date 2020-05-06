@@ -50,15 +50,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
+                        <a href="<?= base_url(); ?>User/Pembeliuser" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
                             <p>Pembeli</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
+                        <a href="<?= base_url(); ?>User/keranjanguser" class="nav-link">
                             <i class="nav-icon fas fa-cart-plus"></i>
-                            <p>Cart</p>
+                            <p>Keranjang</p>
                         </a>
                     </li>
                     <li class="nav-item">

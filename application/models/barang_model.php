@@ -250,17 +250,27 @@ class barang_model extends CI_Model
     public function jml()
     {
         $jmlpmbli = $this->input->post('jumlah', true);
-        $this->db->select('*');
-        $this->db->from('barang');
-        $this->db->where('jumlah');
-        $query = $this->db->get()->row();
-        return $query - $jmlpmbli;
+        $a = $this->db->get_where('barang', 'jumlah')->row();
+        $hsl = $a - $jmlpmbli;
+        return $hsl;
     }
 
     public function hasiljml()
     {
         $data = $this->jml();
 
-        return $this->db->update('barang', $data)->num_rows();
+        return $this->db->update('barang', $data)->s();
+    }
+
+    public function find($id_barang)
+    {
+        $result = $this->db->where('id_barang', $id_barang)
+            ->limit(1)
+            ->get('barang');
+        if ($result->num_rows() > 0) {
+            return $result->row();
+        } else {
+            return array();
+        }
     }
 }
