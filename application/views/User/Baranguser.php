@@ -189,14 +189,14 @@
                                             <tr>
                                                 <td>1</td>
                                                 <td><?= $brg['nama_barang']; ?></td>
-                                                <td><?= $brg['harga_barang']; ?></td>
+                                                <td><?= number_format($brg['harga_barang'], 0, ',', '.'); ?></td>
                                                 <td><img src="<?= base_url(); ?>assets/img/<?= $brg['gambar']; ?>" alt="" width="70" height="70"></td>
                                                 <td><?= $brg['jenis_barang']; ?></td>
                                                 <td><?= $brg['ket_barang']; ?></td>
                                                 <td><?= $jml; ?></td>
                                                 <td>
-                                                    <a href="<?= base_url(); ?>/User/hapus/<?= $brg['id_barang']; ?>" class="btn btn-danger btn-sm tombol-hapus">Hapus</a>
-                                                    <a href="<?= base_url(); ?>/User/editbarang/<?= $brg['id_barang']; ?>" class="btn btn-primary btn-sm">Edit</a>
+                                                    <a href="<?= base_url(); ?>/User/hapus/<?= $brg['id_barang']; ?>" class="btn btn-danger btn-sm tombol-hapus rounded-circle"><i class="fas fa-trash"></i></a>
+                                                    <a href="<?= base_url(); ?>/User/editbarang/<?= $brg['id_barang']; ?>" class="btn btn-primary btn-sm rounded-circle"><i class="fas fa-edit"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -211,11 +211,6 @@
     </div>
 </div>
 
-
-<!-- Button trigger modal -->
-
-
-<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -285,8 +280,20 @@
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+
+
+
+
+
+
+
 <!-- 
-<script>
+
+
+                                                            
+
+                                                            <script>
     $(document).ready(function() {
         $('#table').DataTable({
             "paging": false

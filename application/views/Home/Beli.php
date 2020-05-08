@@ -88,7 +88,7 @@
                             </div>
                             <div class="col">
                                 <label for="hrgbrg">Harga Barang:</label>
-                                <input type="text" class="form-control" id="hrgbrg" name="hrgbrg" value="<?= $barang->harga_barang; ?>">
+                                <input type="text" class="form-control" id="hrgbrg" name="hrgbrg" value="<?= number_format($barang->harga_barang, 0, ',', '.'); ?>">
                             </div>
                             <input type="hidden" name="penjual" class="form-control" value="<?= $barang->id ?>">
                         </div>
@@ -135,17 +135,23 @@
                         </small>
                         <div class="form-group">
                             <label for="jumlah">Jumlah Barang</label>
-                            <input type="text" class="form-control" id="jumlah" name="jumlah" autocomplete="off">
+                            <input type="text" class="form-control" id="jumlah" name="jumlah" autocomplete="off" value="<?= $datakrnjng['qty']; ?>">
                         </div>
                         <small class="text-danger">
                             <?= form_error('jumlah'); ?>
                         </small>
+                        <div class="form-group">
+                            <label for="jumlah">Total Harga</label>
+                            <input type="text" class="form-control" id="totalhrg" name="totalhrg" autocomplete="off" value="<?= number_format($datakrnjng['subtotal'], 0, ',', '.'); ?>">
+                        </div>
                         <div class="form-group">
                             <label for="kirim">Pengiriman</label>
                             <select class="form-control" id="kirim" name="pengiriman">
                                 <option>J&T</option>
                                 <option>JNE</option>
                                 <option>Ninja Express</option>
+                                <option>GOJEK</option>
+                                <option>GRAB</option>
                             </select>
                         </div>
                         <div class="form-group">

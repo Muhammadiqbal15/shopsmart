@@ -64,7 +64,7 @@ class Home extends CI_Controller
         $this->load->view('TemplateHome/Footer');
     }
 
-    public function beli($id_barang)
+    public function beli($id_barang, $rowid)
     {
 
         if (!$this->session->userdata('email')) {
@@ -72,6 +72,7 @@ class Home extends CI_Controller
         }
         $data['judul'] = 'Beli';
         $kondisi = array('id_barang' => $id_barang);
+        $data['datakrnjng'] = $this->barang_model->tampilkeranjang($rowid);
         $data['barang'] = $this->barang_model->getbyid($kondisi);
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('TemplateHome/Header', $data);
@@ -488,20 +489,21 @@ class Home extends CI_Controller
 
 
 
-        $nmbrg = $this->input->post('nmbrg', true);
-        $hrgbrg = $this->input->post('hrgbrg', true);
-        $pembeli = $this->input->post('nama', true);
-        $nomortlp = $this->input->post('nomor', true);
-        $alamat = $this->input->post('alamat', true);
-        $jml = $this->input->post('jumlah', true);
-        $kirim = $this->input->post('pengiriman', true);
-        $prov = $this->input->post('provinsi', true);
-        $kot = $this->input->post('kota', true);
-        $kec = $this->input->post('kecamatan', true);
-        $kel = $this->input->post('kelurahan', true);
-        $bayar = $this->input->post('pembayaran', true);
-        $jmlfixedpembeli = $this->input->post('jumlahpembeli', true);
-        $usr_penjual = $this->input->post('penjual', true);
+        $nmbrg = htmlspecialchars($this->input->post('nmbrg', true));
+        $hrgbrg = htmlspecialchars($this->input->post('hrgbrg', true));
+        $pembeli = htmlspecialchars($this->input->post('nama', true));
+        $nomortlp = htmlspecialchars($this->input->post('nomor', true));
+        $alamat = htmlspecialchars($this->input->post('alamat', true));
+        $jml = htmlspecialchars($this->input->post('jumlah', true));
+        $kirim = htmlspecialchars($this->input->post('pengiriman', true));
+        $prov = htmlspecialchars($this->input->post('provinsi', true));
+        $kot = htmlspecialchars($this->input->post('kota', true));
+        $kec = htmlspecialchars($this->input->post('kecamatan', true));
+        $kel = htmlspecialchars($this->input->post('kelurahan', true));
+        $bayar = htmlspecialchars($this->input->post('pembayaran', true));
+        $jmlfixedpembeli = htmlspecialchars($this->input->post('jumlahpembeli', true));
+        $usr_penjual = htmlspecialchars($this->input->post('penjual', true));
+        $tothrg = htmlspecialchars($this->input->post('totalhrg', true));
 
         $data = array(
             'nama'    => $pembeli,
@@ -517,7 +519,8 @@ class Home extends CI_Controller
             'kecamatan' => $kec,
             'kelurahan' => $kel,
             'pembayaran' => $bayar,
-            'usr_penjual' => $usr_penjual
+            'usr_penjual' => $usr_penjual,
+            'tot_hrg' => $tothrg
         );
 
 

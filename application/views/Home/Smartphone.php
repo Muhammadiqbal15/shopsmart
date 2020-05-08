@@ -81,10 +81,7 @@
                     <img class="card-img-top img-responsive" src="<?= base_url() ?>assets/img/<?= $brg->gambar ?>" alt="" width="300px" height="300px">
                     <div class="card-body">
                         <h4><?= $brg->nama_barang ?></h4>
-                        <h5>Rp.<?= $brg->harga_barang ?></h5>
-                        <a href="<?= base_url() ?>Home/beli/<?= $brg->id_barang ?>" id="pesan" class="btn btn-primary mt-3 beli_barang">
-                            Beli
-                        </a>
+                        <h5>Rp<?= number_format($brg->harga_barang, 0, ',', '.'); ?></h5>
                         <a href="<?= base_url() ?>Home/detailsmartphone/<?= $brg->id_barang ?>" class="btn btn-success mt-3">Detail</a>
                         <a href="<?= base_url() ?>User/keranjang/<?= $brg->id_barang; ?>" class="btn btn-danger mt-3">Keranjang</a>
                     </div>

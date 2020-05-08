@@ -125,16 +125,25 @@
                                                 <td>1</td>
                                                 <td><?= $items['name']; ?></td>
                                                 <td><?= $items['qty']; ?></td>
-                                                <td><?= $items['price']; ?></td>
-                                                <td><?= $items['subtotal']; ?></td>
+                                                <td>Rp.<?= number_format($items['price'], 0, ',', '.'); ?></td>
+                                                <td>Rp.<?= number_format($items['subtotal'], 0, ',', '.'); ?></td>
                                                 <td>
-                                                    <a href="" class="btn btn-danger btn-sm tombol-hapus">Hapus</a>
-                                                    <a href="" class="btn btn-primary btn-sm">Edit</a>
-                                                    <a href="" class="btn btn-warning btn-sm">Chat</a>
+                                                    <a href="<?= base_url(); ?>User/deletekeranjang/<?= $items['rowid']; ?>" class="btn btn-danger  btn-sm"><i class="fas fa-trash"></i> Hapus</a>
+                                                    <a href="<?= base_url(); ?>Home/Beli/<?= $items['id']; ?>/<?= $items['rowid']; ?>" class="btn btn-primary btn-sm"><i class="far fa-money-bill-alt"></i> Bayar</a>
+                                                    <a href="" class="btn btn-warning btn-sm"><i class="fas fa-comments"> Chat</i></a>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     <?php endforeach; ?>
+                                    <tr>
+                                        <td colspan="4"></td>
+                                        <td>
+                                            Rp.<?= number_format($this->cart->total(), 0, ',', '.'); ?>
+                                        </td>
+                                        <td>
+                                            <a href="<?= base_url(); ?>User/deleteall" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus Semua</a>
+                                        </td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>

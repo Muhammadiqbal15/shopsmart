@@ -176,6 +176,7 @@
                                             <th>Nama Barang</th>
                                             <th>Harga Barang</th>
                                             <th>Jumlah Barang</th>
+                                            <th>Total Harga</th>
                                             <th>Pengiriman</th>
                                             <th>Pembayaran</th>
                                             <th>Opsi</th>
@@ -194,6 +195,7 @@
                                                 <td><?= $pb['nama_brg']; ?></td>
                                                 <td><?= $pb['harga_brg']; ?></td>
                                                 <td><?= $pb['jumlah_brg']; ?></td>
+                                                <td><?= $pb['tot_hrg'] ?></td>
                                                 <td><?= $pb['pengiriman']; ?></td>
                                                 <td><?= $pb['pembayaran']; ?></td>
                                                 <td>

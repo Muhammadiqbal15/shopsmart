@@ -237,7 +237,8 @@ class User extends CI_Controller
             'id'      => $barang->id_barang,
             'qty'     => 1,
             'price'   => $barang->harga_barang,
-            'name'    => $barang->nama_barang
+            'name'    => $barang->nama_barang,
+
         );
 
         $this->cart->insert($data);
@@ -252,5 +253,22 @@ class User extends CI_Controller
         $this->load->view('TemplateUser/HeaderUser', $data);
         $this->load->view('User/Keranjang', $data);
         $this->load->view('TemplateUser/FooterUser');
+    }
+
+    public function deletekeranjang($rowid)
+    {
+        $data = array(
+            'rowid' => $rowid,
+            'qty'   => 0
+        );
+
+        $this->cart->update($data);
+        redirect('User/keranjanguser');
+    }
+
+    public function deleteall()
+    {
+        $this->cart->destroy();
+        redirect('User/keranjanguser');
     }
 }

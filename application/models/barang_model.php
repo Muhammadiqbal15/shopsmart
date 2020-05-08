@@ -273,4 +273,9 @@ class barang_model extends CI_Model
             return array();
         }
     }
+
+    public function tampilkeranjang($rowid)
+    {
+        return $this->cart->get_item($rowid);
+    }
 }
