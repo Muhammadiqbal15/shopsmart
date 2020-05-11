@@ -86,6 +86,8 @@ class User extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['barang'] = $this->barang_model->getAllBarang();
         $data['jml'] = $this->barang_model->jml();
+        $data['jmlbrg'] = $this->sumBarang();
+        $data['pembeli'] = $this->sumpembeli();
         $this->load->view('TemplateUser/HeaderUser', $data);
         $this->load->view('User/Baranguser', $data);
         $this->load->view('TemplateUser/FooterUser');
@@ -214,6 +216,8 @@ class User extends CI_Controller
         $data['judul'] = 'Pembeli';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['pembeli'] = $this->barang_model->getPembeli();
+        $data['jmlbrg'] = $this->sumBarang();
+        $data['pembeli2'] = $this->sumpembeli();
         $this->load->view('TemplateUser/HeaderUser', $data);
         $this->load->view('User/Pembeliuser', $data);
         $this->load->view('TemplateUser/FooterUser');
@@ -263,12 +267,37 @@ class User extends CI_Controller
         );
 
         $this->cart->update($data);
+        $this->session->set_flashdata('keranjang', 'Dihapus');
         redirect('User/keranjanguser');
     }
 
     public function deleteall()
     {
         $this->cart->destroy();
+        $this->session->set_flashdata('cart', 'Dihapus');
         redirect('User/keranjanguser');
+    }
+
+    public function hapuspembeli($id_pembeli)
+    {
+        $this->barang_model->hapuspembeli($id_pembeli);
+        $this->session->set_flashdata('crud2', 'Dihapus');
+        redirect('User/pembeliuser');
+    }
+
+    public function sumBarang()
+    {
+        $this->db->select_sum('jumlah')->from('barang');
+        $this->db->where('user', $this->session->userdata('id'));
+        $query = $this->db->get()->result();
+        return $query;
+    }
+
+    public function sumpembeli()
+    {
+        $this->db->select_sum('jmlfixed_pembeli')->from('pembeli');
+        $this->db->where('usr_penjual', $this->session->userdata('id'));
+        $query = $this->db->get()->result();
+        return $query;
     }
 }

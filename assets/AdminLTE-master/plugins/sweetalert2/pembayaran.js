@@ -1,11 +1,11 @@
-const pembayaran = $('.pembayaran').data('pembayaran');
+const pmbyrn = $('.pembayaran').data('pembayaran');
+console.log(pmbyrn);
 
-console.log(pembayaran);
-if (pembayaran) {
+if (pmbyrn) {
   Swal.fire({
-    title: 'Metode Pembayran',
-    text: 'Telah ' + pembayaran,
+    title: 'Metode Pembayaran',
+    text: 'Telah ' + pmbyrn,
     type: 'success',
-    icons: 'success'
+    icon: 'success'
   });
 }

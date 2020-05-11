@@ -95,7 +95,6 @@
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Foto</th>
-                        <th>Tanggal Lahir</th>
                         <th>Alamat</th>
                         <th>Notelp</th>
                         <th>Opsi</th>
@@ -109,7 +108,6 @@
                           <td><?= $usr['nama']; ?></td>
                           <td><?= $usr['email']; ?></td>
                           <td><img src="<?= base_url(); ?>assets/img/<?= $usr['foto']; ?>" alt="" width="70" height="70"></td>
-                          <td><?= $usr['tgllahir']; ?></td>
                           <td><?= $usr['alamat']; ?></td>
                           <td><?= $usr['notelp']; ?></td>
                           <td>
