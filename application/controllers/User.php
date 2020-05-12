@@ -85,9 +85,10 @@ class User extends CI_Controller
         $data['judul'] = 'Barang';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['barang'] = $this->barang_model->getAllBarang();
-        $data['jml'] = $this->barang_model->jml();
-        $data['jmlbrg'] = $this->sumBarang();
+        $data['jmlbrg'] = $this->sumstokawal();
         $data['pembeli'] = $this->sumpembeli();
+        $data['brg_terjual'] = $this->sumbarangterjual();
+        $data['sisabarang'] = $this->sumsisabarang();
         $this->load->view('TemplateUser/HeaderUser', $data);
         $this->load->view('User/Baranguser', $data);
         $this->load->view('TemplateUser/FooterUser');
@@ -123,7 +124,8 @@ class User extends CI_Controller
             'gambar'            => $gambar,
             'jenis_barang'      => $jenis,
             'ket_barang'        => $ket,
-            'jumlah'            => $jml,
+            'stokawal'          => $jml,
+            'stoksisa'          => $jml,
             'UOM'               => $uom,
             'user'              => $user
         );
@@ -182,7 +184,7 @@ class User extends CI_Controller
             'gambar'            => $gambar,
             'jenis_barang'      => $jenis,
             'ket_barang'        => $ket,
-            'jumlah'            => $jml,
+            'stoksisa'            => $jml,
             'UOM'               => $uom,
         );
 
@@ -216,8 +218,10 @@ class User extends CI_Controller
         $data['judul'] = 'Pembeli';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['pembeli'] = $this->barang_model->getPembeli();
-        $data['jmlbrg'] = $this->sumBarang();
+        $data['jmlbrg'] = $this->sumstokawal();
         $data['pembeli2'] = $this->sumpembeli();
+        $data['brg_terjual'] = $this->sumbarangterjual();
+        $data['sisabarang'] = $this->sumsisabarang();
         $this->load->view('TemplateUser/HeaderUser', $data);
         $this->load->view('User/Pembeliuser', $data);
         $this->load->view('TemplateUser/FooterUser');
@@ -278,6 +282,17 @@ class User extends CI_Controller
         redirect('User/keranjanguser');
     }
 
+    public function kurangcart($rowid, $qty)
+    {
+        $data = array(
+            'rowid' => $rowid,
+            'qty' => $qty - 1
+        );
+
+        $this->cart->update($data);
+        redirect('User/keranjanguser');
+    }
+
     public function hapuspembeli($id_pembeli)
     {
         $this->barang_model->hapuspembeli($id_pembeli);
@@ -285,9 +300,9 @@ class User extends CI_Controller
         redirect('User/pembeliuser');
     }
 
-    public function sumBarang()
+    public function sumstokawal()
     {
-        $this->db->select_sum('jumlah')->from('barang');
+        $this->db->select_sum('stokawal')->from('barang');
         $this->db->where('user', $this->session->userdata('id'));
         $query = $this->db->get()->result();
         return $query;
@@ -297,6 +312,22 @@ class User extends CI_Controller
     {
         $this->db->select_sum('jmlfixed_pembeli')->from('pembeli');
         $this->db->where('usr_penjual', $this->session->userdata('id'));
+        $query = $this->db->get()->result();
+        return $query;
+    }
+
+    public function sumbarangterjual()
+    {
+        $this->db->select_sum('jumlah_brg')->from('pembeli');
+        $this->db->where('usr_penjual', $this->session->userdata('id'));
+        $query = $this->db->get()->result();
+        return $query;
+    }
+
+    public function sumsisabarang()
+    {
+        $this->db->select_sum('stoksisa')->from('barang');
+        $this->db->where('user', $this->session->userdata('id'));
         $query = $this->db->get()->result();
         return $query;
     }

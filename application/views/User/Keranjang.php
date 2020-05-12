@@ -214,6 +214,8 @@
                                                     <a href="<?= base_url(); ?>User/deletekeranjang/<?= $items['rowid']; ?>" class="btn btn-danger  btn-sm hapus-brgkrjng"><i class="fas fa-trash"></i> Hapus</a>
                                                     <a href="<?= base_url(); ?>Home/Beli/<?= $items['id']; ?>/<?= $items['rowid']; ?>" class="btn btn-primary btn-sm"><i class="far fa-money-bill-alt"></i> Bayar</a>
                                                     <a href="" class="btn btn-warning btn-sm"><i class="fas fa-comments"> Chat</i></a>
+                                                    <a href="<?= base_url(); ?>User/keranjang/<?= $items['id']; ?>" class="btn btn-sm btn-outline-primary"><i class="fas fa-plus"></i> Tambah</a>
+                                                    <a href="<?= base_url(); ?>User/kurangcart/<?= $items['rowid']; ?>/<?= $items['qty']; ?>" class="btn btn-sm btn-outline-danger"><i class="fas fa-minus"></i> Kurang</a>
                                                 </td>
                                             </tr>
                                         </tbody>

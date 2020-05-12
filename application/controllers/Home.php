@@ -487,6 +487,7 @@ class Home extends CI_Controller
     public function insertcart()
     {
 
+        $this->cart->destroy();
 
 
         $nmbrg = htmlspecialchars($this->input->post('nmbrg', true));
@@ -504,6 +505,7 @@ class Home extends CI_Controller
         $jmlfixedpembeli = htmlspecialchars($this->input->post('jumlahpembeli', true));
         $usr_penjual = htmlspecialchars($this->input->post('penjual', true));
         $tothrg = htmlspecialchars($this->input->post('totalhrg', true));
+        $brg = htmlspecialchars($this->input->post('barang', true));
 
         $data = array(
             'nama'    => $pembeli,
@@ -520,7 +522,8 @@ class Home extends CI_Controller
             'kelurahan' => $kel,
             'pembayaran' => $bayar,
             'usr_penjual' => $usr_penjual,
-            'tot_hrg' => $tothrg
+            'tot_hrg' => $tothrg,
+            'id_barang' => $brg
         );
 
 

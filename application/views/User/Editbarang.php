@@ -212,7 +212,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="stok">Jumlah Barang</label>
-                                <input type="text" class="form-control" id="jml " name="jml" value="<?= $barang->jumlah ?>" autocomplete="off">
+                                <input type="text" class="form-control" id="jml " name="jml" value="<?= $barang->stoksisa ?>" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label for="jenis">Satuan Barang</label>

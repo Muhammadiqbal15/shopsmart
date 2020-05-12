@@ -11,7 +11,7 @@
             </li>
             <li class="nav-item active">
                 <?php foreach ($barang as $brng)  ?>
-                <a class="nav-link" href="<?= base_url() ?>User/toko">Toko <?= $brng->nama; ?><span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<?= base_url() ?>User/toko/<?= $brng->id; ?>">Toko <?= $brng->nama; ?><span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <?php if (!$this->session->userdata('email')) : ?>

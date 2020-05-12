@@ -247,21 +247,6 @@ class barang_model extends CI_Model
         return $query->result();
     }
 
-    public function jml()
-    {
-        $jmlpmbli = $this->input->post('jumlah', true);
-        $a = $this->db->get_where('barang', 'jumlah')->row();
-        $hsl = $a - $jmlpmbli;
-        return $hsl;
-    }
-
-    public function hasiljml()
-    {
-        $data = $this->jml();
-
-        return $this->db->update('barang', $data)->s();
-    }
-
     public function find($id_barang)
     {
         $result = $this->db->where('id_barang', $id_barang)
@@ -278,4 +263,9 @@ class barang_model extends CI_Model
     {
         return $this->cart->get_item($rowid);
     }
+
+    // public function triger()
+    // {
+    //     $this->db->query("CREATE TRIGGER sisa_brg AFTER INSERT ON pembeli FOR EACH ROW BEGIN UPDATE barang SET jumlah = jumlah - NEW.jumlah_brg WHERE id_barang = NEW.id_barang END ");
+    // }
 }

@@ -91,6 +91,7 @@
                                 <input type="text" class="form-control" id="hrgbrg" name="hrgbrg" value="<?= number_format($barang->harga_barang, 0, ',', '.'); ?>">
                             </div>
                             <input type="hidden" name="penjual" class="form-control" value="<?= $barang->id ?>">
+                            <input type="hidden" name="barang" class="form-control" value="<?= $barang->id_barang ?>">
                         </div>
                         <h5 class="mt-2">Pembeli : </h5>
                         <div class="form-row">

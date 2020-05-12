@@ -28,15 +28,8 @@
 <!-- AdminLTE App -->
 <script src="<?= base_url(); ?>assets/AdminLTE-master/dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?= base_url(); ?>assets/AdminLTE-master/dist/js/pages/dashboard.js"></script>
+<!-- <script src="<?= base_url(); ?>assets/AdminLTE-master/dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url(); ?>assets/AdminLTE-master/dist/js/demo.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/sweetalert2/sweetalert2.all.min.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/sweetalert2/mysrc1.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery.min.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/dist/js/kalkulator.js"></script>
+<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/sweetalert2/mylogin.js"></script>

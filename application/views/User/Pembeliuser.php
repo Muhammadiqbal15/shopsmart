@@ -178,34 +178,21 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
 
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-1">
-                    <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Data Barang</h1>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
         <div class="row m-auto mt-5">
-            <div class="col-lg-6 col-6">
-                <!-- small card -->
+            <div class="col-lg-3 col-6">
                 <div class="small-box bg-info">
                     <div class="inner">
                         <?php foreach ($jmlbrg as $jb) ?>
-                        <h3><?= $jb->jumlah ?></h3>
-                        <p>Barang Yang Dijual</p>
+                        <h3><?= $jb->stokawal ?></h3>
+                        <p>Total Stok Awal</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
                 </div>
             </div>
-            <!-- ./col -->
-            <div class="col-lg-6 col-6">
-                <!-- small card -->
-                <div class="small-box bg-success">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
                     <div class="inner">
                         <?php foreach ($pembeli2 as $pb) ?>
                         <?php if ($pb) : ?>
@@ -218,6 +205,30 @@
                     </div>
                     <div class="icon">
                         <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <?php foreach ($brg_terjual as $brt) ?>
+                        <h3><?= $brt->jumlah_brg ?></h3>
+                        <p>Barang Yang Terjual</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <?php foreach ($sisabarang as $sb) ?>
+                        <h3><?= $sb->stoksisa ?></h3>
+                        <p>Total Stok Tersisa</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-shopping-cart"></i>
                     </div>
                 </div>
             </div>

@@ -10,7 +10,7 @@ if (login) {
     title: 'Halo ' + login,
     text: 'Silahkan Cek Profil Mu Terlebih Dulu',
     type: 'success',
-    icons: 'success'
+    icon: 'success'
   });
 }
 
@@ -18,6 +18,6 @@ if (logout) {
   Swal.fire({
     title: 'Anda ' + logout,
     type: 'success',
-    icons: 'success'
+    icon: 'success'
   });
 }
