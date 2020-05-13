@@ -13,6 +13,7 @@ class User extends CI_Controller
         if (!$this->session->userdata('email')) {
             redirect(base_url("Auth/index"));
         }
+        $this->load->library('form_validation');
     }
 
 
@@ -21,6 +22,7 @@ class User extends CI_Controller
 
         $data['judul'] = 'Dashboard';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['barang'] = $this->barang_model->getAllBarang();
         $this->load->view('TemplateUser/HeaderUser', $data);
         $this->load->view('User/index', $data);
         $this->load->view('TemplateUser/FooterUser');
@@ -96,43 +98,64 @@ class User extends CI_Controller
 
     public function tambah()
     {
-        $namabrg = htmlspecialchars($this->input->post('namabrg', true));
-        $hrgbrg = htmlspecialchars($this->input->post('hargabrg', true));
-        $jenis = htmlspecialchars($this->input->post('jenis', true));
-        $ket = htmlspecialchars($this->input->post('ket', true));
-        $jml = htmlspecialchars($this->input->post('jml', true));
-        $uom = htmlspecialchars($this->input->post('uom', true));
-        $user = htmlspecialchars($this->input->post('user', true));
-        $gambar = $_FILES['foto'];
-        if ($gambar == '') {
+        $this->form_validation->set_rules('namabrg', 'Nama Barang', 'required');
+        $this->form_validation->set_rules('hargabrg', 'Harga Barang', 'required|numeric');
+        $this->form_validation->set_rules('jml', 'Jumlah Barang', 'required|numeric');
+
+        if ($this->form_validation->run() == false) {
+            $data['judul'] = 'Barang';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['barang'] = $this->barang_model->getAllBarang();
+            $data['jmlbrg'] = $this->sumstokawal();
+            $data['pembeli'] = $this->sumpembeli();
+            $data['brg_terjual'] = $this->sumbarangterjual();
+            $data['sisabarang'] = $this->sumsisabarang();
+            $this->load->view('TemplateUser/HeaderUser', $data);
+            $this->load->view('User/Baranguser', $data);
+            $this->load->view('TemplateUser/FooterUser');
         } else {
-            $config['upload_path'] = './assets/img';
-            $config['allowed_types'] = 'jpg|png|jfif|gif|jpeg';
-
-            $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('foto')) {
-                die();
+            $namabrg = htmlspecialchars($this->input->post('namabrg', true));
+            $hrgbrg = htmlspecialchars($this->input->post('hargabrg', true));
+            $jenis = htmlspecialchars($this->input->post('jenis', true));
+            $ket = htmlspecialchars($this->input->post('ket', true));
+            $jml = htmlspecialchars($this->input->post('jml', true));
+            $uom = htmlspecialchars($this->input->post('uom', true));
+            $user = htmlspecialchars($this->input->post('user', true));
+            $banking = htmlspecialchars($this->input->post('banking', true));
+            $money = htmlspecialchars($this->input->post('money', true));
+            $gambar = $_FILES['foto'];
+            if ($gambar == '') {
             } else {
-                $gambar = $this->upload->data('file_name');
+                $config['upload_path'] = './assets/img';
+                $config['allowed_types'] = 'jpg|png|jfif|gif|jpeg';
+
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('foto')) {
+                    die();
+                } else {
+                    $gambar = $this->upload->data('file_name');
+                }
             }
+
+            $data = array(
+
+                'nama_barang'       => $namabrg,
+                'harga_barang'      => $hrgbrg,
+                'gambar'            => $gambar,
+                'jenis_barang'      => $jenis,
+                'ket_barang'        => $ket,
+                'stokawal'          => $jml,
+                'stoksisa'          => $jml,
+                'UOM'               => $uom,
+                'ebanking'          => $banking,
+                'emoney'            => $money,
+                'user'              => $user
+            );
+
+            $this->barang_model->tambah($data);
+            $this->session->set_flashdata('crud', 'Dijual');
+            redirect('User/baranguser');
         }
-
-        $data = array(
-
-            'nama_barang'       => $namabrg,
-            'harga_barang'      => $hrgbrg,
-            'gambar'            => $gambar,
-            'jenis_barang'      => $jenis,
-            'ket_barang'        => $ket,
-            'stokawal'          => $jml,
-            'stoksisa'          => $jml,
-            'UOM'               => $uom,
-            'user'              => $user
-        );
-
-        $this->barang_model->tambah($data);
-        $this->session->set_flashdata('crud', 'Dijual');
-        redirect('User/baranguser');
     }
 
     public function hapus($id_barang)
@@ -149,6 +172,8 @@ class User extends CI_Controller
         $data['barang'] = $this->barang_model->getbyid($kondisi);
         $data['jenisbarang'] = ['Laptop', 'Mouse', 'Keyboard', 'Mousepad', 'Smartphone', 'Headset&Earphone'];
         $data['keterangan'] = ['Ada', 'Kosong'];
+        $data['banking'] = ['BCA Mobile Banking', 'Mandiri Mobile Banking', 'BNI Mobile Banking', 'BRI Mobile Banking'];
+        $data['money'] = ['OVO', 'Gopay', 'Paypal'];
         $data['judul'] = 'Edit Barang';
         $this->load->view('TemplateUser/HeaderUser', $data);
         $this->load->view('User/Editbarang', $data);
@@ -163,6 +188,8 @@ class User extends CI_Controller
         $ket = htmlspecialchars($this->input->post('ket', true));
         $jml = htmlspecialchars($this->input->post('jml', true));
         $uom = htmlspecialchars($this->input->post('uom', true));
+        $banking = $this->input->post('banking', true);
+        $money = $this->input->post('money', true);
         $gambar = $_FILES['foto'];
         if ($gambar == '') {
         } else {
@@ -184,7 +211,9 @@ class User extends CI_Controller
             'gambar'            => $gambar,
             'jenis_barang'      => $jenis,
             'ket_barang'        => $ket,
-            'stoksisa'            => $jml,
+            'stoksisa'          => $jml,
+            'ebanking'          => $banking,
+            'emoney'            => $money,
             'UOM'               => $uom,
         );
 

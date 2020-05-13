@@ -244,8 +244,27 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <a href="<?= base_url(); ?>User/baranguser" class="btn btn-primary">Kembali</a>
-                            <button class="btn btn-success" type="submit" name="edit">Edit</button>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="">Mobile Banking</label>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="banking">
+                                        <option>BCA Mobile Banking</option>
+                                        <option>Mandiri Mobile Banking</option>
+                                        <option>BNI Mobile Banking</option>
+                                        <option>BRI Mobile Banking</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="">E-Money</label>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="money">
+                                        <option>OVO</option>
+                                        <option>Gopay</option>
+                                        <option>Paypal</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <a href="<?= base_url(); ?>User/baranguser" class="btn btn-primary mt-3">Kembali</a>
+                            <button class="btn btn-success mt-3" type="submit" name="edit">Edit</button>
                             <?php echo form_close(); ?>
                         </div>
                     </section>

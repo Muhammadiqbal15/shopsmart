@@ -215,6 +215,15 @@
                     </div>
                 </div>
             </div>
+            <?php if (!empty(validation_errors())) : ?>
+                <div class="col-lg-12 col-6">
+                    <div class="alert alert-danger" role="alert">
+                        <?= form_error('namabrg'); ?>
+                        <?= form_error('hargabrg'); ?>
+                        <?= form_error('jml'); ?>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
         <div class="content-header">
             <div class="container-fluid">
@@ -239,24 +248,26 @@
                     <section class="col-lg-12 connectedSortable">
                         <div class="card">
                             <div class="card-body table-responsive p-0">
-                                <table class="table table-bordered table-head-fixed mt-3" id="table">
+                                <table class="table table-bordered table-head-fixed mt-3" id="example">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Barang</th>
-                                            <th>Harga Barang</th>
+                                            <th>Nama</th>
+                                            <th>Harga</th>
                                             <th>Foto</th>
-                                            <th>Jenis Barang</th>
+                                            <th>Jenis</th>
                                             <th>Keterangan</th>
                                             <th>Stok Awal</th>
                                             <th>Stok Tersisa</th>
+                                            <th>Pembayaran</th>
                                             <th>Opsi</th>
                                         </tr>
                                     </thead>
+                                    <?php $i = 1; ?>
                                     <?php foreach ($barang as $brg) : ?>
                                         <tbody>
                                             <tr>
-                                                <td>1</td>
+                                                <td><?= $i; ?></td>
                                                 <td><?= $brg['nama_barang']; ?></td>
                                                 <td><?= number_format($brg['harga_barang'], 0, ',', '.'); ?></td>
                                                 <td><img src="<?= base_url(); ?>assets/img/<?= $brg['gambar']; ?>" alt="" width="70" height="70"></td>
@@ -264,12 +275,14 @@
                                                 <td><?= $brg['ket_barang']; ?></td>
                                                 <td><?= $brg['stokawal'];  ?></td>
                                                 <td><?= $brg['stoksisa']; ?></td>
+                                                <td><?= $brg['ebanking']; ?>&<?= $brg['emoney']; ?></td>
                                                 <td>
                                                     <a href="<?= base_url(); ?>/User/hapus/<?= $brg['id_barang']; ?>" class="btn btn-danger btn-sm tombol-hapus"><i class="fas fa-trash"></i> Hapus</a>
                                                     <a href="<?= base_url(); ?>/User/editbarang/<?= $brg['id_barang']; ?>" class="btn btn-primary btn-sm "><i class="fas fa-edit"></i> Edit</a>
                                                 </td>
                                             </tr>
                                         </tbody>
+                                        <?php $i++; ?>
                                     <?php endforeach; ?>
                                 </table>
                             </div>
@@ -301,10 +314,16 @@
                             <label for="exampleInputEmail1">Nama Barang</label>
                             <input type="text" class="form-control" id="namabrg" aria-describedby="emailHelp" name="namabrg">
                         </div>
+                        <small class="text-danger">
+                            <?= form_error('namabrg'); ?>
+                        </small>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Harga Barang</label>
                             <input type="text" class="form-control" id="hargabrg" name="hargabrg">
                         </div>
+                        <small class="text-danger">
+                            <?= form_error('hargabrg'); ?>
+                        </small>
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Foto Barang</label>
                             <input type="file" class="form-control-file" id="foto" name="foto">
@@ -331,43 +350,39 @@
                             <label for="jumlah">Jumlah Barang</label>
                             <input type="text" class="form-control" id="jumlah" name="jml" autocomplete="off">
                         </div>
+                        <small class="text-danger">
+                            <?= form_error('jml'); ?>
+                        </small>
                         <div class="form-group">
                             <label for="uom">Satuan Barang</label>
                             <select class="form-control" id="uom" name="uom">
                                 <option>Unit</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3" name="tambah">Jual</button>
+                        <label for="" class="mt-2">Menerima Metode Pembayaran</label>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="">Mobile Banking</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="banking">
+                                    <option>BCA Mobile Banking</option>
+                                    <option>Mandiri Mobile Banking</option>
+                                    <option>BNI Mobile Banking</option>
+                                    <option>BRI Mobile Banking</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="">E-Money</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="money">
+                                    <option>OVO</option>
+                                    <option>Gopay</option>
+                                    <option>Paypal</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" name="jumlah" class="btn btn-primary mt-3">Jual</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery.min.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-
-
-
-
-
-
-
-
-<!-- 
-
-
-                                                            
-
-                                                            <script>
-    $(document).ready(function() {
-        $('#table').DataTable({
-            "paging": false
-
-        });
-    });
-</script> -->
