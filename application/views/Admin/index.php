@@ -38,7 +38,7 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
               <a href="<?= base_url(); ?>Admin/index" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon far fa-user-circle-block"></i>
                 <p>Data User</p>
               </a>
             </li>
@@ -46,6 +46,12 @@
               <a href="<?= base_url(); ?>Admin/Pembeli" class="nav-link">
                 <i class="nav-icon fas fa-cash-register"></i>
                 <p>Data User Terblock</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url(); ?>Admin/barangjualuser" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>Barang</p>
               </a>
             </li>
             <li class="nav-item">
@@ -100,22 +106,29 @@
                         <th>Opsi</th>
                       </tr>
                     </thead>
-                    <?php foreach ($user as $usr) : ?>
-                      <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td><?= $usr['id']; ?></td>
-                          <td><?= $usr['nama']; ?></td>
-                          <td><?= $usr['email']; ?></td>
-                          <td><img src="<?= base_url(); ?>assets/img/<?= $usr['foto']; ?>" alt="" width="70" height="70"></td>
-                          <td><?= $usr['alamat']; ?></td>
-                          <td><?= $usr['notelp']; ?></td>
-                          <td>
-                            <a href="" class="btn btn-danger">Block</a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    <?php endforeach; ?>
+
+                    <tbody>
+                      <?php foreach ($user as $usr) : ?>
+                        <?php if ($usr['role_id'] == 2) : ?>
+                          <tr>
+                            <td>1</td>
+                            <td><?= $usr['id']; ?></td>
+                            <td><?= $usr['nama']; ?></td>
+                            <td><?= $usr['email']; ?></td>
+                            <td><img src="<?= base_url(); ?>assets/img/<?= $usr['foto']; ?>" alt="" width="70" height="70"></td>
+                            <td><?= $usr['alamat']; ?></td>
+                            <td><?= $usr['notelp']; ?></td>
+                            <td>
+                              <a href="" class="btn btn-danger btn-sm">Block</a>
+                              <a href="<?= base_url(); ?>Admin/tampiluser/<?= $usr['id']; ?>" class="btn btn-primary btn-sm">Lihat Profil User</a>
+                            </td>
+                          </tr>
+                        <?php else : ?>
+
+                        <?php endif; ?>
+                      <?php endforeach; ?>
+                    </tbody>
+
                   </table>
                 </div>
               </div>
@@ -179,78 +192,6 @@
           <div class="mt-1">
             <button class="btn btn-success btn-lg" onclick="inputvalidation()">=</button>
             <button class="btn btn-danger btn-lg" onclick="clearAll()">C</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="card">
-            <h5 class="card-header bg-dark">Ubah Data Barang</h5>
-            <div class="card-body">
-              <?php echo form_open_multipart('Admin/updatedata/') ?>
-              <!-- file lama -->
-              <input type="hidden" name="filelama" value="<?= $brg['gambar']; ?>">
-              <!-- ID -->
-              <input type="hidden" name="id_barang" id="idbarang">
-              <div class="form-group">
-                <label for="namabarang">Nama Barang</label>
-                <input type="text" class="form-control" id="namabrg" name="namabrg" autocomplete="off">
-              </div>
-              <div class="form-group">
-                <label for="hrgbarang">Harga Barang</label>
-                <input type="text" class="form-control" id="hrgbarang" name="hargabrg" autocomplete="off">
-              </div>
-              <div class="form-group">
-                <label for="gambar">Foto</label>
-                <input type="file" class="form-control-file" id="gambar" name="gambar">
-              </div>
-              <div class="form-group">
-                <label for="stok">Jumlah Barang</label>
-                <input type="text" class="form-control" id="stok" name="stok" autocomplete="off">
-              </div>
-              <div class="form-group">
-                <label for="jenis">Satuan Barang</label>
-                <select class="form-control" id="satuan" name="uom">
-                  <option>Unit</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="jenis">Jenis Barang</label>
-                <select class="form-control" id="jenis" name="jenis">
-                  <?php foreach ($jenisbrg as $jb) : ?>
-                    <?php if ($jb ==  $brg['jenis_barang']) : ?>
-                      <option value="<?= $jb; ?>" selected><?= $jb; ?></option>
-                    <?php else : ?>
-                      <option value="<?= $jb; ?>"><?= $jb; ?></option>
-                    <?php endif; ?>
-                  <?php endforeach; ?>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="Keterangan">Keterangan Barang</label>
-                <select class="form-control" id="keterangan" name="ket">
-                  <?php foreach ($keterangan as $ket) : ?>
-                    <?php if ($ket ==  $brg['ket_barang']) : ?>
-                      <option value="<?= $ket; ?>" selected><?= $ket; ?></option>
-                    <?php else : ?>
-                      <option value="<?= $ket; ?>"><?= $ket; ?></option>
-                    <?php endif; ?>
-                  <?php endforeach; ?>
-                </select>
-              </div>
-              <button class="btn btn-primary float-right mt-2" type="submit" name="ubah">Ubah</button>
-              <?php echo form_close(); ?>
-            </div>
           </div>
         </div>
       </div>

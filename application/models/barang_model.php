@@ -264,8 +264,12 @@ class barang_model extends CI_Model
         return $this->cart->get_item($rowid);
     }
 
-    // public function triger()
-    // {
-    //     $this->db->query("CREATE TRIGGER sisa_brg AFTER INSERT ON pembeli FOR EACH ROW BEGIN UPDATE barang SET jumlah = jumlah - NEW.jumlah_brg WHERE id_barang = NEW.id_barang END ");
-    // }
+    public function userbyid($id)
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
 }
