@@ -240,57 +240,55 @@
                     <div class="row">
                         <section class="col-lg-12 connectedSortable">
                             <div class="card">
-                                <div class="card-body table-responsive p-0">
-                                    <table class="table table-bordered table-head-fixed mt-3" id="table">
-                                        <thead>
+                                <table class="table table-bordered table-head-fixed mt-3" id="mytable">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>No.Telp</th>
+                                            <th>Alamat</th>
+                                            <th>Nama Barang</th>
+                                            <th>Harga Barang</th>
+                                            <th>Jumlah Barang</th>
+                                            <th>Total Harga</th>
+                                            <th>Pengiriman</th>
+                                            <th>Pembayaran</th>
+                                            <th>Opsi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $j = 1; ?>
+                                        <?php foreach ($pembeli as $pb) : ?>
                                             <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>No.Telp</th>
-                                                <th>Alamat</th>
-                                                <th>Nama Barang</th>
-                                                <th>Harga Barang</th>
-                                                <th>Jumlah Barang</th>
-                                                <th>Total Harga</th>
-                                                <th>Pengiriman</th>
-                                                <th>Pembayaran</th>
-                                                <th>Opsi</th>
+                                                <td><?= $j; ?></td>
+                                                <td><?= $pb['nama_pb']; ?></td>
+                                                <td><?= $pb['notelp']; ?></td>
+                                                <td>
+                                                    <a href="" id="almt" class="btn btn-info btn-sm" data-toggle="modal" data-target="#alamat" data-provinsi="<?= $pb['provinsi']; ?>" data-kota="<?= $pb['kota']; ?>" data-kecamatan="<?= $pb['kecamatan']; ?>" data-kelurahan="<?= $pb['kelurahan']; ?>" data-alamatlengkap="<?= $pb['alamat']; ?>">Detail
+                                                    </a>
+                                                </td>
+                                                <td><?= $pb['nama_brg']; ?></td>
+                                                <td><?= $pb['harga_brg']; ?></td>
+                                                <td><?= $pb['jumlah_brg']; ?></td>
+                                                <td><?= $pb['tot_hrg'] ?></td>
+                                                <td><?= $pb['pengiriman']; ?></td>
+                                                <td><?= $pb['pembayaran']; ?></td>
+                                                <td>
+                                                    <a href="<?= base_url(); ?>User/hapuspembeli/<?= $pb['id_pembeli']; ?>" class="btn btn-danger btn-sm hapus-pembeli"><i class="fas fa-trash"></i> Hapus</a>
+                                                    <a href="" class="btn btn-warning btn-sm"><i class="nav-icon fas fa-comments"></i> Chat</a>
+                                                </td>
                                             </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <?= $i = 1; ?>
-                                            <?php foreach ($pembeli as $pb) : ?>
-                                                <tr>
-                                                    <td><?= $i; ?></td>
-                                                    <td><?= $pb['nama']; ?></td>
-                                                    <td><?= $pb['notelp']; ?></td>
-                                                    <td>
-                                                        <a href="" id="almt" class="btn btn-info btn-sm" data-toggle="modal" data-target="#alamat" data-provinsi="<?= $pb['provinsi']; ?>" data-kota="<?= $pb['kota']; ?>" data-kecamatan="<?= $pb['kecamatan']; ?>" data-kelurahan="<?= $pb['kelurahan']; ?>" data-alamatlengkap="<?= $pb['alamat']; ?>">Detail
-                                                        </a>
-                                                    </td>
-                                                    <td><?= $pb['nama_brg']; ?></td>
-                                                    <td><?= $pb['harga_brg']; ?></td>
-                                                    <td><?= $pb['jumlah_brg']; ?></td>
-                                                    <td><?= $pb['tot_hrg'] ?></td>
-                                                    <td><?= $pb['pengiriman']; ?></td>
-                                                    <td><?= $pb['pembayaran']; ?></td>
-                                                    <td>
-                                                        <a href="<?= base_url(); ?>User/hapuspembeli/<?= $pb['id_pembeli']; ?>" class="btn btn-danger btn-sm hapus-pembeli"><i class="fas fa-trash"></i> Hapus</a>
-                                                        <a href="" class="btn btn-warning btn-sm"><i class="nav-icon fas fa-comments"></i> Chat</a>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                            <?= $i++; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            <?php $j++; ?>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
                             </div>
-                        </section>
                     </div>
-                </div>
             </section>
         </div>
+    </div>
+    </section>
+    </div>
     </div>
 
     <div class="modal fade" id="alamat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

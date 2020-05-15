@@ -65,7 +65,7 @@ class Admin extends CI_Controller
 
 
         $data['start'] = $this->uri->segment(3);
-        $data['Barang'] = $this->barang_model->getbarang($config['per_page'], $data['start']);
+        $data['Barang'] = $this->barang_model->getAllbarang($config['per_page'], $data['start']);
         $data['user'] = $this->barang_model->getalluser();
         if ($this->input->post('keyword')) {
             $data['Barang'] = $this->barang_model->caribarang();
@@ -88,10 +88,21 @@ class Admin extends CI_Controller
 
     public function barangjualuser()
     {
-        $data['judul'] = 'Dashboard';
+        $data['judul'] = 'Barang';
 
+        $data['barang'] = $this->barang_model->getallbrgforadmin();
         $this->load->view('TemplateAdmin/Header', $data);
-        $this->load->view('Admin/barangygdijual');
+        $this->load->view('Admin/Barangygdijual', $data);
+        $this->load->view('TemplateAdmin/Footer');
+    }
+
+    public function transaksiuser()
+    {
+        $data['judul'] = 'Transaksi User';
+
+        $data['transaksi'] = $this->barang_model->getallpembeliforadmin();
+        $this->load->view('TemplateAdmin/Header', $data);
+        $this->load->view('Admin/Transaksi', $data);
         $this->load->view('TemplateAdmin/Footer');
     }
 }

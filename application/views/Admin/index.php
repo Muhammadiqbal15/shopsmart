@@ -38,13 +38,13 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
               <a href="<?= base_url(); ?>Admin/index" class="nav-link">
-                <i class="nav-icon far fa-user-circle-block"></i>
+                <i class="nav-icon fas fa-users"></i>
                 <p>Data User</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="<?= base_url(); ?>Admin/Pembeli" class="nav-link">
-                <i class="nav-icon fas fa-cash-register"></i>
+                <i class="nav-icon fas fa-user-alt-slash"></i>
                 <p>Data User Terblock</p>
               </a>
             </li>
@@ -52,6 +52,12 @@
               <a href="<?= base_url(); ?>Admin/barangjualuser" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>Barang</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url(); ?>Admin/transaksiuser" class="nav-link">
+                <i class="nav-icon fas fa-search-dollar"></i>
+                <p>Transaksi User</p>
               </a>
             </li>
             <li class="nav-item">
@@ -197,122 +203,18 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="card">
-            <h5 class="card-header bg-dark">Tambah Data Barang</h5>
-            <div class="card-body">
-              <?php echo form_open_multipart('Admin/insertdata'); ?>
-              <div class="form-group">
-                <label for="namabarang">Nama Barang</label>
-                <input type="text" class="form-control" id="namabarang" name="namabrg" autocomplete="off">
-              </div>
-              <small class="text-danger">
-                <?= form_error('namabrg'); ?>
-              </small>
-              <div class="form-group">
-                <label for="hrgbarang">Harga Barang</label>
-                <input type="text" class="form-control" id="hrgbarang" name="hargabrg" autocomplete="off">
-              </div>
-              <small class="text-danger">
-                <?= form_error('hargabrg'); ?>
-              </small>
-              <div class="form-group">
-                <label for="gambar">Foto</label>
-                <input type="file" class="form-control-file" id="gambar" name="gambar">
-              </div>
-              <div class="form-group">
-                <label for="jumlah">Jumlah Barang</label>
-                <input type="text" class="form-control" id="jumlah" name="jml" autocomplete="off">
-              </div>
-              <small class="text-danger">
-                <?= form_error('jml'); ?>
-              </small>
-              <div class="form-group">
-                <label for="jenis">Satuan Barang</label>
-                <select class="form-control" id="jenis" name="uom">
-                  <option>Unit</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="jenis">Jenis Barang</label>
-                <select class="form-control" id="jenis" name="jenis">
-                  <option>Laptop</option>
-                  <option>Mouse</option>
-                  <option>Keyboard</option>
-                  <option>Mousepad</option>
-                  <option>SmartPhone</option>
-                  <option>Headset&Earphone</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="Keterangan">Keterangan Barang</label>
-                <select class="form-control" id="keterangan" name="ket">
-                  <option>Ada</option>
-                  <option>Kosong</option>
-                </select>
-              </div>
-              <button class="btn btn-primary float-right mt-2" type="submit" name="tambah">Tambah</button>
-              <?php echo form_close(); ?>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header border-bottom-0">
-          <h4 class="modal-title" id="image-gallery-title"></h4>
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
-          </button>
-        </div>
-        <div class="modal-body py-0">
-          <img id="image-gallery-image" class="rounded img-fluid" src="">
-        </div>
-      </div>
-    </div>
-  </div>
 </body>
 
 
 
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery.min.js"></script>
+<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery-3.4.1.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 
 
-<script>
-  $(document).ready(function() {
-    $(document).on('click', '#edit', function() {
-      var namabarang = $(this).data('namabrg');
-      var hargabarang = $(this).data('harga');
-      var jumlah = $(this).data('jumlah');
-      var satuan = $(this).data('satuan');
-      var jenis = $(this).data('jenis');
-      var ket = $(this).data('ket')
-      var id = $(this).data('idbarang');
-      $('#idbarang').val(id);
-      $('#keterangan').val(ket);
-      $('#jenis').val(jenis);
-      $('#satuan').val(satuan);
-      $('#stok').val(jumlah);
-      $('#hrgbarang').val(hargabarang);
-      $('#namabrg').val(namabarang);
 
-    })
-  })
-</script>
 <script>
   $(document).ready(function() {
     $('#table').DataTable({
@@ -320,60 +222,4 @@
 
     });
   });
-</script>
-<script>
-  let modalId = $('#image-gallery');
-  $(document)
-    .ready(function() {
-      loadGallery(true, 'a.thumbnail');
-
-      function disableButtons(counter_max, counter_current) {
-        $('#show-prev-image, #show-next-image')
-          .show();
-        if (counter_max === counter_current) {
-          $('#show-next-image')
-            .hide();
-        } else if (counter_current === 1) {
-          $('#show-prev-image')
-            .hide();
-        }
-      }
-
-      function loadGallery(setIDs, setClickAttr) {
-        let current_image, selector, counter = 0;
-        $('#show-next-image, #show-prev-image')
-          .click(function() {
-            if ($(this)
-              .attr('id') === 'show-prev-image') {
-              current_image--;
-            } else {
-              current_image++;
-            }
-            selector = $('[data-image-id="' + current_image + '"]');
-            updateGallery(selector);
-          });
-
-        function updateGallery(selector) {
-          let $sel = selector;
-          current_image = $sel.data('image-id');
-          $('#image-gallery-title')
-            .text($sel.data('title'));
-          $('#image-gallery-image')
-            .attr('src', $sel.data('image'));
-          disableButtons(counter, $sel.data('image-id'));
-        }
-        if (setIDs == true) {
-          $('[data-image-id]')
-            .each(function() {
-              counter++;
-              $(this)
-                .attr('data-image-id', counter);
-            });
-        }
-        $(setClickAttr)
-          .on('click', function() {
-            updateGallery($(this));
-          });
-      }
-    });
 </script>

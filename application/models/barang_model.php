@@ -24,6 +24,18 @@ class barang_model extends CI_Model
         // return $this->db->get('barang')->result_array();
     }
 
+    public function getallbrgforadmin()
+    {
+        $this->db->join('user', 'user.id = barang.user');
+        return $this->db->get('barang')->result_array();
+    }
+
+    public function getallpembeliforadmin()
+    {
+        $this->db->join('user', 'user.id = pembeli.usr_penjual');
+        return $this->db->get('pembeli')->result_array();
+    }
+
 
 
     public function tambahpmbyrn($data)
@@ -186,6 +198,7 @@ class barang_model extends CI_Model
         $this->db->select('*');
         $this->db->from('pembeli');
         $this->db->where('usr_penjual', $this->session->userdata('id'));
+        $this->db->order_by('id_pembeli', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }

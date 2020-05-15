@@ -508,7 +508,7 @@ class Home extends CI_Controller
         $brg = htmlspecialchars($this->input->post('barang', true));
 
         $data = array(
-            'nama'    => $pembeli,
+            'nama_pb'    => $pembeli,
             'noTelp'   => $nomortlp,
             'alamat' => $alamat,
             'nama_brg' => $nmbrg,

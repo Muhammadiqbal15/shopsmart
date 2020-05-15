@@ -81,7 +81,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Data Barang Yang Dijual User</h1>
+                            <h1 class="m-0 text-dark">Data User</h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -99,32 +99,36 @@
                         <section class="col-lg-12 connectedSortable">
                             <div class="card">
                                 <div class="card-body table-responsive p-0">
-                                    <table class="table table-bordered table-head-fixed mt-3" id="table">
+                                    <table class="table table-bordered table-head-fixed mt-3" id="mytable">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
                                                 <th>Id</th>
-                                                <th>Barang</th>
-                                                <th>Harga</th>
-                                                <th>Foto</th>
-                                                <th>Stok Awal</th>
-                                                <th>Stok Sisa</th>
+                                                <th>Pembeli</th>
+                                                <th>Nama Barang</th>
+                                                <th>Harga Barang</th>
+                                                <th>Jumlah Barang</th>
+                                                <th>Total Harga</th>
+                                                <th>Pengiriman</th>
+                                                <th>Pembayaran</th>
                                                 <th>Penjual</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
                                             <?php $i = 1; ?>
-                                            <?php foreach ($barang as $brg) : ?>
+                                            <?php foreach ($transaksi as $tr) : ?>
                                                 <tr>
                                                     <td><?= $i; ?></td>
-                                                    <td><?= $brg['id_barang']; ?></td>
-                                                    <td><?= $brg['nama_barang']; ?></td>
-                                                    <td><?= $brg['harga_barang']; ?></td>
-                                                    <td><img src="<?= base_url(); ?>assets/img/<?= $brg['gambar'];; ?>" alt="" width="70" height="70"></td>
-                                                    <td><?= $brg['stokawal']; ?></td>
-                                                    <td><?= $brg['stoksisa']; ?></td>
-                                                    <td><?= $brg['nama'];   ?></td>
+                                                    <td><?= $tr['id_pembeli']; ?></td>
+                                                    <td><?= $tr['nama_pb']; ?></td>
+                                                    <td><?= $tr['nama_brg']; ?></td>
+                                                    <td><?= $tr['harga_brg']; ?></td>
+                                                    <td><?= $tr['jumlah_brg'] ?></td>
+                                                    <td><?= $tr['tot_hrg']; ?></td>
+                                                    <td><?= $tr['pengiriman']; ?></td>
+                                                    <td><?= $tr['pembayaran'];   ?></td>
+                                                    <td><?= $tr['nama']; ?></td>
                                                 </tr>
                                                 <?php $i++; ?>
                                             <?php endforeach; ?>
@@ -210,7 +214,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#table').DataTable({
+        $('#mytable').DataTable({
             "paging": false
 
         });
