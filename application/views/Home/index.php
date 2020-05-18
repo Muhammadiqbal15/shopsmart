@@ -69,32 +69,35 @@
     </div>
 <?php endif; ?>
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="<?= base_url('assets/foto/1.jpg'); ?>" class="d-block w-100 img-fluid" alt="...">
+
+<?php foreach ($gambar as $gb) : ?>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="min-height: 300px;">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="<?= base_url(); ?>assets/img/<?= $gb['gb_1']; ?>" class="d-block w-100 img-fluid" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="<?= base_url(); ?>assets/img/<?= $gb['gb_2']; ?>" class="d-block w-100 img-fluid" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="<?= base_url(); ?>assets/img/<?= $gb['gb_3']; ?>" class="d-block w-100 img-fluid" alt="...">
+            </div>
         </div>
-        <div class="carousel-item">
-            <img src="<?= base_url('assets/foto/2.jpg'); ?>" class="d-block w-100 img-fluid" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="<?= base_url('assets/foto/3.jpg'); ?>" class="d-block w-100 img-fluid" alt="...">
-        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+<?php endforeach; ?>
 
 <form class="form-inline mt-1 mb-5 justify-content-center" method="POST">
     <div class="input-group input-group-lg col-lg-8 mt-5">
@@ -131,3 +134,5 @@
         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
     </div>
 </footer>
+
+<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery-3.4.1.min.js"></script>

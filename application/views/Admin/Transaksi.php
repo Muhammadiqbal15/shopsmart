@@ -43,8 +43,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>Admin/Pembeli" class="nav-link">
-                                <i class="nav-icon fas fa-cash-register"></i>
+                            <a href="<?= base_url(); ?>Admin/userblock" class="nav-link">
+                                <i class="nav-icon fas fa-user-alt-slash"></i>
                                 <p>Data User Terblock</p>
                             </a>
                         </li>
@@ -58,6 +58,12 @@
                             <a href="<?= base_url(); ?>Admin/transaksiuser" class="nav-link">
                                 <i class="nav-icon fas fa-search-dollar"></i>
                                 <p>Transaksi User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url(); ?>Admin/ubahbanner" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>Banner Home</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -81,7 +87,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Data User</h1>
+                            <h1 class="m-0 text-dark">Data Transaksi Antar User</h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->

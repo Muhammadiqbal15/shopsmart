@@ -285,4 +285,28 @@ class barang_model extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     }
+
+    public function getallbanner()
+    {
+        return $this->db->get('tb_banner')->result_array();
+    }
+
+    public function getbannerbyid($id_barang)
+    {
+        $this->db->from('tb_banner');
+        $this->db->where('id_gambar', $id_barang);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
+    public function updatebanner($data, $kondisi)
+    {
+        $this->db->update('tb_banner', $data, $kondisi);
+    }
+
+    public function hapususer($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('user');
+    }
 }

@@ -1,4 +1,4 @@
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery.min.js"></script>
+<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery-3.4.1.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -31,10 +31,8 @@
 <script src="<?= base_url(); ?>assets/AdminLTE-master/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url(); ?>assets/AdminLTE-master/dist/js/demo.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/sweetalert2/sweetalert2.all.min.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/sweetalert2/mysrc1.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery.min.js"></script>
+<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/sweetalert2/mysrcgb.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>

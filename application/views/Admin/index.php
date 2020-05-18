@@ -43,7 +43,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url(); ?>Admin/Pembeli" class="nav-link">
+              <a href="<?= base_url(); ?>Admin/userblock" class="nav-link">
                 <i class="nav-icon fas fa-user-alt-slash"></i>
                 <p>Data User Terblock</p>
               </a>
@@ -58,6 +58,12 @@
               <a href="<?= base_url(); ?>Admin/transaksiuser" class="nav-link">
                 <i class="nav-icon fas fa-search-dollar"></i>
                 <p>Transaksi User</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url(); ?>Admin/ubahbanner" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>Banner Home</p>
               </a>
             </li>
             <li class="nav-item">
@@ -125,7 +131,7 @@
                             <td><?= $usr['alamat']; ?></td>
                             <td><?= $usr['notelp']; ?></td>
                             <td>
-                              <a href="" class="btn btn-danger btn-sm">Block</a>
+                              <a href="<?= base_url(); ?>Admin/hapususer/<?= $usr['id']; ?>" class="btn btn-danger btn-sm">Block</a>
                               <a href="<?= base_url(); ?>Admin/tampiluser/<?= $usr['id']; ?>" class="btn btn-primary btn-sm">Lihat Profil User</a>
                             </td>
                           </tr>

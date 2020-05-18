@@ -243,3 +243,60 @@
 <?php else : ?>
     <?php redirect('Admin/index'); ?>
 <?php endif; ?>
+
+<div class="modal fade modal-sm" id="kalkulator" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Calculator</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputangka">Angka : </label>
+                        <input type="text" class="form-control" id="inputangka">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="hasil">Hasil : </label>
+                    <input type="text" class="form-control" id="hasil">
+                </div>
+
+                <div>
+                    <button class="btn btn-primary btn-lg" onclick="getdata('1')">1</button>
+                    <button class="btn btn-primary btn-lg" onclick="getdata('2')">2</button>
+                    <button class="btn btn-primary btn-lg" onclick="getdata('3')">3</button>
+                    <button class="btn btn-primary btn-lg" onclick="getdata('+')">+</button>
+                    <button class="btn btn-primary btn-lg" onclick="getdata('-')">-</button>
+                </div>
+                <div class="mt-1">
+                    <button class="btn btn-primary btn-lg" onclick="getdata('4')">4</button>
+                    <button class="btn btn-primary btn-lg" onclick="getdata('5')">5</button>
+                    <button class="btn btn-primary btn-lg" onclick="getdata('6')">6</button>
+                    <button class="btn btn-primary btn-lg" onclick="getdata('*')">*</button>
+                    <button class="btn btn-primary btn-lg" onclick="getdata('/')">/</button>
+                </div>
+                <div class="mt-1">
+                    <button class="btn btn-primary btn-lg" onclick="getdata('7')">7</button>
+                    <button class="btn btn-primary btn-lg" onclick="getdata('8')">8</button>
+                    <button class="btn btn-primary btn-lg" onclick="getdata('9')">9</button>
+                    <button class="btn btn-primary btn-lg" onclick="getdata('(')">(</button>
+                    <button class="btn btn-primary btn-lg" onclick="getdata(')')">)</button>
+                </div>
+                <div class="mt-1">
+                    <button class="btn btn-primary btn-lg" onclick="getdata('0')">0</button>
+                    <button class="btn btn-primary btn-lg" onclick="getdata('**')">^</button>
+                    <button class="btn btn-primary btn-lg" onclick="getdata('.')">.</button>
+                    <button class="btn btn-primary btn-lg" onclick="getdata('%')">%</button>
+                </div>
+                <div class="mt-1">
+                    <button class="btn btn-success btn-lg" onclick="inputvalidation()">=</button>
+                    <button class="btn btn-danger btn-lg" onclick="clearAll()">C</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

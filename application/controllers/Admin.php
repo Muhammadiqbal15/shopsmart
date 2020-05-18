@@ -105,4 +105,101 @@ class Admin extends CI_Controller
         $this->load->view('Admin/Transaksi', $data);
         $this->load->view('TemplateAdmin/Footer');
     }
+
+    public function ubahbanner()
+    {
+        $data['judul'] = 'Ubah Banner Home';
+
+        $data['gambar'] = $this->barang_model->getallbanner();
+        $this->load->view('TemplateAdmin/Header', $data);
+        $this->load->view('Admin/Ubahbanner', $data);
+        $this->load->view('TemplateAdmin/Footer');
+    }
+
+    public function tp_banner($id_barang)
+    {
+        $data['judul'] = 'Ubah Banner Home';
+
+        $data['gambar'] = $this->barang_model->getallbanner();
+        $data['gmbr'] = $this->barang_model->getbannerbyid($id_barang);
+        $this->load->view('TemplateAdmin/Header', $data);
+        $this->load->view('Admin/Tp_ubahbanner', $data);
+        $this->load->view('TemplateAdmin/Footer');
+    }
+
+    public function updatebnnr()
+    {
+        $gambar1 = $_FILES['gb1'];
+        if ($gambar1 == '') {
+        } else {
+            $config['upload_path'] = './assets/img';
+            $config['allowed_types'] = 'jpg|png|jfif|gif|jpeg';
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('gb1')) {
+                echo 'Gagal Upload';
+                die();
+            } else {
+                $gambar1 = $this->upload->data('file_name');
+            }
+        }
+
+        $gambar2 = $_FILES['gb2'];
+        if ($gambar2 == '') {
+        } else {
+            $config['upload_path'] = './assets/img';
+            $config['allowed_types'] = 'jpg|png|jfif|gif|jpeg';
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('gb2')) {
+                echo 'Gagal Upload';
+                die();
+            } else {
+                $gambar2 = $this->upload->data('file_name');
+            }
+        }
+
+        $gambar3 = $_FILES['gb3'];
+        if ($gambar3 == '') {
+        } else {
+            $config['upload_path'] = './assets/img';
+            $config['allowed_types'] = 'jpg|png|jfif|gif|jpeg';
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('gb3')) {
+                echo 'Gagal Upload';
+                die();
+            } else {
+                $gambar3 = $this->upload->data('file_name');
+            }
+        }
+
+        $data = array(
+            'gb_1' => $gambar1,
+            'gb_2' => $gambar2,
+            'gb_3' => $gambar3
+        );
+        $path = './assets/img/';
+        @unlink($path . $this->input->post('filelama'));
+        $id = $this->input->post('id_gb');
+
+        $kondisi = $this->db->where('id_gambar', $id);
+        $this->barang_model->updatebanner($data, $kondisi);
+        $this->session->set_flashdata('editgb', 'Diubah');
+        redirect('Admin/ubahbanner');
+    }
+
+    public function userblock()
+    {
+
+        $data['judul'] = 'User Terblock';
+        $this->load->view('TemplateAdmin/Header', $data);
+        $this->load->view('Admin/Userblock', $data);
+        $this->load->view('TemplateAdmin/Footer');
+    }
+
+    public function hapususer($id)
+    {
+        $this->barang_model->hapususer($id);
+    }
 }

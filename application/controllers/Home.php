@@ -59,6 +59,7 @@ class Home extends CI_Controller
             $data['Barang'] = $this->barang_model->caribarang1();
         }
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['gambar'] = $this->barang_model->getallbanner();
         $this->load->view('TemplateHome/Header', $data);
         $this->load->view('Home/index', $data);
         $this->load->view('TemplateHome/Footer');
