@@ -1,5 +1,6 @@
 <?php if ($this->session->userdata('role_id') == 2) : ?>
     <div class="wrapper">
+
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
             <!-- Left navbar links -->
@@ -109,10 +110,10 @@
             </ul>
         </nav>
         <!-- /.navbar -->
-        <div class="keranjang" data-keranjang="<?= $this->session->flashdata('keranjang'); ?>"></div>
-        <div class="cart" data-cart="<?= $this->session->flashdata('cart'); ?>"></div>
+
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
@@ -150,6 +151,18 @@
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
+                                <i class="nav-icon fas fa-bell"></i>
+                                <p>Pemberitahuan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
+                                <i class="nav-icon fas fa-comments"></i>
+                                <p>Chat</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>Log out</p>
                             </a>
@@ -166,60 +179,44 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Keranjang Belanja Anda</h1>
+                            <h1 class="m-0 text-dark">Ubah Password</h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-
+            <div class="ubahpw" data-ubahpw="<?= $this->session->flashdata('pwdone'); ?>"></div>
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <section class="col-lg-12 connectedSortable">
-                            <div class="card">
-                                <div class="card-body table-responsive p-0">
-                                    <table class="table table-bordered table-head-fixed mt-3" id="table">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama Barang</th>
-                                                <th>Jumlah</th>
-                                                <th>Harga</th>
-                                                <th>Sub-Total</th>
-                                                <th>Opsi</th>
-                                            </tr>
-                                        </thead>
-                                        <?php foreach ($this->cart->contents() as $items) : ?>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td><?= $items['name']; ?></td>
-                                                    <td><?= $items['qty']; ?></td>
-                                                    <td>Rp.<?= number_format($items['price'], 0, ',', '.'); ?></td>
-                                                    <td>Rp.<?= number_format($items['subtotal'], 0, ',', '.'); ?></td>
-                                                    <td>
-                                                        <a href="<?= base_url(); ?>User/deletekeranjang/<?= $items['rowid']; ?>" class="btn btn-danger  btn-sm hapus-brgkrjng"><i class="fas fa-trash"></i> Hapus</a>
-                                                        <a href="<?= base_url(); ?>Home/Beli/<?= $items['id']; ?>/<?= $items['rowid']; ?>" class="btn btn-primary btn-sm"><i class="far fa-money-bill-alt"></i> Bayar</a>
-                                                        <a href="" class="btn btn-warning btn-sm"><i class="fas fa-comments"> Chat</i></a>
-                                                        <a href="<?= base_url(); ?>User/keranjang/<?= $items['id']; ?>" class="btn btn-sm btn-outline-primary"><i class="fas fa-plus"></i> Tambah</a>
-                                                        <a href="<?= base_url(); ?>User/kurangcart/<?= $items['rowid']; ?>/<?= $items['qty']; ?>" class="btn btn-sm btn-outline-danger"><i class="fas fa-minus"></i> Kurang</a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        <?php endforeach; ?>
-                                        <tr>
-                                            <td colspan="4"></td>
-                                            <td>
-                                                Rp.<?= number_format($this->cart->total(), 0, ',', '.'); ?>
-                                            </td>
-                                            <td>
-                                                <a href="<?= base_url(); ?>User/deleteall" class="btn btn-danger btn-sm delete-semua"><i class="fas fa-trash"></i> Hapus Semua</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                        <section class="col-lg-6 connectedSortable">
+                            <div class="card mb-3 p-4">
+                                <?= $this->session->flashdata('pwsalah'); ?>
+                                <form action="<?= base_url(); ?>/User/ubahpassword" method="POST">
+                                    <div class="form-group">
+                                        <label for="pwlama">Password Saat Ini</label>
+                                        <input type="password" class="form-control" id="pwlama" name="pwlama" placeholder="Password Saat Ini">
+                                    </div>
+                                    <small class="text-danger">
+                                        <?= form_error('pwlama'); ?>
+                                    </small>
+                                    <div class="form-group">
+                                        <label for="pwbaru">Password Baru</label>
+                                        <input type="password" class="form-control" id="pwbaru" name="pwbaru" placeholder="Password Baru">
+                                    </div>
+                                    <small class="text-danger">
+                                        <?= form_error('pwbaru'); ?>
+                                    </small>
+                                    <div class="form-group">
+                                        <label for="pwbaru2">Ulangi Password Baru</label>
+                                        <input type="password" class="form-control" id="pwbaru2" name="pwbaru2" placeholder="Ulangi Password Baru">
+                                    </div>
+                                    <small class="text-danger">
+                                        <?= form_error('pwbaru2'); ?>
+                                    </small>
+                                    <button class="btn btn-success" type="submit" name="ubah">Change Password</button>
+                                </form>
                             </div>
                         </section>
                     </div>
@@ -227,7 +224,6 @@
             </section>
         </div>
     </div>
-
 <?php else : ?>
     <?php redirect('Admin/index'); ?>
 <?php endif; ?>

@@ -1,4 +1,4 @@
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery.min.js"></script>
+<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery-3.4.1.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -31,6 +31,5 @@
 <!-- <script src="<?= base_url(); ?>assets/AdminLTE-master/dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url(); ?>assets/AdminLTE-master/dist/js/demo.js"></script>
-<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/sweetalert2/mysrclogin.js"></script>

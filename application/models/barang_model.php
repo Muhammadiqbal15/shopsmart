@@ -50,6 +50,7 @@ class barang_model extends CI_Model
 
     public function hapusbarang($id_barang)
     {
+        $this->db->join('pembeli', 'pembeli.id_barang = barang.id_barang');
         $this->db->where('id_barang', $id_barang);
         $this->db->delete('barang');
     }
@@ -302,11 +303,5 @@ class barang_model extends CI_Model
     public function updatebanner($data, $kondisi)
     {
         $this->db->update('tb_banner', $data, $kondisi);
-    }
-
-    public function hapususer($id)
-    {
-        $this->db->where('id', $id);
-        $this->db->delete('user');
     }
 }

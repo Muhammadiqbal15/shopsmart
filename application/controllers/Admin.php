@@ -67,6 +67,11 @@ class Admin extends CI_Controller
         $data['start'] = $this->uri->segment(3);
         $data['Barang'] = $this->barang_model->getAllbarang($config['per_page'], $data['start']);
         $data['user'] = $this->barang_model->getalluser();
+        $data['sumuser'] = $this->sumuser();
+        $data['stokawal'] = $this->stokawal();
+        $data['brgterjual'] = $this->barangterjual();
+        $data['sisa'] = $this->stokakhir();
+        $data['transaksi'] = $this->totaltransaksi();
         if ($this->input->post('keyword')) {
             $data['Barang'] = $this->barang_model->caribarang();
         }
@@ -91,6 +96,11 @@ class Admin extends CI_Controller
         $data['judul'] = 'Barang';
 
         $data['barang'] = $this->barang_model->getallbrgforadmin();
+        $data['sumuser'] = $this->sumuser();
+        $data['stokawal'] = $this->stokawal();
+        $data['brgterjual'] = $this->barangterjual();
+        $data['sisa'] = $this->stokakhir();
+        $data['transaksi'] = $this->totaltransaksi();
         $this->load->view('TemplateAdmin/Header', $data);
         $this->load->view('Admin/Barangygdijual', $data);
         $this->load->view('TemplateAdmin/Footer');
@@ -100,6 +110,11 @@ class Admin extends CI_Controller
     {
         $data['judul'] = 'Transaksi User';
 
+        $data['sumuser'] = $this->sumuser();
+        $data['stokawal'] = $this->stokawal();
+        $data['brgterjual'] = $this->barangterjual();
+        $data['sisa'] = $this->stokakhir();
+        $data['transaksi1'] = $this->totaltransaksi();
         $data['transaksi'] = $this->barang_model->getallpembeliforadmin();
         $this->load->view('TemplateAdmin/Header', $data);
         $this->load->view('Admin/Transaksi', $data);
@@ -198,8 +213,40 @@ class Admin extends CI_Controller
         $this->load->view('TemplateAdmin/Footer');
     }
 
-    public function hapususer($id)
+
+    public function sumuser()
     {
-        $this->barang_model->hapususer($id);
+        $this->db->select('*');
+        $this->db->from('user');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function stokawal()
+    {
+        $this->db->select_sum('stokawal')->from('barang');
+        $query = $this->db->get()->result();
+        return $query;
+    }
+
+    public function barangterjual()
+    {
+        $this->db->select_sum('jumlah_brg')->from('pembeli');
+        $query = $this->db->get()->result();
+        return $query;
+    }
+
+    public function stokakhir()
+    {
+        $this->db->select_sum('stoksisa')->from('barang');
+        $query = $this->db->get()->result();
+        return $query;
+    }
+
+    public function totaltransaksi()
+    {
+        $this->db->select_sum('jmlfixed_pembeli')->from('pembeli');
+        $query = $this->db->get()->result();
+        return $query;
     }
 }

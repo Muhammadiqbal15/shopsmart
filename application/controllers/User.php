@@ -360,4 +360,46 @@ class User extends CI_Controller
         $query = $this->db->get()->result();
         return $query;
     }
+
+    public function ubahpassword()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['judul'] = 'Ubah Password';
+
+        $this->form_validation->set_rules('pwlama', 'Password saat ini', 'required|trim');
+        $this->form_validation->set_rules('pwbaru', 'Password Baru', 'required|trim|min_length[8]|matches[pwbaru2]');
+        $this->form_validation->set_rules('pwbaru2', 'Konfirmasi Password Baru', 'required|trim|min_length[8]|matches[pwbaru]');
+
+        if ($this->form_validation->run() == false) {
+
+            $this->load->view('TemplateUser/HeaderUser', $data);
+            $this->load->view('User/Ubahpassword', $data);
+            $this->load->view('TemplateUser/FooterUser');
+        } else {
+            $current_pass = $this->input->post('pwlama');
+            $new_pass = $this->input->post('pwbaru');
+            if (!password_verify($current_pass, $data['user']['password'])) {
+                $this->session->set_flashdata('pwsalah', '<div class="alert alert-danger" role="alert">
+                Password Saat ini Anda Salah
+                </div>');
+                redirect('User/ubahpassword');
+            } else {
+                if ($current_pass == $new_pass) {
+                    $this->session->set_flashdata('pwsalah', '<div class="alert alert-danger" role="alert">
+                    Password Baru Tidak Boleh Sama Dengan Password Lama
+                    </div>');
+                    redirect('User/ubahpassword');
+                } else {
+                    //pw ok
+                    $pass_hash = password_hash($new_pass, PASSWORD_DEFAULT);
+                    $this->db->set('password', $pass_hash);
+                    $this->db->where('email', $this->session->userdata('email'));
+                    $this->db->update('user');
+
+                    $this->session->set_flashdata('pwdone', 'Diubah');
+                    redirect('User/ubahpassword');
+                }
+            }
+        }
+    }
 }

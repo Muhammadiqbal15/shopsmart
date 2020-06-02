@@ -43,12 +43,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>Admin/userblock" class="nav-link">
-                                <i class="nav-icon fas fa-user-alt-slash"></i>
-                                <p>Data User Terblock</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="<?= base_url(); ?>Admin/barangjualuser" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Barang</p>
@@ -82,7 +76,77 @@
         <br><br><br>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
+
+            <div class="row m-auto mt-5">
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info">
+                            <i class=" fas fa-search-dollar"></i>
+                        </span>
+                        <?php foreach ($transaksi1 as $ts1) ?>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Transaksi Antar User</span>
+                            <span class="info-box-number"><?= $ts1->jmlfixed_pembeli ?></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-warning">
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>
+                        <?php foreach ($stokawal as $jb) ?>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Stok Barang User</span>
+                            <span class="info-box-number"><?= $jb->stokawal ?></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-success">
+                            <i class="fas fa-cart-plus"></i>
+                        </span>
+                        <?php foreach ($brgterjual as $bt) ?>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Barang Terjual User</span>
+                            <span class="info-box-number"><?= $bt->jumlah_brg ?></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-danger">
+                            <i class="fas fa-cart-arrow-down"></i>
+                        </span>
+                        <?php foreach ($sisa as $sb) ?>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Sisa Barang User</span>
+                            <span class="info-box-number"><?= $sb->stoksisa ?></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                </div>
+                <div class="col-lg-12 col-sm-6 col-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-primary">
+                            <i class="fas fa-users"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Jumlah Total User</span>
+                            <span class="info-box-number"><?= $sumuser - 1; ?></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                </div>
+            </div>
+
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">

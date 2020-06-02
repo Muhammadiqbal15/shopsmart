@@ -153,18 +153,6 @@
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
-                                <i class="nav-icon fas fa-bell"></i>
-                                <p>Pemberitahuan</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
-                                <i class="nav-icon fas fa-comments"></i>
-                                <p>Chat</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>Log out</p>
                             </a>
@@ -217,7 +205,7 @@
                             <p>Barang Yang Terjual</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-shopping-cart"></i>
+                            <i class="fas fa-cart-plus"></i>
                         </div>
                     </div>
                 </div>
@@ -229,7 +217,7 @@
                             <p>Total Stok Tersisa</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-shopping-cart"></i>
+                            <i class="fas fa-cart-arrow-down"></i>
                         </div>
                     </div>
                 </div>

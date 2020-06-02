@@ -113,7 +113,6 @@
 
 
     <div class="edit" data-edit="<?= $this->session->flashdata('edit'); ?>"></div>
-    <div class="pembayaran" data-pembayaran="<?= $this->session->flashdata('pembayaran'); ?>"></div>
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
@@ -154,18 +153,6 @@
             </li>
             <li class="nav-item">
               <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
-                <i class="nav-icon fas fa-bell"></i>
-                <p>Pemberitahuan</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
-                <i class="nav-icon fas fa-comments"></i>
-                <p>Chat</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
                 <p>Log out</p>
               </a>
@@ -201,6 +188,7 @@
                   <div class="col-md-4">
                     <img src="<?= base_url(); ?>assets/img/<?= $user['foto']; ?>" class="card-img-top" alt="Foto Profile" class="img-fluid">
                     <a href="<?= base_url(); ?>User/editprofile/<?= $user['id']; ?>" class="btn btn-primary mt-3 mb-3 ml-2"><i class="fas fa-user-edit"></i> Edit Profile</a>
+                    <a href="<?= base_url(); ?>User/ubahpassword" class="btn btn-primary"><i class="fas fa-key"></i> Ubah Password</a>
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">

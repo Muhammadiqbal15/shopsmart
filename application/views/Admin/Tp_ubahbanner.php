@@ -50,12 +50,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>Admin/Userblock" class="nav-link">
-                                <i class="nav-icon fas fa-user-alt-slash"></i>
-                                <p>Data User Terblock</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="<?= base_url(); ?>Admin/barangjualuser" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Barang</p>
