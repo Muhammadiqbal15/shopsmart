@@ -10,7 +10,7 @@
             <form action="<?= base_url(); ?>Auth/registrasi" method="post">
 
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Nama/NamaToko" name="nama" value="<?= set_value('nama'); ?>">
+                    <input type="text" class="form-control" placeholder="Nama/NamaToko" name="nama" value="<?= set_value('nama'); ?>" autocomplete="off">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -21,7 +21,7 @@
                     <?= form_error('nama'); ?>
                 </small>
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email" name="email" value="<?= set_value('email'); ?>">
+                    <input type="email" class="form-control" placeholder="Email" name="email" value="<?= set_value('email'); ?>" autocomplete="off">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -32,7 +32,7 @@
                     <?= form_error('email'); ?>
                 </small>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <input type="password" class="form-control" placeholder="Password" name="password" autocomplete="off">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -43,7 +43,7 @@
                     <?= form_error('password'); ?>
                 </small>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Ulangi password" name="re-pass">
+                    <input type="password" class="form-control" placeholder="Ulangi password" name="re-pass" autocomplete="off">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -54,7 +54,7 @@
                     <?= form_error('re-pass'); ?>
                 </small>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Nomor telepon" name="nomortlp" value="<?= set_value('nomortlp'); ?>">
+                    <input type="text" class="form-control" placeholder="Nomor telepon" name="nomortlp" value="<?= set_value('nomortlp'); ?>" autocomplete="off">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-phone"></span>
@@ -67,7 +67,7 @@
                 <div class="form-row">
                     <div class="col">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Provinsi" name="Provinsi" value="<?= set_value('Provinsi'); ?>">
+                            <input type="text" class="form-control" placeholder="Provinsi" name="Provinsi" value="<?= set_value('Provinsi'); ?>" autocomplete="off">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-map-marker-alt mr-3"></span>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="col">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Kabupaten/Kota" name="Kota" value="<?= set_value('Kota'); ?>">
+                            <input type="text" class="form-control" placeholder="Kabupaten/Kota" name="Kota" value="<?= set_value('Kota'); ?>" autocomplete="off">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-map-marker-alt mr-3"></span>
@@ -95,7 +95,7 @@
                 <div class="form-row mt-3 mb-3">
                     <div class="col">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Kecamatan" name="Kecamatan" value="<?= set_value('Kecamatan'); ?>">
+                            <input type="text" class="form-control" placeholder="Kecamatan" name="Kecamatan" value="<?= set_value('Kecamatan'); ?>" autocomplete="off">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-map-marker-alt mr-3"></span>
@@ -108,7 +108,7 @@
                     </div>
                     <div class="col">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Kelurahan/Desa" name="Kelurahan" value="<?= set_value('Kelurahan'); ?>">
+                            <input type="text" class="form-control" placeholder="Kelurahan/Desa" name="Kelurahan" value="<?= set_value('Kelurahan'); ?>" autocomplete="off">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-map-marker-alt mr-3"></span>

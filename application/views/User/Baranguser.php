@@ -253,10 +253,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php $i = 1; ?>
                                             <?php foreach ($barang as $brg) : ?>
                                                 <tr>
-                                                    <td><?= $i; ?></td>
+                                                    <td><?= ++$start; ?></td>
                                                     <td><?= $brg['nama_barang']; ?></td>
                                                     <td><?= number_format($brg['harga_barang'], 0, ',', '.'); ?></td>
                                                     <td><img src="<?= base_url(); ?>assets/img/<?= $brg['gambar']; ?>" alt="" width="70" height="70"></td>
@@ -270,12 +269,12 @@
                                                         <a href="<?= base_url(); ?>/User/editbarang/<?= $brg['id_barang']; ?>" class="btn btn-primary btn-sm "><i class="fas fa-edit"></i> Edit</a>
                                                     </td>
                                                 </tr>
-                                                <?php $i++; ?>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+                            <?= $this->pagination->create_links(); ?>
                         </section>
                     </div>
                 </div>
@@ -301,14 +300,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nama Barang</label>
-                                <input type="text" class="form-control" id="namabrg" aria-describedby="emailHelp" name="namabrg">
+                                <input type="text" class="form-control" id="namabrg" aria-describedby="emailHelp" name="namabrg" autocomplete="off">
                             </div>
                             <small class="text-danger">
                                 <?= form_error('namabrg'); ?>
                             </small>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Harga Barang</label>
-                                <input type="text" class="form-control" id="hargabrg" name="hargabrg">
+                                <input type="text" class="form-control" id="hargabrg" name="hargabrg" autocomplete="off">
                             </div>
                             <small class="text-danger">
                                 <?= form_error('hargabrg'); ?>

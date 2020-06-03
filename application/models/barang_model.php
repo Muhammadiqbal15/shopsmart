@@ -4,7 +4,7 @@
 class barang_model extends CI_Model
 {
 
-    public function getAllBarang()
+    public function getAllBarang($limit, $start)
     {
         $id = $this->input->post('user');
         // $this->db->select('*');
@@ -19,24 +19,36 @@ class barang_model extends CI_Model
         $this->db->select('*');
         $this->db->from('barang');
         $this->db->where('user', $this->session->userdata('id'));
+        $this->db->limit($limit, $start);
         $query = $this->db->get();
         return $query->result_array();
         // return $this->db->get('barang')->result_array();
     }
 
-    public function getallbrgforadmin()
+
+    public function getallbrgforadmin($limit, $start)
     {
         $this->db->join('user', 'user.id = barang.user');
-        return $this->db->get('barang')->result_array();
+        return $this->db->get('barang', $limit, $start)->result_array();
     }
 
-    public function getallpembeliforadmin()
+    public function countallbarangadmin()
+    {
+        $this->db->join('user', 'user.id = barang.user');
+        return $this->db->get('barang')->num_rows();
+    }
+
+    public function getallpembeliforadmin($limit, $start)
     {
         $this->db->join('user', 'user.id = pembeli.usr_penjual');
-        return $this->db->get('pembeli')->result_array();
+        return $this->db->get('pembeli', $limit, $start)->result_array();
     }
 
-
+    public function countalltransaksi()
+    {
+        $this->db->join('user', 'user.id = pembeli.usr_penjual');
+        return $this->db->get('pembeli')->num_rows();
+    }
 
     public function tambahpmbyrn($data)
     {
@@ -194,15 +206,27 @@ class barang_model extends CI_Model
         $this->db->insert('pembeli', $data);
     }
 
-    public function getPembeli()
+    public function getPembeli($limit, $start)
     {
         $this->db->select('*');
         $this->db->from('pembeli');
         $this->db->where('usr_penjual', $this->session->userdata('id'));
         $this->db->order_by('id_pembeli', 'DESC');
+        $this->db->limit($limit, $start);
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function countallpembeliuser()
+    {
+        $this->db->select('*');
+        $this->db->from('pembeli');
+        $this->db->where('usr_penjual', $this->session->userdata('id'));
+        $this->db->order_by('id_pembeli', 'DESC');
+        $query = $this->db->get()->num_rows();
+        return $query;
+    }
+
 
     public function caribarang1()
     {
@@ -231,6 +255,15 @@ class barang_model extends CI_Model
         return $this->db->get('barang')->num_rows();
     }
 
+    public function countallbaranguser()
+    {
+        $this->db->select('*');
+        $this->db->from('barang');
+        $this->db->where('user', $this->session->userdata('id'));
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
     public function countallpembeli()
     {
         return $this->db->get('pembeli')->num_rows();
@@ -246,9 +279,14 @@ class barang_model extends CI_Model
         $this->db->update('user', $data, $kondisi);
     }
 
-    public function getalluser()
+    public function getalluser($limit, $start)
     {
-        return $this->db->get('user')->result_array();
+        return $this->db->get('user', $limit, $start)->result_array();
+    }
+
+    public function countalluser()
+    {
+        return $this->db->get('user')->num_rows();
     }
 
     public function fortoko($id)

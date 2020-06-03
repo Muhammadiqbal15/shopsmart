@@ -245,10 +245,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $j = 1; ?>
                                         <?php foreach ($pembeli as $pb) : ?>
                                             <tr>
-                                                <td><?= $j; ?></td>
+                                                <td><?= ++$start; ?></td>
                                                 <td><?= $pb['nama_pb']; ?></td>
                                                 <td><?= $pb['notelp']; ?></td>
                                                 <td>
@@ -266,17 +265,16 @@
                                                     <a href="" class="btn btn-warning btn-sm"><i class="nav-icon fas fa-comments"></i> Chat</a>
                                                 </td>
                                             </tr>
-                                            <?php $j++; ?>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
+                            <?= $this->pagination->create_links(); ?>
+                        </section>
                     </div>
+                </div>
             </section>
         </div>
-    </div>
-    </section>
-    </div>
     </div>
 
     <div class="modal fade" id="alamat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

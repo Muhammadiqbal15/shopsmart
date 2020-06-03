@@ -189,7 +189,7 @@
                                             <?php $i = 1; ?>
                                             <?php foreach ($transaksi as $tr) : ?>
                                                 <tr>
-                                                    <td><?= $i; ?></td>
+                                                    <td><?= ++$start; ?></td>
                                                     <td><?= $tr['id_pembeli']; ?></td>
                                                     <td><?= $tr['nama_pb']; ?></td>
                                                     <td><?= $tr['nama_brg']; ?></td>
@@ -203,11 +203,10 @@
                                                 <?php $i++; ?>
                                             <?php endforeach; ?>
                                         </tbody>
-
                                     </table>
                                 </div>
                             </div>
-
+                            <?= $this->pagination->create_links(); ?>
                         </section>
                     </div>
                 </div>

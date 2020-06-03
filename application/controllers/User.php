@@ -22,7 +22,6 @@ class User extends CI_Controller
 
         $data['judul'] = 'Dashboard';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['barang'] = $this->barang_model->getAllBarang();
         $this->load->view('TemplateUser/HeaderUser', $data);
         $this->load->view('User/index', $data);
         $this->load->view('TemplateUser/FooterUser');
@@ -85,8 +84,49 @@ class User extends CI_Controller
     public function baranguser()
     {
         $data['judul'] = 'Barang';
+
+        $this->load->library('pagination');
+
+        //config pagination
+        $config['base_url'] = 'http://localhost/shopsmart/User/Baranguser';
+        $config['total_rows'] = $this->barang_model->countallbaranguser();
+        $config['per_page'] = 3;
+
+        //style pagination
+        $config['full_tag_open'] = '<nav><ul class="pagination">';
+        $config['full_tag_close'] = ' </ul></nav>';
+
+        $config['first_link'] = 'First';
+        $config['first_tag_open'] = '<li class="page-item">';
+        $config['first_tag_close'] = '</li>';
+
+        $config['last_link'] = 'Last';
+        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_close'] = '</li>';
+
+        $config['next_link'] = 'Next';
+        $config['next_tag_open'] = '<li class="page-item">';
+        $config['next_tag_close'] = '</li>';
+
+        $config['prev_link'] = 'Prev';
+        $config['prev_tag_open'] = '<li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+
+        $config['cur_tag_open'] = '<li class="page-item active"> <a class="page-link" href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+
+        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_close'] = '</li>';
+
+        $config['attributes'] = array('class' => 'page-link');
+
+        //initialize 
+        $this->pagination->initialize($config);
+
+
+        $data['start'] = $this->uri->segment(3);
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['barang'] = $this->barang_model->getAllBarang();
+        $data['barang'] = $this->barang_model->getAllBarang($config['per_page'], $data['start']);
         $data['jmlbrg'] = $this->sumstokawal();
         $data['pembeli'] = $this->sumpembeli();
         $data['brg_terjual'] = $this->sumbarangterjual();
@@ -245,8 +285,49 @@ class User extends CI_Controller
     public function Pembeliuser()
     {
         $data['judul'] = 'Pembeli';
+
+        $this->load->library('pagination');
+
+        //config pagination
+        $config['base_url'] = 'http://localhost/shopsmart/User/Pembeliuser';
+        $config['total_rows'] = $this->barang_model->countallpembeliuser();
+        $config['per_page'] = 3;
+
+        //style pagination
+        $config['full_tag_open'] = '<nav><ul class="pagination">';
+        $config['full_tag_close'] = ' </ul></nav>';
+
+        $config['first_link'] = 'First';
+        $config['first_tag_open'] = '<li class="page-item">';
+        $config['first_tag_close'] = '</li>';
+
+        $config['last_link'] = 'Last';
+        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_close'] = '</li>';
+
+        $config['next_link'] = 'Next';
+        $config['next_tag_open'] = '<li class="page-item">';
+        $config['next_tag_close'] = '</li>';
+
+        $config['prev_link'] = 'Prev';
+        $config['prev_tag_open'] = '<li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+
+        $config['cur_tag_open'] = '<li class="page-item active"> <a class="page-link" href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+
+        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_close'] = '</li>';
+
+        $config['attributes'] = array('class' => 'page-link');
+
+        //initialize 
+        $this->pagination->initialize($config);
+
+
+        $data['start'] = $this->uri->segment(3);
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['pembeli'] = $this->barang_model->getPembeli();
+        $data['pembeli'] = $this->barang_model->getPembeli($config['per_page'], $data['start']);
         $data['jmlbrg'] = $this->sumstokawal();
         $data['pembeli2'] = $this->sumpembeli();
         $data['brg_terjual'] = $this->sumbarangterjual();

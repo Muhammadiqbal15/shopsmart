@@ -29,8 +29,8 @@ class Admin extends CI_Controller
 
         //config pagination
         $config['base_url'] = 'http://localhost/shopsmart/Admin/index';
-        $config['total_rows'] = $this->barang_model->countallbarang();
-        $config['per_page'] = 10;
+        $config['total_rows'] = $this->barang_model->countalluser();
+        $config['per_page'] = 5;
 
         //style pagination
         $config['full_tag_open'] = '<nav><ul class="pagination">';
@@ -65,8 +65,7 @@ class Admin extends CI_Controller
 
 
         $data['start'] = $this->uri->segment(3);
-        $data['Barang'] = $this->barang_model->getAllbarang($config['per_page'], $data['start']);
-        $data['user'] = $this->barang_model->getalluser();
+        $data['user'] = $this->barang_model->getalluser($config['per_page'], $data['start']);
         $data['sumuser'] = $this->sumuser();
         $data['stokawal'] = $this->stokawal();
         $data['brgterjual'] = $this->barangterjual();
@@ -83,7 +82,6 @@ class Admin extends CI_Controller
     public function tampiluser($id)
     {
         $data['judul'] = 'Dashboard';
-        $data['barang'] = $this->barang_model->getAllBarang();
         $data['user1'] = $this->barang_model->getuserbyid($id);
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('TemplateUser/HeaderUser', $data);
@@ -95,7 +93,48 @@ class Admin extends CI_Controller
     {
         $data['judul'] = 'Barang';
 
-        $data['barang'] = $this->barang_model->getallbrgforadmin();
+        $this->load->library('pagination');
+
+        //config pagination
+        $config['base_url'] = 'http://localhost/shopsmart/Admin/Barangjualuser';
+        $config['total_rows'] = $this->barang_model->countallbarangadmin();
+        $config['per_page'] = 5;
+
+        //style pagination
+        $config['full_tag_open'] = '<nav><ul class="pagination">';
+        $config['full_tag_close'] = ' </ul></nav>';
+
+        $config['first_link'] = 'First';
+        $config['first_tag_open'] = '<li class="page-item">';
+        $config['first_tag_close'] = '</li>';
+
+        $config['last_link'] = 'Last';
+        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_close'] = '</li>';
+
+        $config['next_link'] = 'Next';
+        $config['next_tag_open'] = '<li class="page-item">';
+        $config['next_tag_close'] = '</li>';
+
+        $config['prev_link'] = 'Prev';
+        $config['prev_tag_open'] = '<li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+
+        $config['cur_tag_open'] = '<li class="page-item active"> <a class="page-link" href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+
+        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_close'] = '</li>';
+
+        $config['attributes'] = array('class' => 'page-link');
+
+        //initialize 
+        $this->pagination->initialize($config);
+
+
+        $data['start'] = $this->uri->segment(3);
+
+        $data['barang'] = $this->barang_model->getallbrgforadmin($config['per_page'], $data['start']);
         $data['sumuser'] = $this->sumuser();
         $data['stokawal'] = $this->stokawal();
         $data['brgterjual'] = $this->barangterjual();
@@ -110,12 +149,53 @@ class Admin extends CI_Controller
     {
         $data['judul'] = 'Transaksi User';
 
+        $this->load->library('pagination');
+
+        //config pagination
+        $config['base_url'] = 'http://localhost/shopsmart/Admin/transaksiuser';
+        $config['total_rows'] = $this->barang_model->countalltransaksi();
+        $config['per_page'] = 5;
+
+        //style pagination
+        $config['full_tag_open'] = '<nav><ul class="pagination">';
+        $config['full_tag_close'] = ' </ul></nav>';
+
+        $config['first_link'] = 'First';
+        $config['first_tag_open'] = '<li class="page-item">';
+        $config['first_tag_close'] = '</li>';
+
+        $config['last_link'] = 'Last';
+        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_close'] = '</li>';
+
+        $config['next_link'] = 'Next';
+        $config['next_tag_open'] = '<li class="page-item">';
+        $config['next_tag_close'] = '</li>';
+
+        $config['prev_link'] = 'Prev';
+        $config['prev_tag_open'] = '<li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+
+        $config['cur_tag_open'] = '<li class="page-item active"> <a class="page-link" href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+
+        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_close'] = '</li>';
+
+        $config['attributes'] = array('class' => 'page-link');
+
+        //initialize 
+        $this->pagination->initialize($config);
+
+
+        $data['start'] = $this->uri->segment(3);
+
         $data['sumuser'] = $this->sumuser();
         $data['stokawal'] = $this->stokawal();
         $data['brgterjual'] = $this->barangterjual();
         $data['sisa'] = $this->stokakhir();
         $data['transaksi1'] = $this->totaltransaksi();
-        $data['transaksi'] = $this->barang_model->getallpembeliforadmin();
+        $data['transaksi'] = $this->barang_model->getallpembeliforadmin($config['per_page'], $data['start']);
         $this->load->view('TemplateAdmin/Header', $data);
         $this->load->view('Admin/Transaksi', $data);
         $this->load->view('TemplateAdmin/Footer');

@@ -182,10 +182,9 @@
                                         </thead>
 
                                         <tbody>
-                                            <?php $i = 1; ?>
                                             <?php foreach ($barang as $brg) : ?>
                                                 <tr>
-                                                    <td><?= $i; ?></td>
+                                                    <td><?= ++$start ?></td>
                                                     <td><?= $brg['id_barang']; ?></td>
                                                     <td><?= $brg['nama_barang']; ?></td>
                                                     <td><?= $brg['harga_barang']; ?></td>
@@ -194,14 +193,12 @@
                                                     <td><?= $brg['stoksisa']; ?></td>
                                                     <td><?= $brg['nama'];   ?></td>
                                                 </tr>
-                                                <?php $i++; ?>
                                             <?php endforeach; ?>
                                         </tbody>
-
                                     </table>
                                 </div>
                             </div>
-
+                            <?= $this->pagination->create_links(); ?>
                         </section>
                     </div>
                 </div>

@@ -142,7 +142,7 @@
             </span>
             <div class="info-box-content">
               <span class="info-box-text">Jumlah Total User</span>
-              <span class="info-box-number"><?= $sumuser - 1; ?></span>
+              <span class="info-box-number"><?= $sumuser; ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -187,25 +187,21 @@
 
                     <tbody>
                       <?php foreach ($user as $usr) : ?>
-                        <?php if ($usr['role_id'] == 2) : ?>
-                          <tr>
-                            <td>1</td>
-                            <td><?= $usr['id']; ?></td>
-                            <td><?= $usr['nama']; ?></td>
-                            <td><?= $usr['email']; ?></td>
-                            <td><img src="<?= base_url(); ?>assets/img/<?= $usr['foto']; ?>" alt="" width="70" height="70"></td>
-                            <td>
-                              <a href="" id="almt" class="btn btn-info btn-sm" data-toggle="modal" data-target="#alamat" data-provinsi="<?= $usr['provinsi']; ?>" data-kota="<?= $usr['kota']; ?>" data-kecamatan="<?= $usr['kecamatan']; ?>" data-kelurahan="<?= $usr['kelurahan']; ?>" data-alamatlengkap="<?= $usr['alamat']; ?>"><i class="fas fa-eye"></i> Detail
-                              </a>
-                            </td>
-                            <td><?= $usr['notelp']; ?></td>
-                            <td>
-                              <a href="<?= base_url(); ?>Admin/tampiluser/<?= $usr['id']; ?>" class="btn btn-primary btn-sm"><i class="fas fa-user"></i> Lihat Profil User</a>
-                            </td>
-                          </tr>
-                        <?php else : ?>
-
-                        <?php endif; ?>
+                        <tr>
+                          <td><?= ++$start; ?></td>
+                          <td><?= $usr['id']; ?></td>
+                          <td><?= $usr['nama']; ?></td>
+                          <td><?= $usr['email']; ?></td>
+                          <td><img src="<?= base_url(); ?>assets/img/<?= $usr['foto']; ?>" alt="" width="70" height="70"></td>
+                          <td>
+                            <a href="" id="almt" class="btn btn-info btn-sm" data-toggle="modal" data-target="#alamat" data-provinsi="<?= $usr['provinsi']; ?>" data-kota="<?= $usr['kota']; ?>" data-kecamatan="<?= $usr['kecamatan']; ?>" data-kelurahan="<?= $usr['kelurahan']; ?>" data-alamatlengkap="<?= $usr['alamat']; ?>"><i class="fas fa-eye"></i> Detail
+                            </a>
+                          </td>
+                          <td><?= $usr['notelp']; ?></td>
+                          <td>
+                            <a href="<?= base_url(); ?>Admin/tampiluser/<?= $usr['id']; ?>" class="btn btn-primary btn-sm"><i class="fas fa-user"></i> Lihat Profil User</a>
+                          </td>
+                        </tr>
                       <?php endforeach; ?>
                     </tbody>
 

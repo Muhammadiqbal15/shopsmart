@@ -10,7 +10,7 @@
             <?= $this->session->flashdata('eroremail'); ?>
             <form action="<?= base_url() ?>Auth/index" method="post">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Email" name="email" value="<?= set_value('email'); ?>">
+                    <input type="text" class="form-control" placeholder="Email" name="email" value="<?= set_value('email'); ?>" autocomplete="off">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -21,7 +21,7 @@
                     <?= form_error('email'); ?>
                 </small>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <input type="password" class="form-control" placeholder="Password" name="password" autocomplete="off">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
