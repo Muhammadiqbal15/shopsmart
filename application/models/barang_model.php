@@ -284,6 +284,11 @@ class barang_model extends CI_Model
         return $this->db->get('user', $limit, $start)->result_array();
     }
 
+    public function getuser()
+    {
+        return $this->db->get('user')->result_array();
+    }
+
     public function countalluser()
     {
         return $this->db->get('user')->num_rows();

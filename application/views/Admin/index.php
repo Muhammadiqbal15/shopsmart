@@ -161,6 +161,7 @@
       <!-- /.content-header -->
 
       <!-- Main content -->
+      <a href="<?= base_url() ?>Admin/Pdf" class="btn btn-primary ml-3 mb-2"><i class="fas fa-file"></i> Export PDF</a>
       <section class="content">
         <div class="container-fluid">
           <div class="row">

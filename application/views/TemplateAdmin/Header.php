@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html>
-
-<head>
+<html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?= $judul; ?></title>
@@ -31,6 +29,4 @@
     <link rel="stylesheet" href="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/regislog.css">
-</head>
-
-<body class="hold-transition sidebar-mini layout-fixed">
+</head><body class="hold-transition sidebar-mini layout-fixed">
