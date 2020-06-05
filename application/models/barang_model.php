@@ -25,6 +25,18 @@ class barang_model extends CI_Model
         // return $this->db->get('barang')->result_array();
     }
 
+    public function getbrg()
+    {
+        $this->db->join('user', 'user.id = barang.user');
+        return $this->db->get('barang')->result_array();
+    }
+
+    public function getpembli()
+    {
+        $this->db->join('user', 'user.id = pembeli.usr_penjual');
+        return $this->db->get('pembeli')->result_array();
+    }
+
 
     public function getallbrgforadmin($limit, $start)
     {

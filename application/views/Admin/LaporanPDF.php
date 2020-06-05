@@ -5,9 +5,9 @@
     <title>Document</title>
 </head><body>
 
-    <h3>Laporan Data User</h3>
-
-    <table border="1" cellspadding="5" cellspacing="0">
+    <center><h3>Laporan Data User</h3></center>
+    <br><br><br>
+    <table border="1" cellspacing="-1" cellpadding="6">
 
         <tr>
             <th>No</th>

@@ -157,6 +157,7 @@
             <!-- /.content-header -->
 
             <!-- Main content -->
+            <a href="<?= base_url() ?>Admin/pdfbarang" class="btn btn-danger ml-3 mb-2"><i class="fas fa-file"></i> Export PDF</a>
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -175,8 +176,10 @@
                                                 <th>Barang</th>
                                                 <th>Harga</th>
                                                 <th>Foto</th>
+                                                <th>Jenis Barang</th>
                                                 <th>Stok Awal</th>
                                                 <th>Stok Sisa</th>
+                                                <th>Pembayaran</th>
                                                 <th>Penjual</th>
                                             </tr>
                                         </thead>
@@ -189,8 +192,10 @@
                                                     <td><?= $brg['nama_barang']; ?></td>
                                                     <td><?= $brg['harga_barang']; ?></td>
                                                     <td><img src="<?= base_url(); ?>assets/img/<?= $brg['gambar'];; ?>" alt="" width="70" height="70"></td>
+                                                    <td><?= $brg['jenis_barang']; ?></td>
                                                     <td><?= $brg['stokawal']; ?></td>
                                                     <td><?= $brg['stoksisa']; ?></td>
+                                                    <td><?= $brg['ebanking']; ?>&<?= $brg['emoney']; ?></td>
                                                     <td><?= $brg['nama'];   ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
