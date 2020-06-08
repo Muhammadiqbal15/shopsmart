@@ -59,8 +59,8 @@
                             <?= $brg->nama_barang; ?>
                         </h4>
                         <h5>Rp.<?= $brg->harga_barang; ?></h5>
-                        <a href="<?= base_url() ?>Home/detail/<?= $brg->id_barang; ?>" class="btn btn-success mt-3">Detail</a>
-                        <a href="<?= base_url() ?>User/keranjang/<?= $brg->id_barang; ?>" class="btn btn-danger mt-3">Keranjang</a>
+                        <a href="<?= base_url() ?>Home/detail/<?= $brg->id_barang; ?>" class="btn btn-success mt-3"><i class="fas fa-eye"></i> Detail</a>
+                        <a href="<?= base_url() ?>User/keranjang/<?= $brg->id_barang; ?>" class="btn btn-info mt-3"><i class="fas fa-shopping-cart"></i> Tambah Ke Keranjang</a>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,12 @@
 <?php
 
+// Load library phpspreadsheet
+require('./excel/vendor/autoload.php');
 
+use PhpOffice\PhpSpreadsheet\Helper\Sample;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+// End load library phpspreadsheet
 
 class Admin extends CI_Controller
 {
@@ -393,17 +399,14 @@ class Admin extends CI_Controller
 
     public function excel()
     {
-        $data['barang'] = $this->barang_model->getbrg();
+        $data['user'] = $this->barang_model->getuser();
 
-        require(APPPATH.'PHPExcel-1.8.1/Classes/PHPExcel.php');
-        require(APPPATH.'PHPExcel-1.8.1/Classes/PHPExcel/Writer/Excel2007.php');
+        $object = new Spreadsheet();
 
-        $object = new PHPExcel();
+        $object->getProperties()->setCreator("Data User");
+        $object->getProperties()->setLastModifiedBy("Data User");
+        $object->getProperties()->setTitle("Data User");
 
-        $object->getProperties()->setCreator("Admin Shopsmart E-toko");
-        $object->getProperties()->setLastModifiedBy("Admin Shopsmart E-toko");
-        $object->getProperties()->setTitle("Daftar User");
-        
         $object->setActiveSheetIndex(0);
 
         $object->getActiveSheet()->setCellValue('A1', 'NO');
@@ -412,43 +415,47 @@ class Admin extends CI_Controller
         $object->getActiveSheet()->setCellValue('D1', 'EMAIL');
         $object->getActiveSheet()->setCellValue('E1', 'FOTO');
         $object->getActiveSheet()->setCellValue('F1', 'PROVINSI');
-        $object->getActiveSheet()->setCellValue('G1', 'KOTA/KABUPATEN');
+        $object->getActiveSheet()->setCellValue('G1', 'KABUPATEN/KOTA');
         $object->getActiveSheet()->setCellValue('H1', 'KECAMATAN');
-        $object->getActiveSheet()->setCellValue('I1', 'KELURAHAN/DESA');
+        $object->getActiveSheet()->setCellValue('I1', 'KELURAHAN');
         $object->getActiveSheet()->setCellValue('J1', 'ALAMAT');
-        $object->getActiveSheet()->setCellValue('K1', 'NOMOR TELEPON');
+        $object->getActiveSheet()->setCellValue('K1', 'NOTELP');
+
 
         $baris = 2;
-        $no = 1;    
+        $no=1;
 
-        foreach ($data['barang'] as $brg)
-        {
-            $object->getActiveSheet()->setCellValue('A', $baris,$no++);
-            $object->getActiveSheet()->setCellValue('B', $baris,$brg['id']);
-            $object->getActiveSheet()->setCellValue('C', $baris,$brg['nama']);
-            $object->getActiveSheet()->setCellValue('D', $baris,$brg['email']);
-            $object->getActiveSheet()->setCellValue('E', $baris,$brg['foto']);
-            $object->getActiveSheet()->setCellValue('F', $baris,$brg['provinsi']);
-            $object->getActiveSheet()->setCellValue('G', $baris,$brg['kota']);
-            $object->getActiveSheet()->setCellValue('H', $baris,$brg['kecamatan']);
-            $object->getActiveSheet()->setCellValue('I', $baris,$brg['kelurahan']);
-            $object->getActiveSheet()->setCellValue('J', $baris,$brg['alamat']);
-            $object->getActiveSheet()->setCellValue('K', $baris,$brg['notelp']);
+        foreach ($data['user'] as $usr) {
+            $object->getActiveSheet()->setCellValue('A' . $baris, $no++);
+            $object->getActiveSheet()->setCellValue('B' . $baris, $usr['id']);
+            $object->getActiveSheet()->setCellValue('C' . $baris, $usr['nama']);
+            $object->getActiveSheet()->setCellValue('D' . $baris, $usr['email']);
+            $object->getActiveSheet()->setCellValue('E' . $baris, $usr['foto']);
+            $object->getActiveSheet()->setCellValue('F' . $baris, $usr['provinsi']);
+            $object->getActiveSheet()->setCellValue('G' . $baris, $usr['kota']);
+            $object->getActiveSheet()->setCellValue('H' . $baris, $usr['kecamatan']);
+            $object->getActiveSheet()->setCellValue('I' . $baris, $usr['kelurahan']);
+            $object->getActiveSheet()->setCellValue('J' . $baris, $usr['alamat']);
+            $object->getActiveSheet()->setCellValue('K' . $baris, $usr['notelp']);
 
             $baris++;
         }
 
-        $filename = "Data Lengkap User".'xlsx';
+        $filename = "Data User";
 
-        $object->getActiveSheet()->setTitle('Data Lengkap User');
+        $object->getActiveSheet()->setTitle("Data User");
 
-        header('Content-Type : application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition : attachment;filename="'.$filename.'"');
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="'.$filename.'.xlsx"');
         header('Cache-Control: max-age=0');
 
-        $writer= PHPExcel_IOFactory::createWriter($object,'Excel2007');
+        $writer = IOFactory::createWriter($object, 'Xlsx');
         $writer->save('php://output');
 
         exit;
+
+       
+
+        
     }
 }
