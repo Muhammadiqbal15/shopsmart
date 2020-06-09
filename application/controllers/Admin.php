@@ -452,10 +452,131 @@ class Admin extends CI_Controller
         $writer = IOFactory::createWriter($object, 'Xlsx');
         $writer->save('php://output');
 
-        exit;
+        exit;        
+    }
 
-       
+    public function excelbrg()
+    {
+        $data['barang'] = $this->barang_model->getbrg();
 
-        
+        $object = new Spreadsheet();
+
+        $object->getProperties()->setCreator("Data Barang User");
+        $object->getProperties()->setLastModifiedBy("Data Barang User");
+        $object->getProperties()->setTitle("Data Barang User");
+
+        $object->setActiveSheetIndex(0);
+
+        $object->getActiveSheet()->setCellValue('A1', 'NO');
+        $object->getActiveSheet()->setCellValue('B1', 'ID');
+        $object->getActiveSheet()->setCellValue('C1', 'NAMA BARANG');
+        $object->getActiveSheet()->setCellValue('D1', 'HARGA BARANG');
+        $object->getActiveSheet()->setCellValue('E1', 'FOTO');
+        $object->getActiveSheet()->setCellValue('F1', 'JENIS BARANG');
+        $object->getActiveSheet()->setCellValue('G1', 'STOK AWAL');
+        $object->getActiveSheet()->setCellValue('H1', 'STOK SISA');
+        $object->getActiveSheet()->setCellValue('I1', 'PEMBAYARAN BANKING');
+        $object->getActiveSheet()->setCellValue('J1', 'PEMBAYARAN EMONEY');
+        $object->getActiveSheet()->setCellValue('K1', 'PENJUAL');
+
+
+        $baris = 2;
+        $no=1;
+
+        foreach ($data['barang'] as $brg) {
+            $object->getActiveSheet()->setCellValue('A' . $baris, $no++);
+            $object->getActiveSheet()->setCellValue('B' . $baris, $brg['id_barang']);
+            $object->getActiveSheet()->setCellValue('C' . $baris, $brg['nama_barang']);
+            $object->getActiveSheet()->setCellValue('D' . $baris, $brg['harga_barang']);
+            $object->getActiveSheet()->setCellValue('E' . $baris, $brg['gambar']);
+            $object->getActiveSheet()->setCellValue('F' . $baris, $brg['jenis_barang']);
+            $object->getActiveSheet()->setCellValue('G' . $baris, $brg['stokawal']);
+            $object->getActiveSheet()->setCellValue('H' . $baris, $brg['stoksisa']);
+            $object->getActiveSheet()->setCellValue('I' . $baris, $brg['ebanking']);
+            $object->getActiveSheet()->setCellValue('J' . $baris, $brg['emoney']);
+            $object->getActiveSheet()->setCellValue('K' . $baris, $brg['nama']);
+
+            $baris++;
+        }
+
+        $filename = "Data Barang User";
+
+        $object->getActiveSheet()->setTitle("Data Barang User");
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="'.$filename.'.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        $writer = IOFactory::createWriter($object, 'Xlsx');
+        $writer->save('php://output');
+
+        exit;        
+    }
+
+
+    public function exceltransaksi()
+    {
+        $data['pembeli'] = $this->barang_model->getpembli();
+
+        $object = new Spreadsheet();
+
+        $object->getProperties()->setCreator("Data Transaksi User");
+        $object->getProperties()->setLastModifiedBy("Data Transaksi User");
+        $object->getProperties()->setTitle("Data Transaksi User");
+
+        $object->setActiveSheetIndex(0);
+
+        $object->getActiveSheet()->setCellValue('A1', 'NO');
+        $object->getActiveSheet()->setCellValue('B1', 'ID');
+        $object->getActiveSheet()->setCellValue('C1', 'NAMA PEMBELI');
+        $object->getActiveSheet()->setCellValue('D1', 'NOMOR TELEPON');
+        $object->getActiveSheet()->setCellValue('E1', 'ALAMAT');
+        $object->getActiveSheet()->setCellValue('F1', 'NAMA BARANG');
+        $object->getActiveSheet()->setCellValue('G1', 'HARGA BARANG');
+        $object->getActiveSheet()->setCellValue('H1', 'JUMLAH BARANG');
+        $object->getActiveSheet()->setCellValue('I1', 'TOTAL HARGA');
+        $object->getActiveSheet()->setCellValue('J1', 'PENGIRIMAN');
+        $object->getActiveSheet()->setCellValue('K1', 'PEMBAYARAN');
+        $object->getActiveSheet()->setCellValue('L1', 'PROVINSI');
+        $object->getActiveSheet()->setCellValue('M1', 'KABUPATEN/KOTA');
+        $object->getActiveSheet()->setCellValue('N1', 'KECAMATAN');
+        $object->getActiveSheet()->setCellValue('O1', 'KELURAHAN');
+
+
+        $baris = 2;
+        $no=1;
+
+        foreach ($data['pembeli'] as $pb) {
+            $object->getActiveSheet()->setCellValue('A' . $baris, $no++);
+            $object->getActiveSheet()->setCellValue('B' . $baris, $pb['id_pembeli']);
+            $object->getActiveSheet()->setCellValue('C' . $baris, $pb['nama_pb']);
+            $object->getActiveSheet()->setCellValue('D' . $baris, $pb['notelp']);
+            $object->getActiveSheet()->setCellValue('E' . $baris, $pb['alamat']);
+            $object->getActiveSheet()->setCellValue('F' . $baris, $pb['nama_brg']);
+            $object->getActiveSheet()->setCellValue('G' . $baris, $pb['harga_brg']);
+            $object->getActiveSheet()->setCellValue('H' . $baris, $pb['jumlah_brg']);
+            $object->getActiveSheet()->setCellValue('I' . $baris, $pb['tot_hrg']);
+            $object->getActiveSheet()->setCellValue('J' . $baris, $pb['pengiriman']);
+            $object->getActiveSheet()->setCellValue('K' . $baris, $pb['pembayaran']);
+            $object->getActiveSheet()->setCellValue('L' . $baris, $pb['provinsi']);
+            $object->getActiveSheet()->setCellValue('M' . $baris, $pb['kota']);
+            $object->getActiveSheet()->setCellValue('N' . $baris, $pb['kecamatan']);
+            $object->getActiveSheet()->setCellValue('O' . $baris, $pb['kelurahan']);
+
+            $baris++;
+        }
+
+        $filename = "Data Transaksi User";
+
+        $object->getActiveSheet()->setTitle("Data Transaksi User");
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="'.$filename.'.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        $writer = IOFactory::createWriter($object, 'Xlsx');
+        $writer->save('php://output');
+
+        exit;      
     }
 }

@@ -158,6 +158,7 @@
 
             <!-- Main content -->
             <a href="<?= base_url() ?>Admin/pdfbarang" class="btn btn-danger ml-3 mb-2"><i class="fas fa-file"></i> Export PDF</a>
+            <a href="<?= base_url() ?>Admin/excelbrg" class="btn btn-success mb-2"><i class="fas fa-file"></i> Export EXCEL</a>
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
