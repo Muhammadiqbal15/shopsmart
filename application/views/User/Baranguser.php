@@ -230,7 +230,20 @@
                 Jual Barang
             </button>
 
-            <!-- Main content -->
+            <form action="" method="POST">
+                <div class="form-inline">
+                    <select class="form-control ml-3 mb-2" id="exampleFormControlSelect1" name="keyword">
+                        <option>Laptop</option>
+                        <option>Smartphone</option>
+                        <option>Keyboard</option>
+                        <option>Mouse</option>
+                        <option>Mousepad</option>
+                        <option>Headset</option>
+                        <option>Earphone</option>
+                    </select>
+                    <button type="submit" name="filter" class="btn  btn-outline-primary mb-2 ml-2">Filter</button>
+                </div>
+            </form>
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">

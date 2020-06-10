@@ -146,6 +146,9 @@ class Admin extends CI_Controller
         $data['brgterjual'] = $this->barangterjual();
         $data['sisa'] = $this->stokakhir();
         $data['transaksi'] = $this->totaltransaksi();
+        if ($this->input->post('keyword')) {
+            $data['barang'] = $this->barang_model->caribarang();
+        }
         $this->load->view('TemplateAdmin/Header', $data);
         $this->load->view('Admin/Barangygdijual', $data);
         $this->load->view('TemplateAdmin/Footer');

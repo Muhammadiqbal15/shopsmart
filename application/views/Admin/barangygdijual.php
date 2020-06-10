@@ -157,8 +157,23 @@
             <!-- /.content-header -->
 
             <!-- Main content -->
-            <a href="<?= base_url() ?>Admin/pdfbarang" class="btn btn-danger ml-3 mb-2"><i class="fas fa-file"></i> Export PDF</a>
-            <a href="<?= base_url() ?>Admin/excelbrg" class="btn btn-success mb-2"><i class="fas fa-file"></i> Export EXCEL</a>
+            
+            <form action="" method="POST">
+                <div class="form-inline">
+                    <select class="form-control ml-3 mb-2" id="exampleFormControlSelect1" name="keyword">
+                        <option>Laptop</option>
+                        <option>Smartphone</option>
+                        <option>Keyboard</option>
+                        <option>Mouse</option>
+                        <option>Mousepad</option>
+                        <option>Headset</option>
+                        <option>Earphone</option>
+                    </select>
+                    <button type="submit" name="filter" class="btn  btn-outline-primary mb-2 ml-2">Filter</button>
+                    <a href="<?= base_url() ?>Admin/pdfbarang" class="btn btn-danger ml-2 mb-2"><i class="fas fa-file"></i> Export PDF</a>
+                    <a href="<?= base_url() ?>Admin/excelbrg" class="btn btn-success ml-1 mb-2"><i class="fas fa-file"></i> Export EXCEL</a>
+                </div>
+            </form>
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -191,7 +206,7 @@
                                                     <td><?= ++$start ?></td>
                                                     <td><?= $brg['id_barang']; ?></td>
                                                     <td><?= $brg['nama_barang']; ?></td>
-                                                    <td><?= $brg['harga_barang']; ?></td>
+                                                    <td><?= number_format($brg['harga_barang'], 0, ',', '.'); ?></td>
                                                     <td><img src="<?= base_url(); ?>assets/img/<?= $brg['gambar'];; ?>" alt="" width="70" height="70"></td>
                                                     <td><?= $brg['jenis_barang']; ?></td>
                                                     <td><?= $brg['stokawal']; ?></td>

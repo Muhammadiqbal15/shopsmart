@@ -262,7 +262,6 @@
                                                 <td><?= $pb['pembayaran']; ?></td>
                                                 <td>
                                                     <a href="<?= base_url(); ?>User/hapuspembeli/<?= $pb['id_pembeli']; ?>" class="btn btn-danger btn-sm hapus-pembeli"><i class="fas fa-trash"></i> Hapus</a>
-                                                    <a href="" class="btn btn-warning btn-sm"><i class="nav-icon fas fa-comments"></i> Chat</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

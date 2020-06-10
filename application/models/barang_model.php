@@ -240,10 +240,11 @@ class barang_model extends CI_Model
     }
 
 
-    public function caribarang1()
+    public function caribarang()
     {
+        $this->db->join('user', 'user.id = barang.user');
         $keyword = $this->input->post('keyword', true);
-        $this->db->like('nama_barang', $keyword);
+        $this->db->like('jenis_barang', $keyword);
         return  $this->db->get('barang')->result_array();
     }
 

@@ -90,7 +90,7 @@ class User extends CI_Controller
         //config pagination
         $config['base_url'] = 'http://localhost/shopsmart/User/Baranguser';
         $config['total_rows'] = $this->barang_model->countallbaranguser();
-        $config['per_page'] = 3;
+        $config['per_page'] = 5;
 
         //style pagination
         $config['full_tag_open'] = '<nav><ul class="pagination">';
@@ -131,6 +131,9 @@ class User extends CI_Controller
         $data['pembeli'] = $this->sumpembeli();
         $data['brg_terjual'] = $this->sumbarangterjual();
         $data['sisabarang'] = $this->sumsisabarang();
+        if ($this->input->post('keyword')) {
+            $data['barang'] = $this->barang_model->caribarang();
+        }
         $this->load->view('TemplateUser/HeaderUser', $data);
         $this->load->view('User/Baranguser', $data);
         $this->load->view('TemplateUser/FooterUser');
