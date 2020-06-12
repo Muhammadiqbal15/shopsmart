@@ -39,28 +39,40 @@
                         <li class="nav-item">
                             <a href="<?= base_url(); ?>Admin/index" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
-                                <p>Data User</p>
+                                <p>Data Total User</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                            </li>
+                            <li class="nav-item">
+                            <a href="<?= base_url(); ?>Admin/useraktif" class="nav-link">
+                            <i class="nav-icon fas fa-user-check"></i>
+                                <p>Data User Aktif</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="<?= base_url(); ?>Admin/usertdkaktif" class="nav-link">
+                                <i class="nav-icon fas fa-user-times"></i>
+                                <p>Data User Tidak Aktif</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
                             <a href="<?= base_url(); ?>Admin/barangjualuser" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Barang</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                            </li>
+                            <li class="nav-item">
                             <a href="<?= base_url(); ?>Admin/transaksiuser" class="nav-link">
                                 <i class="nav-icon fas fa-search-dollar"></i>
                                 <p>Transaksi User</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                            </li>
+                            <li class="nav-item">
                             <a href="<?= base_url(); ?>Admin/ubahbanner" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>Banner Home</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                            </li>
+                            <li class="nav-item">
                             <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>Log out</p>
@@ -133,14 +145,38 @@
                         <!-- /.info-box-content -->
                     </div>
                 </div>
-                <div class="col-lg-12 col-sm-6 col-12">
+                <div class="col-lg-4 col-sm-6 col-4">
                     <div class="info-box">
                         <span class="info-box-icon bg-primary">
-                            <i class="fas fa-users"></i>
+                        <i class="fas fa-users"></i>
                         </span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Jumlah Total User</span>
-                            <span class="info-box-number"><?= $sumuser - 1; ?></span>
+                        <span class="info-box-text">Total User</span>
+                        <span class="info-box-number"><?= $sumuser; ?></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 col-4">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-success">
+                        <i class="fas fa-users"></i>
+                        </span>
+                        <div class="info-box-content">
+                        <span class="info-box-text">User Aktif</span>
+                        <span class="info-box-number"><?= $useraktif; ?></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 col-4">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-danger">
+                        <i class="fas fa-users"></i>
+                        </span>
+                        <div class="info-box-content">
+                        <span class="info-box-text">User Tidak Aktif</span>
+                        <span class="info-box-number"><?= $usertdkaktif; ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>

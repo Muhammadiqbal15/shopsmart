@@ -77,6 +77,8 @@ class Admin extends CI_Controller
         $data['brgterjual'] = $this->barangterjual();
         $data['sisa'] = $this->stokakhir();
         $data['transaksi'] = $this->totaltransaksi();
+        $data['useraktif'] = $this->sumuseraktif();
+        $data['usertdkaktif'] = $this->sumusertdkaktif();
         if ($this->input->post('keyword')) {
             $data['Barang'] = $this->barang_model->caribarang();
         }
@@ -146,6 +148,8 @@ class Admin extends CI_Controller
         $data['brgterjual'] = $this->barangterjual();
         $data['sisa'] = $this->stokakhir();
         $data['transaksi'] = $this->totaltransaksi();
+        $data['useraktif'] = $this->sumuseraktif();
+        $data['usertdkaktif'] = $this->sumusertdkaktif();
         if ($this->input->post('keyword')) {
             $data['barang'] = $this->barang_model->caribarang();
         }
@@ -204,6 +208,8 @@ class Admin extends CI_Controller
         $data['brgterjual'] = $this->barangterjual();
         $data['sisa'] = $this->stokakhir();
         $data['transaksi1'] = $this->totaltransaksi();
+        $data['useraktif'] = $this->sumuseraktif();
+        $data['usertdkaktif'] = $this->sumusertdkaktif();
         $data['transaksi'] = $this->barang_model->getallpembeliforadmin($config['per_page'], $data['start']);
         $this->load->view('TemplateAdmin/Header', $data);
         $this->load->view('Admin/Transaksi', $data);
@@ -293,12 +299,36 @@ class Admin extends CI_Controller
         redirect('Admin/ubahbanner');
     }
 
-    public function userblock()
+    public function useraktif()
     {
 
-        $data['judul'] = 'User Terblock';
+        $data['judul'] = 'User Aktif';
+        $data['sumuser'] = $this->sumuser();
+        $data['stokawal'] = $this->stokawal();
+        $data['brgterjual'] = $this->barangterjual();
+        $data['sisa'] = $this->stokakhir();
+        $data['transaksi'] = $this->totaltransaksi();
+        $data['useraktif'] = $this->sumuseraktif();
+        $data['usertdkaktif'] = $this->sumusertdkaktif();
+        $data['user'] = $this->barang_model->getuseraktif();
         $this->load->view('TemplateAdmin/Header', $data);
-        $this->load->view('Admin/Userblock', $data);
+        $this->load->view('Admin/Useraktif', $data);
+        $this->load->view('TemplateAdmin/Footer');
+    }
+
+    public function usertdkaktif()
+    {
+        $data['judul'] = 'User Aktif';
+        $data['sumuser'] = $this->sumuser();
+        $data['stokawal'] = $this->stokawal();
+        $data['brgterjual'] = $this->barangterjual();
+        $data['sisa'] = $this->stokakhir();
+        $data['transaksi'] = $this->totaltransaksi();
+        $data['useraktif'] = $this->sumuseraktif();
+        $data['usertdkaktif'] = $this->sumusertdkaktif();
+        $data['user'] = $this->barang_model->getusertdkaktif();
+        $this->load->view('TemplateAdmin/Header', $data);
+        $this->load->view('Admin/Usertdkaktif', $data);
         $this->load->view('TemplateAdmin/Footer');
     }
 
@@ -307,6 +337,24 @@ class Admin extends CI_Controller
     {
         $this->db->select('*');
         $this->db->from('user');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function sumuseraktif()
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('is_active', 1);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function sumusertdkaktif()
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('is_active', 0);
         $query = $this->db->get();
         return $query->num_rows();
     }
@@ -391,6 +439,42 @@ class Admin extends CI_Controller
 
 
         $paper_size = 'A4';
+        $orientation = 'landscape';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $orientation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("Laporan_BarangUser.pdf", array('Attachment' => 0));
+    }
+
+    public function pdfuseraktif()
+    {
+        $this->load->library('dompdf_gen');
+        $data['user'] = $this->barang_model->getuseraktif();
+
+        $this->load->view('Admin/LaporanPDFuseraktif', $data);
+
+
+        $paper_size = 'A3';
+        $orientation = 'landscape';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $orientation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("Laporan_BarangUser.pdf", array('Attachment' => 0));
+    }
+
+    public function pdfusertdkaktif()
+    {
+        $this->load->library('dompdf_gen');
+        $data['user'] = $this->barang_model->getusertdkaktif();
+
+        $this->load->view('Admin/LaporanPDFusertdkaktif', $data);
+
+
+        $paper_size = 'A3';
         $orientation = 'landscape';
         $html = $this->output->get_output();
         $this->dompdf->set_paper($paper_size, $orientation);

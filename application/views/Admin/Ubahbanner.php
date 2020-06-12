@@ -46,28 +46,40 @@
                         <li class="nav-item">
                             <a href="<?= base_url(); ?>Admin/index" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
-                                <p>Data User</p>
+                                <p>Data Total User</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                            </li>
+                            <li class="nav-item">
+                            <a href="<?= base_url(); ?>Admin/useraktif" class="nav-link">
+                            <i class="nav-icon fas fa-user-check"></i>
+                                <p>Data User Aktif</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="<?= base_url(); ?>Admin/usertdkaktif" class="nav-link">
+                                <i class="nav-icon fas fa-user-times"></i>
+                                <p>Data User Tidak Aktif</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
                             <a href="<?= base_url(); ?>Admin/barangjualuser" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Barang</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                            </li>
+                            <li class="nav-item">
                             <a href="<?= base_url(); ?>Admin/transaksiuser" class="nav-link">
                                 <i class="nav-icon fas fa-search-dollar"></i>
                                 <p>Transaksi User</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                            </li>
+                            <li class="nav-item">
                             <a href="<?= base_url(); ?>Admin/ubahbanner" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>Banner Home</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                            </li>
+                            <li class="nav-item">
                             <a href="<?= base_url(); ?>Auth/logout" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>Log out</p>

@@ -39,7 +39,19 @@
             <li class="nav-item">
               <a href="<?= base_url(); ?>Admin/index" class="nav-link">
                 <i class="nav-icon fas fa-users"></i>
-                <p>Data User</p>
+                <p>Data Total User</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url(); ?>Admin/useraktif" class="nav-link">
+              <i class="nav-icon fas fa-user-check"></i>
+                <p>Data User Aktif</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url(); ?>Admin/usertdkaktif" class="nav-link">
+                <i class="nav-icon fas fa-user-times"></i>
+                <p>Data User Tidak Aktif</p>
               </a>
             </li>
             <li class="nav-item">
@@ -135,14 +147,38 @@
             <!-- /.info-box-content -->
           </div>
         </div>
-        <div class="col-lg-12 col-sm-6 col-12">
+        <div class="col-lg-4 col-sm-6 col-4">
           <div class="info-box">
             <span class="info-box-icon bg-primary">
               <i class="fas fa-users"></i>
             </span>
             <div class="info-box-content">
-              <span class="info-box-text">Jumlah Total User</span>
+              <span class="info-box-text">Total User</span>
               <span class="info-box-number"><?= $sumuser; ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 col-4">
+          <div class="info-box">
+            <span class="info-box-icon bg-success">
+              <i class="fas fa-users"></i>
+            </span>
+            <div class="info-box-content">
+              <span class="info-box-text">User Aktif</span>
+              <span class="info-box-number"><?= $useraktif; ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 col-4">
+          <div class="info-box">
+            <span class="info-box-icon bg-danger">
+              <i class="fas fa-users"></i>
+            </span>
+            <div class="info-box-content">
+              <span class="info-box-text">User Tidak Aktif</span>
+              <span class="info-box-number"><?= $usertdkaktif; ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -182,6 +218,7 @@
                         <th>Email</th>
                         <th>Foto</th>
                         <th>Alamat</th>
+                        <th>Aktif</th>
                         <th>Notelp</th>
                         <th>Opsi</th>
                       </tr>
@@ -199,6 +236,7 @@
                             <a href="" id="almt" class="btn btn-info btn-sm" data-toggle="modal" data-target="#alamat" data-provinsi="<?= $usr['provinsi']; ?>" data-kota="<?= $usr['kota']; ?>" data-kecamatan="<?= $usr['kecamatan']; ?>" data-kelurahan="<?= $usr['kelurahan']; ?>" data-alamatlengkap="<?= $usr['alamat']; ?>"><i class="fas fa-eye"></i> Detail
                             </a>
                           </td>
+                          <td><?= $usr['is_active']; ?></td>
                           <td><?= $usr['notelp']; ?></td>
                           <td>
                             <a href="<?= base_url(); ?>Admin/tampiluser/<?= $usr['id']; ?>" class="btn btn-primary btn-sm"><i class="fas fa-user"></i> Lihat Profil User</a>

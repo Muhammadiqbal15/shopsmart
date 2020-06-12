@@ -4,11 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head><body>
-
-    <center><h3>Laporan Data Total User</h3></center>
+    <center><h3>Laporan Data User Aktif</h3></center>
     <br><br><br>
-    <table border="1" cellspacing="-1" cellpadding="6">
-
+    <table border="1" cellspacing="-1" cellpadding="20">
         <tr>
             <th>No</th>
             <th>Id</th>
@@ -20,14 +18,11 @@
             <th>Kecamatan</th>
             <th>Kelurahan</th>
             <th>Alamat</th>
+            <th>Aktif</th>
             <th>Notelp</th>
         </tr>
-
-
-
-        <?php
-        $i = 1;
-        foreach ($user as $usr) : ?>
+        <?php $i=1; ?>
+        <?php foreach ($user as $usr) : ?>
             <tr>
                 <td><?= $i; ?></td>
                 <td><?= $usr['id']; ?></td>
@@ -39,10 +34,10 @@
                 <td><?= $usr['kecamatan']; ?></td>
                 <td><?= $usr['kelurahan']; ?></td>
                 <td><?= $usr['alamat']; ?></td>
+                <td><?= $usr['is_active']; ?></td>
                 <td><?= $usr['notelp']; ?></td>
             </tr>
-            <?php $i++; ?>
+         <?php  $i++; ?>
         <?php endforeach; ?>
-
     </table>
 </body></html>

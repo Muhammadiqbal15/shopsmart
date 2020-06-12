@@ -360,4 +360,22 @@ class barang_model extends CI_Model
     {
         $this->db->update('tb_banner', $data, $kondisi);
     }
+
+    public function getuseraktif()
+    {
+        $this->db->select("*");
+        $this->db->from('user');
+        $this->db->where('is_active',1);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getusertdkaktif()
+    {
+        $this->db->select("*");
+        $this->db->from('user');
+        $this->db->where('is_active',0);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
