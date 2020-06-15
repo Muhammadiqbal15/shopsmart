@@ -9,10 +9,10 @@
           <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="<?= base_url() ?>Home/index" class="nav-link">Home</a>
+        <a href="<?= base_url() ?>Home/index" class="nav-link"><i class="fas fa-home"></i> Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contact</a>
+        <a href="" class="nav-link" data-target="#kalkulator" data-toggle="modal"><i class="fas fa-calculator"></i> Calculator</a>
         </li>
       </ul>
     </nav>
@@ -198,7 +198,7 @@
 
       <!-- Main content -->
       <a href="<?= base_url() ?>Admin/Pdfusertdkaktif" class="btn btn-danger ml-3 mb-2"><i class="fas fa-file"></i> Export PDF</a>
-      <a href="<?= base_url() ?>Admin/excel" class="btn btn-success mb-2"><i class="fas fa-file"></i> Export EXCEL</a>
+      <a href="<?= base_url() ?>Admin/excelusertdkaktif" class="btn btn-success mb-2"><i class="fas fa-file"></i> Export EXCEL</a>
       <section class="content">
         <div class="container-fluid">
           <div class="row">
@@ -252,3 +252,116 @@
     </div>
   </div>
 </body>
+
+<div class="modal fade" id="alamat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Detail Alamat</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6>Provinsi : <span id="provinsi"></span></h6>
+          <h6>Kota : <span id="kota"></span></h6>
+          <h6>Kecamatan : <span id="kecamatan"></span></h6>
+          <h6>Kelurahan : <span id="kelurahan"></span></h6>
+          <h6>Alamat Lengkap : <span id="alamatlengkap"></span></h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade modal-sm" id="kalkulator" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Calculator</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputangka">Angka : </label>
+              <input type="text" class="form-control" id="inputangka">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="hasil">Hasil : </label>
+            <input type="text" class="form-control" id="hasil">
+          </div>
+
+          <div>
+            <button class="btn btn-primary btn-lg" onclick="getdata('1')">1</button>
+            <button class="btn btn-primary btn-lg" onclick="getdata('2')">2</button>
+            <button class="btn btn-primary btn-lg" onclick="getdata('3')">3</button>
+            <button class="btn btn-primary btn-lg" onclick="getdata('+')">+</button>
+            <button class="btn btn-primary btn-lg" onclick="getdata('-')">-</button>
+          </div>
+          <div class="mt-1">
+            <button class="btn btn-primary btn-lg" onclick="getdata('4')">4</button>
+            <button class="btn btn-primary btn-lg" onclick="getdata('5')">5</button>
+            <button class="btn btn-primary btn-lg" onclick="getdata('6')">6</button>
+            <button class="btn btn-primary btn-lg" onclick="getdata('*')">*</button>
+            <button class="btn btn-primary btn-lg" onclick="getdata('/')">/</button>
+          </div>
+          <div class="mt-1">
+            <button class="btn btn-primary btn-lg" onclick="getdata('7')">7</button>
+            <button class="btn btn-primary btn-lg" onclick="getdata('8')">8</button>
+            <button class="btn btn-primary btn-lg" onclick="getdata('9')">9</button>
+            <button class="btn btn-primary btn-lg" onclick="getdata('(')">(</button>
+            <button class="btn btn-primary btn-lg" onclick="getdata(')')">)</button>
+          </div>
+          <div class="mt-1">
+            <button class="btn btn-primary btn-lg" onclick="getdata('0')">0</button>
+            <button class="btn btn-primary btn-lg" onclick="getdata('**')">^</button>
+            <button class="btn btn-primary btn-lg" onclick="getdata('.')">.</button>
+            <button class="btn btn-primary btn-lg" onclick="getdata('%')">%</button>
+          </div>
+          <div class="mt-1">
+            <button class="btn btn-success btn-lg" onclick="inputvalidation()">=</button>
+            <button class="btn btn-danger btn-lg" onclick="clearAll()">C</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery-3.4.1.min.js"></script>
+<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $(document).on('click', '#almt', function() {
+      var provinsi = $(this).data('provinsi');
+      var kota = $(this).data('kota');
+      var kecamatan = $(this).data('kecamatan');
+      var kelurahan = $(this).data('kelurahan');
+      var alamatlengkap = $(this).data('alamatlengkap');
+      $('#provinsi').text(provinsi);
+      $('#kota').text(kota);
+      $('#kecamatan').text(kecamatan);
+      $('#kelurahan').text(kelurahan);
+      $('#alamatlengkap').text(alamatlengkap);
+    })
+  })
+</script>
+
+<script>
+  $(document).ready(function() {
+    $('#table').DataTable({
+      "paging": false
+
+    });
+  });
+</script>

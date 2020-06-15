@@ -136,6 +136,9 @@
                 </div>
             </form>
             <br>
+            <p class="mb-1 mt-3">
+                <a href="<?= base_url(); ?>Auth/forgotpassword">I forgot my password</a>
+            </p>
             <a href="<?= base_url() ?>Auth/index" class="text-center mt-5">I already have a account</a>
         </div>
         <!-- /.form-box -->

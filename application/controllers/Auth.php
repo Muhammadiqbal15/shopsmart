@@ -146,7 +146,12 @@ class Auth extends CI_Controller
 
         if($type == 'verify'){
             $this->email->subject('Akun Verifikasi');
-            $this->email->message('Klik link ini untuk verifikasi akunmu : <a href="'.base_url().'auth/verify?email=' . $this->input->post('email') . '&token=' . $token .'">Aktifasi</a>');
+            $this->email->message('Klik link ini untuk verifikasi akunmu : <a href="'.base_url().'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) .'">Aktifasi</a>');
+        }
+        else if($type == 'forgot')
+        {
+            $this->email->subject('Reset Password');
+            $this->email->message('Klik link ini untuk reset passwordmu : <a href="'.base_url().'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) .'">Reset Password</a>');
         }
         
 
@@ -239,5 +244,117 @@ class Auth extends CI_Controller
         $this->load->view('TemplateAuth/HeaderAuth', $data);
         $this->load->view('Auth/blok');
         $this->load->view('TemplateAuth/FooterAuth');
+    }
+
+    public function forgotpassword()
+    {
+        $this->form_validation->set_rules('email','Email','trim|required|valid_email');
+
+        if($this->form_validation->run() == false){
+
+            $data['judul'] = "Lupa Password";
+            $this->load->view('TemplateAuth/HeaderAuth', $data);
+            $this->load->view('Auth/Lupapassword');
+            $this->load->view('TemplateAuth/FooterAuth');
+
+        }else{
+            $email = $this->input->post('email',true);
+            $user = $this->db->get_where('user',['email' => $email, 'is_active' => 1])->row_array();
+
+            if($user)
+            {
+                $token= base64_encode(random_bytes(32));
+                $user_token = [
+                    'email' => $email,
+                    'token' => $token,
+                    'date_created' => time()
+                ];
+
+                $this->db->insert('user_token', $user_token);
+                $this->_sendemail($token, 'forgot');
+
+                $this->session->set_flashdata('eroremail','<div class="alert alert-success" role="alert">
+                Mohon Periksa Email Anda Untuk Reset Password
+                </div>');
+                redirect('Auth/forgotpassword');
+
+            }else{
+               
+                $this->session->set_flashdata('eroremail','<div class="alert alert-danger" role="alert">
+                Email Tidak Terdaftar Atau Tidak Teraktifasi!!
+                </div>');
+                redirect('Auth/forgotpassword');
+            }
+        }
+        
+    }
+
+    public function resetpassword()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('user',['email'=>$email])->row_array();
+
+        if($user)
+        {
+            $user_token = $this->db->get_where('user_token' , ['token' => $token])->row_array();
+
+            if($user_token)
+            {
+                $this->session->set_userdata('reset_email',$email);
+                $this->changePassword();
+            }
+            else{
+
+                $this->session->set_flashdata('eroremail','<div class="alert alert-danger" role="alert">
+                Reset Password Gagal! Token Salah
+                </div>');
+                redirect('Auth/index');
+            }
+        }
+        else{
+            
+            $this->session->set_flashdata('eroremail','<div class="alert alert-danger" role="alert">
+            Reset Password Gagal! Email Salah
+            </div>');
+            redirect('Auth/index');
+        }
+    }
+
+    public function changePassword()
+    {
+
+        if(!$this->session->userdata('reset_email'))
+        {
+            redirect('Auth/index');
+        }
+
+        
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[8]|matches[password2]');
+        $this->form_validation->set_rules('password2', 'Repeat Password', 'required|trim|min_length[8]|matches[password1]');
+        if($this->form_validation->run() == false){
+            $data['judul'] = "Ubah Password";
+            $this->load->view('TemplateAuth/HeaderAuth', $data);
+            $this->load->view('Auth/Ubahpassword');
+            $this->load->view('TemplateAuth/FooterAuth');
+        }
+        else{
+            
+            $password = password_hash($this->input->post('password1'),PASSWORD_DEFAULT);
+            $email = $this->session->userdata('reset_email');
+
+            $this->db->set('password',$password);
+            $this->db->where('email', $email);
+            $this->db->update('user');
+
+            $this->session->unset_userdata('reset_email');
+
+            $this->session->set_flashdata('eroremail','<div class="alert alert-success" role="alert">
+            Password Berhasil Di Reset Atau Diubah! Mohon Masuk Ke Akun Anda
+            </div>');
+            redirect('Auth/index');
+        }
+        
     }
 }
