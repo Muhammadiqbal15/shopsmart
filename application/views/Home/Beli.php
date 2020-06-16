@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<?= base_url(); ?>Home/index">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="#">Contact <span class="sr-only">(current)</span></a>
@@ -92,6 +92,7 @@
                             </div>
                             <input type="hidden" name="penjual" class="form-control" value="<?= $barang->id ?>">
                             <input type="hidden" name="barang" class="form-control" value="<?= $barang->id_barang ?>">
+                            <input type="hidden" name="akun" class="form-control" value="<?= $user['id']; ?>">
                         </div>
                         <h5 class="mt-2">Pembeli : </h5>
                         <div class="form-row">

@@ -85,6 +85,8 @@
       <!-- /.sidebar -->
     </aside>
 
+
+    <div class="user" data-user="<?= $this->session->flashdata('user'); ?>"></div>
     <br><br><br>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -199,6 +201,7 @@
       <!-- Main content -->
       <a href="<?= base_url() ?>Admin/Pdfusertdkaktif" class="btn btn-danger ml-3 mb-2"><i class="fas fa-file"></i> Export PDF</a>
       <a href="<?= base_url() ?>Admin/excelusertdkaktif" class="btn btn-success mb-2"><i class="fas fa-file"></i> Export EXCEL</a>
+      <a href="<?= base_url() ?>Admin/printusertdkaktif" class="btn btn-primary mb-2"><i class="fas fa-print"></i> Print</a>
       <section class="content">
         <div class="container-fluid">
           <div class="row">
@@ -237,6 +240,7 @@
                               <td><?= $usr['notelp']; ?></td>
                               <td>
                                 <a href="<?= base_url(); ?>Admin/tampiluser/<?= $usr['id']; ?>" class="btn btn-primary btn-sm"><i class="fas fa-user"></i> Lihat Profil User</a>
+                                <a href="<?= base_url(); ?>Admin/hapususrtdkaktif/<?= $usr['id']; ?>" class="btn btn-danger btn-sm hapus-user"><i class="fas fa-trash"></i> Hapus Akun</a>
                               </td>
                             </tr>
                             <?php  $i++; ?>

@@ -785,4 +785,46 @@ class Admin extends CI_Controller
 
         exit;        
     }
+
+    public function print()
+    {
+        $data['user'] = $this->barang_model->getuser();
+
+        $this->load->view('Admin/Printuser',$data);
+    }
+
+    public function printuseraktif()
+    {
+        $data['user'] = $this->barang_model->getuseraktif();
+
+        $this->load->view('Admin/Printuseraktif',$data);
+    }
+
+    public function printusertdkaktif()
+    {
+        $data['user'] = $this->barang_model->getusertdkaktif();
+
+        $this->load->view('Admin/Printusertdkaktif',$data);
+    }
+
+    public function printbrg()
+    {
+        $data['barang'] = $this->barang_model->getbrg();
+
+        $this->load->view('Admin/Printbarang',$data);
+    }
+
+    public function printtransaksi()
+    {
+        $data['pembeli'] = $this->barang_model->getpembli();
+
+        $this->load->view('Admin/Printtransaksi',$data);
+    }
+
+    public function hapususrtdkaktif($id)
+    {
+        $this->barang_model->hapususer($id);
+        $this->session->set_flashdata('user', 'Dihapus');
+        redirect('Admin/usertdkaktif');
+    }
 }

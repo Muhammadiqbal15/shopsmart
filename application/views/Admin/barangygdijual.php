@@ -208,6 +208,7 @@
                     <button type="submit" name="filter" class="btn  btn-outline-primary mb-2 ml-2">Filter</button>
                     <a href="<?= base_url() ?>Admin/pdfbarang" class="btn btn-danger ml-2 mb-2"><i class="fas fa-file"></i> Export PDF</a>
                     <a href="<?= base_url() ?>Admin/excelbrg" class="btn btn-success ml-1 mb-2"><i class="fas fa-file"></i> Export EXCEL</a>
+                    <a href="<?= base_url() ?>Admin/printbrg" class="btn btn-primary ml-1 mb-2"><i class="fas fa-print"></i> Print</a>
                 </div>
             </form>
             <section class="content">

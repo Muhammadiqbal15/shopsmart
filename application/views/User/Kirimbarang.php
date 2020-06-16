@@ -166,122 +166,86 @@
         <br><br><br><br>
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-
-            
-
-            <div class="row m-auto mt-5">
-                <div class="col-lg-3 col-6">
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <?php foreach ($jmlbrg as $jb) ?>
-                            <h3><?= $jb->stokawal ?></h3>
-                            <p>Total Stok Awal</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <?php foreach ($pembeli2 as $pb) ?>
-                            <?php if ($pb) : ?>
-                                <h3><?= $pb->jmlfixed_pembeli ?></h3>
-                                <p>Pembeli</p>
-                            <?php else : ?>
-                                <h3><?php $pb = 0; ?></h3>
-                                <p>Pembeli</p>
-                            <?php endif; ?>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <?php foreach ($brg_terjual as $brt) ?>
-                            <h3><?= $brt->jumlah_brg ?></h3>
-                            <p>Barang Yang Terjual</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-cart-plus"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <?php foreach ($sisabarang as $sb) ?>
-                            <h3><?= $sb->stoksisa ?></h3>
-                            <p>Total Stok Tersisa</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-cart-arrow-down"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="content-header">
-                    <div class="container-fluid">
-                        <div class="row mb-2">
-                            <div class="col-sm-12">
-                                <h1 class="m-0 text-dark">Data Pembeli</h1>
-                            </div><!-- /.col -->
-                        </div><!-- /.row -->
-                    </div><!-- /.container-fluid -->
-                 </div>
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Kirim Barang</h1>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
             </div>
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <section class="col-lg-12 connectedSortable">
-                            <div class="card">
-                                <table class="table table-bordered table-head-fixed mt-3" id="mytable">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>No.Telp</th>
-                                            <th>Alamat</th>
-                                            <th>Nama Barang</th>
-                                            <th>Harga Barang</th>
-                                            <th>Jumlah Barang</th>
-                                            <th>Total Harga</th>
-                                            <th>Pengiriman</th>
-                                            <th>Pembayaran</th>
-                                            <th>Opsi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($pembeli as $pb) : ?>
-                                            <tr>
-                                                <td><?= ++$start; ?></td>
-                                                <td><?= $pb['nama_pb']; ?></td>
-                                                <td><?= $pb['notelp']; ?></td>
-                                                <td>
-                                                    <a href="" id="almt" class="btn btn-info btn-sm" data-toggle="modal" data-target="#alamat" data-provinsi="<?= $pb['provinsi']; ?>" data-kota="<?= $pb['kota']; ?>" data-kecamatan="<?= $pb['kecamatan']; ?>" data-kelurahan="<?= $pb['kelurahan']; ?>" data-alamatlengkap="<?= $pb['alamat']; ?>">Detail
-                                                    </a>
-                                                </td>
-                                                <td><?= $pb['nama_brg']; ?></td>
-                                                <td><?= $pb['harga_brg']; ?></td>
-                                                <td><?= $pb['jumlah_brg']; ?></td>
-                                                <td><?= $pb['tot_hrg'] ?></td>
-                                                <td><?= $pb['pengiriman']; ?></td>
-                                                <td><?= $pb['pembayaran']; ?></td>
-                                                <td>
-                                                    <a href="<?= base_url(); ?>User/hapuspembeli/<?= $pb['id_pembeli']; ?>" class="btn btn-danger btn-sm hapus-pembeli"><i class="fas fa-trash"></i> Hapus</a>
-                                                    <a href="<?= base_url(); ?>User/tp_kirimbarang/<?= $pb['id_pembeli']; ?>" class="btn btn-primary btn-sm"><i class="fas fa-paper-plane"></i> Kirim</a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                        <section class="col-lg-6 connectedSortable">
+                        <div class="card">
+                            <div class="card-header bg-dark">
+                               Kirim Barang
                             </div>
-                            <?= $this->pagination->create_links(); ?>
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label for="namabrg">Nama Barang</label>
+                                            <input type="text" class="form-control" id="namabrg" aria-describedby="emailHelp" name="namabrg">
+                                        </div>
+                                        <div class="col">
+                                            <label for="hargabrg">Harga Barang</label>
+                                            <input type="text" class="form-control" id="hargabrg" aria-describedby="emailHelp" name="hargabrg">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label for="jmlbrg">Jumlah Barang</label>
+                                            <input type="text" class="form-control" id="jmlbrg" aria-describedby="emailHelp" name="jmlbrg">
+                                        </div>
+                                        <div class="col">
+                                            <label for="tothrgbrg">Total Harga Barang</label>
+                                            <input type="text" class="form-control" id="tothrgbrg" aria-describedby="emailHelp" name="tothrgbrg">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label for="jmlbrg">Pengiriman Barang</label>
+                                            <input type="text" class="form-control" id="jmlbrg" aria-describedby="emailHelp" name="jmlbrg">
+                                        </div>
+                                        <div class="col">
+                                            <label for="tothrgbrg">Pembeli</label>
+                                            <input type="text" class="form-control" id="tothrgbrg" aria-describedby="emailHelp" name="tothrgbrg">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label for="jmlbrg">Provinsi</label>
+                                            <input type="text" class="form-control" id="jmlbrg" aria-describedby="emailHelp" name="jmlbrg">
+                                        </div>
+                                        <div class="col">
+                                            <label for="tothrgbrg">Kabupaten/Kota</label>
+                                            <input type="text" class="form-control" id="tothrgbrg" aria-describedby="emailHelp" name="tothrgbrg">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label for="jmlbrg">Kecamatan</label>
+                                            <input type="text" class="form-control" id="jmlbrg" aria-describedby="emailHelp" name="jmlbrg">
+                                        </div>
+                                        <div class="col">
+                                            <label for="tothrgbrg">Kelurahan/Desa</label>
+                                            <input type="text" class="form-control" id="tothrgbrg" aria-describedby="emailHelp" name="tothrgbrg">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label for="jmlbrg">Alamat Lengkap</label>
+                                            <input type="text" class="form-control" id="jmlbrg" aria-describedby="emailHelp" name="jmlbrg">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-2">Kirim</button>
+                                </form>
+                            </div>
+                        </div>
                         </section>
                     </div>
                 </div>

@@ -33,6 +33,7 @@
 <script src="<?= base_url(); ?>assets/AdminLTE-master/dist/js/demo.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/sweetalert2/mysrcgb.js"></script>
+<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/sweetalert2/userdel.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>

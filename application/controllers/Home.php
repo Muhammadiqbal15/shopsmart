@@ -507,6 +507,7 @@ class Home extends CI_Controller
         $usr_penjual = htmlspecialchars($this->input->post('penjual', true));
         $tothrg = htmlspecialchars($this->input->post('totalhrg', true));
         $brg = htmlspecialchars($this->input->post('barang', true));
+        $akun = htmlspecialchars($this->input->post('akun', true));
 
         $data = array(
             'nama_pb'    => $pembeli,
@@ -524,7 +525,8 @@ class Home extends CI_Controller
             'pembayaran' => $bayar,
             'usr_penjual' => $usr_penjual,
             'tot_hrg' => $tothrg,
-            'id_barang' => $brg
+            'id_barang' => $brg,
+            'id_akun' => $akun
         );
 
 

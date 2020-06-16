@@ -40,4 +40,8 @@
          <?php  $i++; ?>
         <?php endforeach; ?>
     </table>
+
+    <script>
+        window.print();
+    </script>
 </body></html>

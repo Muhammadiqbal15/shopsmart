@@ -4,9 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head><body>
-    <center><h3>Laporan Data User Tidak Aktif</h3></center>
+
+    <center><h3>Laporan Data Total User</h3></center>
     <br><br><br>
-    <table border="1" cellspacing="-1" cellpadding="20">
+    <table border="1" cellspacing="-2" cellpadding="10">
+
         <tr>
             <th>No</th>
             <th>Id</th>
@@ -21,8 +23,12 @@
             <th>Aktif</th>
             <th>Notelp</th>
         </tr>
-        <?php $i=1; ?>
-        <?php foreach ($user as $usr) : ?>
+
+
+
+        <?php
+        $i = 1;
+        foreach ($user as $usr) : ?>
             <tr>
                 <td><?= $i; ?></td>
                 <td><?= $usr['id']; ?></td>
@@ -37,7 +43,12 @@
                 <td><?= $usr['is_active']; ?></td>
                 <td><?= $usr['notelp']; ?></td>
             </tr>
-         <?php  $i++; ?>
+            <?php $i++; ?>
         <?php endforeach; ?>
+
     </table>
+
+    <script>
+        window.print();
+    </script>
 </body></html>

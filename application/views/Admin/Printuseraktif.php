@@ -4,9 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head><body>
-    <center><h3>Laporan Data User Tidak Aktif</h3></center>
+    <center><h3>Laporan Data User Aktif</h3></center>
     <br><br><br>
-    <table border="1" cellspacing="-1" cellpadding="20">
+    <table border="1" cellspacing="-1" cellpadding="10">
         <tr>
             <th>No</th>
             <th>Id</th>
@@ -40,4 +40,8 @@
          <?php  $i++; ?>
         <?php endforeach; ?>
     </table>
+
+    <script>
+        window.print();
+    </script>
 </body></html>

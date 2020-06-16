@@ -199,6 +199,7 @@
       <!-- Main content -->
       <a href="<?= base_url() ?>Admin/Pdf" class="btn btn-danger ml-3 mb-2"><i class="fas fa-file"></i> Export PDF</a>
       <a href="<?= base_url() ?>Admin/excel" class="btn btn-success mb-2"><i class="fas fa-file"></i> Export EXCEL</a>
+      <a href="<?= base_url() ?>Admin/print" class="btn btn-primary mb-2"><i class="fas fa-print"></i> Print</a>
       <section class="content">
         <div class="container-fluid">
           <div class="row">

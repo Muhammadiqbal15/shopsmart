@@ -378,4 +378,15 @@ class barang_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function hapususer($id)
+    {
+        $this->db->where('id',$id);
+        $this->db->delete('user');
+    }
+
+    public function getid($id)
+    {
+        return $this->db->get_where('pembeli', ['id_pembeli' => $id])->row_array();
+    }
 }

@@ -486,4 +486,16 @@ class User extends CI_Controller
             }
         }
     }
+
+    public function tp_kirimbarang($id)
+    {
+        $data['judul'] = 'Kirim Barang';
+        $data['pmbli'] = $this->barang_model->getid($id);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+
+        $this->load->view('TemplateUser/HeaderUser', $data);
+        $this->load->view('User/Kirimbarang', $data);
+        $this->load->view('TemplateUser/FooterUser');
+    }
 }
