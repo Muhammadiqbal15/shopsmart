@@ -498,4 +498,61 @@ class User extends CI_Controller
         $this->load->view('User/Kirimbarang', $data);
         $this->load->view('TemplateUser/FooterUser');
     }
+
+    public function kirimbarang()
+    {
+
+        
+        $nmbrg = $this->input->post('namabrg',true);
+        $hrgbrg = $this->input->post('hargabrg',true);
+        $jmlbrg = $this->input->post('jmlbrg',true);
+        $tothrg = $this->input->post('tothrgbrg',true);
+        $kirim = $this->input->post('kirimbrg',true);
+        $nm_pb = $this->input->post('pembeli',true);
+        $prov = $this->input->post('provinsi',true);
+        $kot = $this->input->post('kota',true);
+        $kec = $this->input->post('kecamatan',true);
+        $kel = $this->input->post('kelurahan',true);
+        $almt = $this->input->post('alamat',true);
+        $akun = $this->input->post('akun',true);
+
+        $data = array(
+
+            'nm_pembeli' => $nm_pb,
+            'nm_brg'     => $nmbrg,
+            'hrg_brg'    => $hrgbrg,
+            'jml_brg'    => $jmlbrg,
+            'tot_hrg'    => $tothrg,
+            'pengiriman' => $kirim,
+            'provinsi'   => $prov,
+            'kota'       => $kot,
+            'kecamatan'  => $kec,
+            'kelurahan'  => $kel,
+            'alamat'     => $almt,
+            'id_akun'    => $akun
+        );
+
+        $this->barang_model->insertkirimbrg($data);
+
+        $id = $this->input->post('id',true);
+
+        $this->db->set('status_brg', 'Sudah Dikirim');
+        $this->db->where('id_pembeli',$id);
+        $this->db->update('pembeli');
+
+        $this->session->set_flashdata('kirim', 'Sudah Kirim');
+        redirect('User/Pembeliuser');
+
+    }
+
+    public function pesananuser()
+    {
+        $data['judul'] = 'Pesanan';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+
+        $this->load->view('TemplateUser/HeaderUser', $data);
+        $this->load->view('User/Pesananuser', $data);
+        $this->load->view('TemplateUser/FooterUser');
+    }
 }

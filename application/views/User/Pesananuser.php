@@ -91,7 +91,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Kirim Barang</h1>
+                            <h1 class="m-0 text-dark">Pesanan</h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -101,74 +101,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <section class="col-lg-6 connectedSortable">
-                        <div class="card">
-                            <div class="card-header bg-dark">
-                               Kirim Barang
-                            </div>
-                            <div class="card-body">
-                                <form action="<?= base_url(); ?>/User/kirimbarang" method="POST">
-                                    <div class="form-row">
-                                        <input type="hidden" id="id" name="id" value="<?= $pmbli['id_pembeli'];?>">
-                                        <input type="hidden" id="akun" name="akun" value="<?= $pmbli['id_akun'];?>">
-                                        <div class="col">
-                                            <label for="namabrg">Nama Barang</label>
-                                            <input type="text" class="form-control" id="namabrg" aria-describedby="emailHelp" name="namabrg" value="<?= $pmbli['nama_brg'];?>">
-                                        </div>
-                                        <div class="col">
-                                            <label for="hargabrg">Harga Barang</label>
-                                            <input type="text" class="form-control" id="hargabrg" aria-describedby="emailHelp" name="hargabrg"  value="<?= $pmbli['harga_brg'];?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <label for="jmlbrg">Jumlah Barang</label>
-                                            <input type="text" class="form-control" id="jmlbrg" aria-describedby="emailHelp" name="jmlbrg" value="<?= $pmbli['jumlah_brg'];?>">
-                                        </div>
-                                        <div class="col">
-                                            <label for="tothrgbrg">Total Harga Barang</label>
-                                            <input type="text" class="form-control" id="tothrgbrg" aria-describedby="emailHelp" name="tothrgbrg" value="<?= $pmbli['tot_hrg'];?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <label for="kirimbrg">Pengiriman Barang</label>
-                                            <input type="text" class="form-control" id="kirimbrg" aria-describedby="emailHelp" name="kirimbrg" value="<?= $pmbli['pengiriman'];?>">
-                                        </div>
-                                        <div class="col">
-                                            <label for="pembeli">Pembeli</label>
-                                            <input type="text" class="form-control" id="pembeli" aria-describedby="emailHelp" name="pembeli" value="<?= $pmbli['nama_pb'];?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <label for="provinsi">Provinsi</label>
-                                            <input type="text" class="form-control" id="provinsi" aria-describedby="emailHelp" name="provinsi" value="<?= $pmbli['provinsi'];?>">
-                                        </div>
-                                        <div class="col">
-                                            <label for="kota">Kabupaten/Kota</label>
-                                            <input type="text" class="form-control" id="kota" aria-describedby="emailHelp" name="kota" value="<?= $pmbli['kota'];?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <label for="kecamatan">Kecamatan</label>
-                                            <input type="text" class="form-control" id="kecamatan" aria-describedby="emailHelp" name="kecamatan" value="<?= $pmbli['kecamatan'];?>">
-                                        </div>
-                                        <div class="col">
-                                            <label for="kelurahan">Kelurahan/Desa</label>
-                                            <input type="text" class="form-control" id="kelurahan" aria-describedby="emailHelp" name="kelurahan" value="<?= $pmbli['kelurahan'];?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <label for="alamat">Alamat Lengkap</label>
-                                            <input type="text" class="form-control" id="alamat" aria-describedby="emailHelp" name="alamat" value="<?= $pmbli['alamat'];?>">
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary mt-3" name="kirim">Kirim</button>
-                                </form>
-                            </div>
-                        </div>
+                        
                         </section>
                     </div>
                 </div>
@@ -176,25 +109,6 @@
         </div>
     </div>
 
-    <div class="modal fade" id="alamat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Detail Alamat</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h6>Provinsi : <span id="provinsi"></span></h6>
-                    <h6>Kota : <span id="kota"></span></h6>
-                    <h6>Kecamatan : <span id="kecamatan"></span></h6>
-                    <h6>Kelurahan : <span id="kelurahan"></span></h6>
-                    <h6>Alamat Lengkap : <span id="alamatlengkap"></span></h6>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="modal fade modal-sm" id="kalkulator" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

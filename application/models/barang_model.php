@@ -389,4 +389,9 @@ class barang_model extends CI_Model
     {
         return $this->db->get_where('pembeli', ['id_pembeli' => $id])->row_array();
     }
+
+    public function insertkirimbrg($data)
+    {
+        $this->db->insert('tb_kirimbrg', $data);
+    }
 }

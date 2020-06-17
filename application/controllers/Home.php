@@ -526,7 +526,8 @@ class Home extends CI_Controller
             'usr_penjual' => $usr_penjual,
             'tot_hrg' => $tothrg,
             'id_barang' => $brg,
-            'id_akun' => $akun
+            'id_akun' => $akun,
+            'status_brg'=> 'Belum Dikirim'
         );
 
 
