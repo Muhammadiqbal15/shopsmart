@@ -549,10 +549,17 @@ class User extends CI_Controller
     {
         $data['judul'] = 'Pesanan';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
+        $data['pesanan'] = $this->barang_model->getkirimbrg();
 
         $this->load->view('TemplateUser/HeaderUser', $data);
         $this->load->view('User/Pesananuser', $data);
         $this->load->view('TemplateUser/FooterUser');
+    }
+
+    public function hapuspesanan($id)
+    {
+        $this->barang_model->hapuspesananbrg($id);
+        $this->session->set_flashdata('pesan', 'Dihapus');
+        redirect('User/pesananuser');
     }
 }

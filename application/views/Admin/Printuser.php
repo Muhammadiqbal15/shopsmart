@@ -7,7 +7,7 @@
 
     <center><h3>Laporan Data Total User</h3></center>
     <br><br><br>
-    <table border="1" cellspacing="-2" cellpadding="10">
+    <table border="1" cellspacing="-2" cellpadding="5">
 
         <tr>
             <th>No</th>
@@ -15,13 +15,14 @@
             <th>Nama</th>
             <th>Email</th>
             <th>Foto</th>
-            <th>Provinsi</th>
+            <th>Provins</th>
             <th>Kota/Kabupaten</th>
             <th>Kecamatan</th>
             <th>Kelurahan</th>
-            <th>Alamat</th>
+            <th>Alamat Lengkap</th>
             <th>Aktif</th>
             <th>Notelp</th>
+            <th>Tanggal Dibuat Akun</th>
         </tr>
 
 
@@ -42,6 +43,7 @@
                 <td><?= $usr['alamat']; ?></td>
                 <td><?= $usr['is_active']; ?></td>
                 <td><?= $usr['notelp']; ?></td>
+                <td><?= date("d-M-Y ",$usr['date_created']); ?></td>
             </tr>
             <?php $i++; ?>
         <?php endforeach; ?>

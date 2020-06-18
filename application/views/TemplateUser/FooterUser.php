@@ -40,6 +40,7 @@
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/sweetalert2/ubahpw.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/sweetalert2/ubahpw.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/sweetalert2/kirim.js"></script>
+<script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/sweetalert2/pesan.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/dist/js/kalkulator.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

@@ -84,6 +84,7 @@
             </div>
             <!-- /.sidebar -->
         </aside>
+        <div class="pesan" data-pesan="<?= $this->session->flashdata('pesan'); ?>"></div>
         <br><br><br><br>
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -100,15 +101,44 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <section class="col-lg-6 connectedSortable">
-                        
+                        <section class="col-lg-12 connectedSortable">
+                            <?php  foreach($pesanan as $ps) : ?>
+                            <div class="card">
+                                <h5 class="card-header">Pesanan <?= $ps['nm_pembeli']; ?></h5>
+                                <div class="card-body mb-3">
+                                    <h6 class="mb-3">Barang Pesananmu Sedang Dalam Pengiriman,Mohon Ditunggu</h6>
+                                    <h6 class="mb-3">Barang : <?= $ps['nm_brg']; ?></h6>
+                                    <h6 class="mb-3" >Harga : <?= $ps['hrg_brg']; ?></h6>
+                                    <button class="btn btn-primary tampil"><i class="fas fa-eye"></i> Detail</button>
+                                    <button class="btn btn-warning sembunyi"><i class="fas fa-times"></i> Tutup</button>
+                                    <a href="<?= base_url(); ?>User/hapuspesanan/<?= $ps['id_kirimbrg'];?>" class="btn btn-danger hapus_pesan"><i class="fas fa-trash"></i> Hapus</a>
+                                </div>
+                                <div class="card-body lihat mb-3">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Nama Barang : <?= $ps['nm_brg']; ?></li>
+                                        <li class="list-group-item">Harga Barang : <?= $ps['hrg_brg']; ?> </li>
+                                        <li class="list-group-item">Jumlah Barang : <?= $ps['jml_brg']; ?></li>
+                                        <li class="list-group-item">Total Harga : <?= $ps['tot_hrg']; ?></li>
+                                        <li class="list-group-item">Pengiriman : <?= $ps['pengiriman']; ?></li>
+                                        <li class="list-group-item">Penerima : <?= $ps['nm_pembeli']; ?></li>
+                                        <li class="list-group-item">Provinsi : <?= $ps['provinsi']; ?></li>
+                                        <li class="list-group-item">Kabupaten/Kota : <?= $ps['kota']; ?></li>
+                                        <li class="list-group-item">Kecamatan : <?= $ps['kecamatan']; ?></li>
+                                        <li class="list-group-item">Kelurahan : <?= $ps['kelurahan']; ?></li>
+                                        <li class="list-group-item">Alamat Lengkap : <?= $ps['alamat']; ?></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <?php  endforeach; ?>
                         </section>
                     </div>
                 </div>
             </section>
         </div>
     </div>
-
+    
+    
     <div class="modal fade modal-sm" id="kalkulator" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -192,6 +222,25 @@
                 $('#alamatlengkap').text(alamatlengkap);
             })
         })
+    </script>
+
+    <script>
+        //Inisiasi awal penggunaan jQuery
+        $(document).ready(function(){
+        //Pertama sembunyikan elemen class gambar
+        $('.lihat').hide();        
+
+        //Ketika elemen class tampil di klik maka elemen class gambar tampil
+        $('.tampil').click(function(){
+        $('.lihat').show(1000);
+                });
+
+        //Ketika elemen class sembunyi di klik maka elemen class gambar sembunyi
+        $('.sembunyi').click(function(){
+        //Sembunyikan elemen class gambar
+        $('.lihat').hide(1000);        
+                });
+        });
     </script>
 
 <?php else : ?>

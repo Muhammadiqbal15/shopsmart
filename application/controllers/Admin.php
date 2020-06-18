@@ -397,7 +397,7 @@ class Admin extends CI_Controller
         $this->load->view('Admin/LaporanPDF', $data);
 
 
-        $paper_size = 'A4';
+        $paper_size = 'A3';
         $orientation = 'landscape';
         $html = $this->output->get_output();
         $this->dompdf->set_paper($paper_size, $orientation);
@@ -474,7 +474,7 @@ class Admin extends CI_Controller
         $this->load->view('Admin/LaporanPDFusertdkaktif', $data);
 
 
-        $paper_size = 'A3';
+        $paper_size = 'A4';
         $orientation = 'landscape';
         $html = $this->output->get_output();
         $this->dompdf->set_paper($paper_size, $orientation);
@@ -506,7 +506,9 @@ class Admin extends CI_Controller
         $object->getActiveSheet()->setCellValue('H1', 'KECAMATAN');
         $object->getActiveSheet()->setCellValue('I1', 'KELURAHAN');
         $object->getActiveSheet()->setCellValue('J1', 'ALAMAT');
-        $object->getActiveSheet()->setCellValue('K1', 'NOTELP');
+        $object->getActiveSheet()->setCellValue('K1', 'AKTIF');
+        $object->getActiveSheet()->setCellValue('L1', 'NOTELP');
+        $object->getActiveSheet()->setCellValue('M1', 'TANGGAL DIBUAT AKUN');
 
 
         $baris = 2;
@@ -523,7 +525,9 @@ class Admin extends CI_Controller
             $object->getActiveSheet()->setCellValue('H' . $baris, $usr['kecamatan']);
             $object->getActiveSheet()->setCellValue('I' . $baris, $usr['kelurahan']);
             $object->getActiveSheet()->setCellValue('J' . $baris, $usr['alamat']);
-            $object->getActiveSheet()->setCellValue('K' . $baris, $usr['notelp']);
+            $object->getActiveSheet()->setCellValue('K' . $baris, $usr['is_active']);
+            $object->getActiveSheet()->setCellValue('L' . $baris, $usr['notelp']);
+            $object->getActiveSheet()->setCellValue('M' . $baris, date("d-M-Y ",$usr['date_created']));
 
             $baris++;
         }
@@ -562,9 +566,11 @@ class Admin extends CI_Controller
         $object->getActiveSheet()->setCellValue('F1', 'JENIS BARANG');
         $object->getActiveSheet()->setCellValue('G1', 'STOK AWAL');
         $object->getActiveSheet()->setCellValue('H1', 'STOK SISA');
-        $object->getActiveSheet()->setCellValue('I1', 'PEMBAYARAN BANKING');
-        $object->getActiveSheet()->setCellValue('J1', 'PEMBAYARAN EMONEY');
-        $object->getActiveSheet()->setCellValue('K1', 'PENJUAL');
+        $object->getActiveSheet()->setCellValue('I1', 'SATUAN');
+        $object->getActiveSheet()->setCellValue('J1', 'KETERANGAN');
+        $object->getActiveSheet()->setCellValue('K1', 'PEMBAYARAN BANKING');
+        $object->getActiveSheet()->setCellValue('L1', 'PEMBAYARAN EMONEY');
+        $object->getActiveSheet()->setCellValue('M1', 'PENJUAL');
 
 
         $baris = 2;
@@ -579,9 +585,11 @@ class Admin extends CI_Controller
             $object->getActiveSheet()->setCellValue('F' . $baris, $brg['jenis_barang']);
             $object->getActiveSheet()->setCellValue('G' . $baris, $brg['stokawal']);
             $object->getActiveSheet()->setCellValue('H' . $baris, $brg['stoksisa']);
-            $object->getActiveSheet()->setCellValue('I' . $baris, $brg['ebanking']);
-            $object->getActiveSheet()->setCellValue('J' . $baris, $brg['emoney']);
-            $object->getActiveSheet()->setCellValue('K' . $baris, $brg['nama']);
+            $object->getActiveSheet()->setCellValue('I' . $baris, $brg['UOM']);
+            $object->getActiveSheet()->setCellValue('J' . $baris, $brg['ket_barang']);
+            $object->getActiveSheet()->setCellValue('K' . $baris, $brg['ebanking']);
+            $object->getActiveSheet()->setCellValue('L' . $baris, $brg['emoney']);
+            $object->getActiveSheet()->setCellValue('M' . $baris, $brg['nama']);
 
             $baris++;
         }
@@ -616,18 +624,14 @@ class Admin extends CI_Controller
         $object->getActiveSheet()->setCellValue('A1', 'NO');
         $object->getActiveSheet()->setCellValue('B1', 'ID');
         $object->getActiveSheet()->setCellValue('C1', 'NAMA PEMBELI');
-        $object->getActiveSheet()->setCellValue('D1', 'NOMOR TELEPON');
-        $object->getActiveSheet()->setCellValue('E1', 'ALAMAT');
-        $object->getActiveSheet()->setCellValue('F1', 'NAMA BARANG');
-        $object->getActiveSheet()->setCellValue('G1', 'HARGA BARANG');
-        $object->getActiveSheet()->setCellValue('H1', 'JUMLAH BARANG');
-        $object->getActiveSheet()->setCellValue('I1', 'TOTAL HARGA');
-        $object->getActiveSheet()->setCellValue('J1', 'PENGIRIMAN');
-        $object->getActiveSheet()->setCellValue('K1', 'PEMBAYARAN');
-        $object->getActiveSheet()->setCellValue('L1', 'PROVINSI');
-        $object->getActiveSheet()->setCellValue('M1', 'KABUPATEN/KOTA');
-        $object->getActiveSheet()->setCellValue('N1', 'KECAMATAN');
-        $object->getActiveSheet()->setCellValue('O1', 'KELURAHAN');
+        $object->getActiveSheet()->setCellValue('D1', 'NAMA BARANG');
+        $object->getActiveSheet()->setCellValue('E1', 'HARGA BARANG');
+        $object->getActiveSheet()->setCellValue('F1', 'JUMLAH BARANG');
+        $object->getActiveSheet()->setCellValue('G1', 'TOTAL HARGA');
+        $object->getActiveSheet()->setCellValue('H1', 'PENGIRIMAN');
+        $object->getActiveSheet()->setCellValue('I1', 'PEMBAYARAN');
+        $object->getActiveSheet()->setCellValue('J1', 'STATUS');
+        $object->getActiveSheet()->setCellValue('K1', 'PENJUAL');
 
 
         $baris = 2;
@@ -637,18 +641,14 @@ class Admin extends CI_Controller
             $object->getActiveSheet()->setCellValue('A' . $baris, $no++);
             $object->getActiveSheet()->setCellValue('B' . $baris, $pb['id_pembeli']);
             $object->getActiveSheet()->setCellValue('C' . $baris, $pb['nama_pb']);
-            $object->getActiveSheet()->setCellValue('D' . $baris, $pb['notelp']);
-            $object->getActiveSheet()->setCellValue('E' . $baris, $pb['alamat']);
-            $object->getActiveSheet()->setCellValue('F' . $baris, $pb['nama_brg']);
-            $object->getActiveSheet()->setCellValue('G' . $baris, $pb['harga_brg']);
-            $object->getActiveSheet()->setCellValue('H' . $baris, $pb['jumlah_brg']);
-            $object->getActiveSheet()->setCellValue('I' . $baris, $pb['tot_hrg']);
-            $object->getActiveSheet()->setCellValue('J' . $baris, $pb['pengiriman']);
-            $object->getActiveSheet()->setCellValue('K' . $baris, $pb['pembayaran']);
-            $object->getActiveSheet()->setCellValue('L' . $baris, $pb['provinsi']);
-            $object->getActiveSheet()->setCellValue('M' . $baris, $pb['kota']);
-            $object->getActiveSheet()->setCellValue('N' . $baris, $pb['kecamatan']);
-            $object->getActiveSheet()->setCellValue('O' . $baris, $pb['kelurahan']);
+            $object->getActiveSheet()->setCellValue('D' . $baris, $pb['nama_brg']);
+            $object->getActiveSheet()->setCellValue('E' . $baris, $pb['harga_brg']);
+            $object->getActiveSheet()->setCellValue('F' . $baris, $pb['jumlah_brg']);
+            $object->getActiveSheet()->setCellValue('G' . $baris, $pb['tot_hrg']);
+            $object->getActiveSheet()->setCellValue('H' . $baris, $pb['pengiriman']);
+            $object->getActiveSheet()->setCellValue('I' . $baris, $pb['pembayaran']);
+            $object->getActiveSheet()->setCellValue('J' . $baris, $pb['status_brg']);
+            $object->getActiveSheet()->setCellValue('K' . $baris, $pb['nama']);
 
             $baris++;
         }
@@ -690,7 +690,9 @@ class Admin extends CI_Controller
         $object->getActiveSheet()->setCellValue('H1', 'KECAMATAN');
         $object->getActiveSheet()->setCellValue('I1', 'KELURAHAN');
         $object->getActiveSheet()->setCellValue('J1', 'ALAMAT');
-        $object->getActiveSheet()->setCellValue('K1', 'NOTELP');
+        $object->getActiveSheet()->setCellValue('K1', 'AKTIF');
+        $object->getActiveSheet()->setCellValue('L1', 'NOTELP');
+        $object->getActiveSheet()->setCellValue('M1', 'TANGGAL DIBUAT AKUN');
 
 
         $baris = 2;
@@ -707,7 +709,9 @@ class Admin extends CI_Controller
             $object->getActiveSheet()->setCellValue('H' . $baris, $usr['kecamatan']);
             $object->getActiveSheet()->setCellValue('I' . $baris, $usr['kelurahan']);
             $object->getActiveSheet()->setCellValue('J' . $baris, $usr['alamat']);
-            $object->getActiveSheet()->setCellValue('K' . $baris, $usr['notelp']);
+            $object->getActiveSheet()->setCellValue('K' . $baris, $usr['is_active']);
+            $object->getActiveSheet()->setCellValue('L' . $baris, $usr['notelp']);
+            $object->getActiveSheet()->setCellValue('M' . $baris, date("d-M-Y ",$usr['date_created']));
 
             $baris++;
         }
@@ -750,7 +754,9 @@ class Admin extends CI_Controller
         $object->getActiveSheet()->setCellValue('H1', 'KECAMATAN');
         $object->getActiveSheet()->setCellValue('I1', 'KELURAHAN');
         $object->getActiveSheet()->setCellValue('J1', 'ALAMAT');
-        $object->getActiveSheet()->setCellValue('K1', 'NOTELP');
+        $object->getActiveSheet()->setCellValue('K1', 'AKTIF');
+        $object->getActiveSheet()->setCellValue('L1', 'NOTELP');
+        $object->getActiveSheet()->setCellValue('M1', 'TANGGAL DIBUAT AKUN');
 
 
         $baris = 2;
@@ -767,7 +773,9 @@ class Admin extends CI_Controller
             $object->getActiveSheet()->setCellValue('H' . $baris, $usr['kecamatan']);
             $object->getActiveSheet()->setCellValue('I' . $baris, $usr['kelurahan']);
             $object->getActiveSheet()->setCellValue('J' . $baris, $usr['alamat']);
-            $object->getActiveSheet()->setCellValue('K' . $baris, $usr['notelp']);
+            $object->getActiveSheet()->setCellValue('K' . $baris, $usr['is_active']);
+            $object->getActiveSheet()->setCellValue('L' . $baris, $usr['notelp']);
+            $object->getActiveSheet()->setCellValue('M' . $baris, date("d-M-Y ",$usr['date_created']));
 
             $baris++;
         }

@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head><body>
-    <center><h3>Laporan Barang Yang Dijual User</h3></center>
+    <center><h3>Laporan Transaksi Antar User</h3></center>
     <br><br><br>
     <table border="1" cellspacing="-1" cellpadding="15">
         <tr>
@@ -17,6 +17,7 @@
             <th>Total Harga</th>
             <th>Pengiriman</th>
             <th>Pembayaran</th>
+            <th>Status</th>
             <th>Penjual</th>
         </tr>
         <?php
@@ -32,6 +33,7 @@
                 <td><?= $pembl['tot_hrg']; ?></td>
                 <td><?= $pembl['pengiriman']; ?></td>
                 <td><?= $pembl['pembayaran'];   ?></td>
+                <td><?= $pembl['status_brg'];   ?></td>
                 <td><?= $pembl['nama']; ?></td>
             </tr>
             <?php $i++;  ?>

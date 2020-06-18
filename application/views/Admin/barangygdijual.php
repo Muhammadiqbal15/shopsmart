@@ -144,7 +144,7 @@
                         <!-- /.info-box-content -->
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 col-4">
+                <div class="col-lg-4 col-sm-6 col-12">
                     <div class="info-box">
                         <span class="info-box-icon bg-primary">
                         <i class="fas fa-users"></i>
@@ -156,7 +156,7 @@
                         <!-- /.info-box-content -->
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 col-4">
+                <div class="col-lg-4 col-sm-6 col-12">
                     <div class="info-box">
                         <span class="info-box-icon bg-success">
                         <i class="fas fa-users"></i>
@@ -168,7 +168,7 @@
                         <!-- /.info-box-content -->
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 col-4">
+                <div class="col-lg-4 col-sm-6 col-12">
                     <div class="info-box">
                         <span class="info-box-icon bg-danger">
                         <i class="fas fa-users"></i>
@@ -221,7 +221,7 @@
                         <section class="col-lg-12 connectedSortable">
                             <div class="card">
                                 <div class="card-body table-responsive p-0">
-                                    <table class="table table-bordered table-head-fixed mt-3" id="table">
+                                    <table class="table table-bordered table-head-fixed table-responsive table-hover mt-3" id="table">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -232,7 +232,10 @@
                                                 <th>Jenis Barang</th>
                                                 <th>Stok Awal</th>
                                                 <th>Stok Sisa</th>
-                                                <th>Pembayaran</th>
+                                                <th>Satuan</th>
+                                                <th>Keterangan</th>
+                                                <th>Pembayaran E-Banking</th>
+                                                <th>Pembayaran E-Money</th>
                                                 <th>Penjual</th>
                                             </tr>
                                         </thead>
@@ -248,7 +251,10 @@
                                                     <td><?= $brg['jenis_barang']; ?></td>
                                                     <td><?= $brg['stokawal']; ?></td>
                                                     <td><?= $brg['stoksisa']; ?></td>
-                                                    <td><?= $brg['ebanking']; ?>&<?= $brg['emoney']; ?></td>
+                                                    <td><?= $brg['UOM']; ?></td>
+                                                    <td><?= $brg['ket_barang']; ?></td>
+                                                    <td><?= $brg['ebanking']; ?></td>
+                                                    <td><?= $brg['emoney']; ?></td>
                                                     <td><?= $brg['nama'];   ?></td>
                                                 </tr>
                                             <?php endforeach; ?>

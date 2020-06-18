@@ -6,7 +6,7 @@
 </head><body>
     <center><h3>Laporan Data User Aktif</h3></center>
     <br><br><br>
-    <table border="1" cellspacing="-1" cellpadding="10">
+    <table border="1" cellspacing="-1" cellpadding="7">
         <tr>
             <th>No</th>
             <th>Id</th>
@@ -20,6 +20,7 @@
             <th>Alamat</th>
             <th>Aktif</th>
             <th>Notelp</th>
+            <th>Tanggal Dibuat Akun</th>
         </tr>
         <?php $i=1; ?>
         <?php foreach ($user as $usr) : ?>
@@ -36,6 +37,7 @@
                 <td><?= $usr['alamat']; ?></td>
                 <td><?= $usr['is_active']; ?></td>
                 <td><?= $usr['notelp']; ?></td>
+                <td><?= date("d-M-Y ",$usr['date_created']); ?></td>
             </tr>
          <?php  $i++; ?>
         <?php endforeach; ?>

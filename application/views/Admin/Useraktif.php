@@ -147,7 +147,7 @@
             <!-- /.info-box-content -->
           </div>
         </div>
-        <div class="col-lg-4 col-sm-6 col-4">
+        <div class="col-lg-4 col-sm-6 col-12">
           <div class="info-box">
             <span class="info-box-icon bg-primary">
               <i class="fas fa-users"></i>
@@ -159,7 +159,7 @@
             <!-- /.info-box-content -->
           </div>
         </div>
-        <div class="col-lg-4 col-sm-6 col-4">
+        <div class="col-lg-4 col-sm-6 col-12">
           <div class="info-box">
             <span class="info-box-icon bg-success">
               <i class="fas fa-users"></i>
@@ -171,7 +171,7 @@
             <!-- /.info-box-content -->
           </div>
         </div>
-        <div class="col-lg-4 col-sm-6 col-4">
+        <div class="col-lg-4 col-sm-6 col-12">
           <div class="info-box">
             <span class="info-box-icon bg-danger">
               <i class="fas fa-users"></i>
@@ -206,18 +206,23 @@
             <section class="col-lg-12 connectedSortable">
                <div class="card">
                   <div class="card-body table-responsive p-0">
-                      <table class="table table-bordered table-head-fixed mt-3" id="table">
+                      <table class="table table-bordered table-head-fixed mt-3 table-responsive table-hover" id="table">
                         <thead>
                           <tr>
-                            <th>No</th>
-                            <th>Id</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Foto</th>
-                            <th>Alamat</th>
-                            <th>Aktif</th>
-                            <th>Notelp</th>
-                            <th>Opsi</th>
+                          <th>No</th>
+                          <th>Id</th>
+                          <th>Nama</th>
+                          <th>Email</th>
+                          <th>Foto</th>
+                          <th>Provins</th>
+                          <th>Kota/Kabupaten</th>
+                          <th>Kecamatan</th>
+                          <th>Kelurahan</th>
+                          <th>Alamat Lengkap</th>
+                          <th>Aktif</th>
+                          <th>Notelp</th>
+                          <th>Tanggal Dibuat Akun</th>
+                          <th>Opsi</th>
                           </tr>
                         </thead>
 
@@ -225,20 +230,22 @@
                           <?php $i=1; ?>
                           <?php foreach ($user as $usr) : ?>
                             <tr>
-                              <td><?= $i; ?></td>
-                              <td><?= $usr['id']; ?></td>
-                              <td><?= $usr['nama']; ?></td>
-                              <td><?= $usr['email']; ?></td>
-                              <td><img src="<?= base_url(); ?>assets/img/<?= $usr['foto']; ?>" alt="" width="70" height="70"></td>
-                              <td>
-                                <a href="" id="almt" class="btn btn-info btn-sm" data-toggle="modal" data-target="#alamat" data-provinsi="<?= $usr['provinsi']; ?>" data-kota="<?= $usr['kota']; ?>" data-kecamatan="<?= $usr['kecamatan']; ?>" data-kelurahan="<?= $usr['kelurahan']; ?>" data-alamatlengkap="<?= $usr['alamat']; ?>"><i class="fas fa-eye"></i> Detail
-                                </a>
-                              </td>
-                              <td><?= $usr['is_active']; ?></td>
-                              <td><?= $usr['notelp']; ?></td>
-                              <td>
-                                <a href="<?= base_url(); ?>Admin/tampiluser/<?= $usr['id']; ?>" class="btn btn-primary btn-sm"><i class="fas fa-user"></i> Lihat Profil User</a>
-                              </td>
+                                <td><?= $i; ?></td>
+                                <td><?= $usr['id']; ?></td>
+                                <td><?= $usr['nama']; ?></td>
+                                <td><?= $usr['email']; ?></td>
+                                <td><img src="<?= base_url(); ?>assets/img/<?= $usr['foto']; ?>" alt="" width="70" height="70"></td>
+                                <td><?= $usr['provinsi']; ?></td>
+                                <td><?= $usr['kota']; ?></td>
+                                <td><?= $usr['kecamatan']; ?></td>
+                                <td><?= $usr['kelurahan']; ?></td>
+                                <td><?= $usr['alamat']; ?></td>
+                                <td><?= $usr['is_active']; ?></td>
+                                <td><?= $usr['notelp']; ?></td>
+                                <td><?= date("d-M-Y ",$usr['date_created']); ?></td>
+                                <td>
+                                  <a href="<?= base_url(); ?>Admin/tampiluser/<?= $usr['id']; ?>" class="btn btn-primary btn-xs"><i class="fas fa-user"></i> Lihat</a>
+                                </td>
                             </tr>
                             <?php  $i++; ?>
                           <?php endforeach; ?>

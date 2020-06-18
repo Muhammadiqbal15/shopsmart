@@ -394,4 +394,20 @@ class barang_model extends CI_Model
     {
         $this->db->insert('tb_kirimbrg', $data);
     }
+
+    public function getkirimbrg()
+    {
+        $this->db->select('*');
+        $this->db->from('tb_kirimbrg');
+        $this->db->join('user', 'user.id = tb_kirimbrg.id_akun');
+        $this->db->where('id_akun', $this->session->userdata('id'));
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function hapuspesananbrg($id)
+    {
+        $this->db->where('id_kirimbrg',$id);
+        $this->db->delete('tb_kirimbrg');
+    }
 }

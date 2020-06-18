@@ -145,7 +145,7 @@
                         <!-- /.info-box-content -->
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 col-4">
+                <div class="col-lg-4 col-sm-6 col-12">
                     <div class="info-box">
                         <span class="info-box-icon bg-primary">
                         <i class="fas fa-users"></i>
@@ -157,7 +157,7 @@
                         <!-- /.info-box-content -->
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 col-4">
+                <div class="col-lg-4 col-sm-6 col-12">
                     <div class="info-box">
                         <span class="info-box-icon bg-success">
                         <i class="fas fa-users"></i>
@@ -169,7 +169,7 @@
                         <!-- /.info-box-content -->
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 col-4">
+                <div class="col-lg-4 col-sm-6 col-12">
                     <div class="info-box">
                         <span class="info-box-icon bg-danger">
                         <i class="fas fa-users"></i>
@@ -208,7 +208,7 @@
                         <section class="col-lg-12 connectedSortable">
                             <div class="card">
                                 <div class="card-body table-responsive p-0">
-                                    <table class="table table-bordered table-head-fixed mt-3" id="mytable">
+                                    <table class="table table-bordered table-head-fixed  table-hover mt-3" id="mytable">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -220,6 +220,7 @@
                                                 <th>Total Harga</th>
                                                 <th>Pengiriman</th>
                                                 <th>Pembayaran</th>
+                                                <th>Status</th>
                                                 <th>Penjual</th>
                                             </tr>
                                         </thead>
@@ -237,6 +238,7 @@
                                                     <td><?= $tr['tot_hrg']; ?></td>
                                                     <td><?= $tr['pengiriman']; ?></td>
                                                     <td><?= $tr['pembayaran'];   ?></td>
+                                                    <td><?= $tr['status_brg'];   ?></td>
                                                     <td><?= $tr['nama']; ?></td>
                                                 </tr>
                                                 <?php $i++; ?>

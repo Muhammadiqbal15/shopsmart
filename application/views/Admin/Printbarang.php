@@ -17,7 +17,10 @@
             <th>Jenis Barang</th>
             <th>Stok Awal</th>
             <th>Stok Akhir</th>
-            <th>Pembayaran</th>
+            <th>Satuan</th>
+            <th>Keterangan</th>
+            <th>Pembayaran E-banking</th>
+            <th>Pembayaran E-money</th>
             <th>Penjual</th>
         </tr>
         <?php
@@ -32,7 +35,10 @@
                 <td><?= $brg['jenis_barang']; ?></td>
                 <td><?= $brg['stokawal']; ?></td>
                 <td><?= $brg['stoksisa']; ?></td>
-                <td><?= $brg['ebanking']; ?>&<?= $brg['emoney']; ?></td>
+                <td><?= $brg['UOM']; ?></td>
+                <td><?= $brg['ket_barang']; ?></td>
+                <td><?= $brg['ebanking']; ?></td>
+                <td><?= $brg['emoney']; ?></td>
                 <td><?= $brg['nama'];   ?></td>
             </tr>
             <?php $i++;  ?>

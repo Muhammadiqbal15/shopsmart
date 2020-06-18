@@ -13,13 +13,14 @@
             <th>Nama</th>
             <th>Email</th>
             <th>Foto</th>
-            <th>Provinsi</th>
+            <th>Provins</th>
             <th>Kota/Kabupaten</th>
             <th>Kecamatan</th>
             <th>Kelurahan</th>
-            <th>Alamat</th>
+            <th>Alamat Lengkap</th>
             <th>Aktif</th>
             <th>Notelp</th>
+            <th>Tanggal Dibuat Akun</th>
         </tr>
         <?php $i=1; ?>
         <?php foreach ($user as $usr) : ?>
@@ -36,6 +37,7 @@
                 <td><?= $usr['alamat']; ?></td>
                 <td><?= $usr['is_active']; ?></td>
                 <td><?= $usr['notelp']; ?></td>
+                <td><?= date("d-M-Y ",$usr['date_created']); ?></td>
             </tr>
          <?php  $i++; ?>
         <?php endforeach; ?>
