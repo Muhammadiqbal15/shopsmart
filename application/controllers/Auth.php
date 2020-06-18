@@ -120,7 +120,7 @@ class Auth extends CI_Controller
             $this->db->insert('user_token', $user_token);
 
             $this->_sendemail($token, 'verify');
-            $this->session->set_flashdata('message', 'Berhasil Terdaftar! Tolong Aktifasi Akun Email Mu');
+            $this->session->set_flashdata('message', 'Berhasil Terdaftar! Tolong Aktifasi Akun Email Mu! Aktifasi Akun Hanya Dapat Dilakukan 1x24 Jam');
             redirect('Auth/index');
         }
     }

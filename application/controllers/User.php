@@ -45,6 +45,7 @@ class User extends CI_Controller
         $kota = htmlspecialchars($this->input->post('kota', true));
         $kec = htmlspecialchars($this->input->post('kecamatan', true));
         $kel = htmlspecialchars($this->input->post('kelurahan', true));
+        $alamat = htmlspecialchars($this->input->post('alamat', true));
         $gambar = $_FILES['foto'];
         if ($gambar == '') {
         } else {
@@ -68,7 +69,8 @@ class User extends CI_Controller
             'kota' => $kota,
             'kecamatan' => $kec,
             'kelurahan' => $kel,
-            'foto' => $gambar
+            'foto' => $gambar,
+            'alamat' => $alamat
         );
         $path = './assets/img/';
         @unlink($path . $this->input->post('filelama'));
@@ -294,7 +296,7 @@ class User extends CI_Controller
         //config pagination
         $config['base_url'] = 'http://localhost/shopsmart/User/Pembeliuser';
         $config['total_rows'] = $this->barang_model->countallpembeliuser();
-        $config['per_page'] = 3;
+        $config['per_page'] = 5;
 
         //style pagination
         $config['full_tag_open'] = '<nav><ul class="pagination">';

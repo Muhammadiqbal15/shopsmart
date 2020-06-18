@@ -68,6 +68,18 @@
                             </a>
                             </li>
                             <li class="nav-item">
+                                <a href="<?= base_url(); ?>Admin/brgterkirim" class="nav-link">
+                                    <i class="nav-icon fas fa-check"></i>
+                                    <p>Barang Tekirim</p>
+                                </a>
+                                </li>
+                                <li class="nav-item">
+                                <a href="<?= base_url(); ?>Admin/brgblmterkirim" class="nav-link">
+                                    <i class="nav-icon fas fa-times"></i>
+                                    <p>Barang Belum Terkirim</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                             <a href="<?= base_url(); ?>Admin/transaksiuser" class="nav-link">
                                 <i class="nav-icon fas fa-search-dollar"></i>
                                 <p>Transaksi User</p>

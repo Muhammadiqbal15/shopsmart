@@ -79,6 +79,8 @@ class Admin extends CI_Controller
         $data['transaksi'] = $this->totaltransaksi();
         $data['useraktif'] = $this->sumuseraktif();
         $data['usertdkaktif'] = $this->sumusertdkaktif();
+        $data['sumbrgterkirim'] = $this->sumbrgterkirim();
+        $data['sumbrgblmterkirim'] = $this->sumbrgblmterkirim();
         if ($this->input->post('keyword')) {
             $data['Barang'] = $this->barang_model->caribarang();
         }
@@ -150,6 +152,8 @@ class Admin extends CI_Controller
         $data['transaksi'] = $this->totaltransaksi();
         $data['useraktif'] = $this->sumuseraktif();
         $data['usertdkaktif'] = $this->sumusertdkaktif();
+        $data['sumbrgterkirim'] = $this->sumbrgterkirim();
+        $data['sumbrgblmterkirim'] = $this->sumbrgblmterkirim();
         if ($this->input->post('keyword')) {
             $data['barang'] = $this->barang_model->caribarang();
         }
@@ -210,6 +214,8 @@ class Admin extends CI_Controller
         $data['transaksi1'] = $this->totaltransaksi();
         $data['useraktif'] = $this->sumuseraktif();
         $data['usertdkaktif'] = $this->sumusertdkaktif();
+        $data['sumbrgterkirim'] = $this->sumbrgterkirim();
+        $data['sumbrgblmterkirim'] = $this->sumbrgblmterkirim();
         $data['transaksi'] = $this->barang_model->getallpembeliforadmin($config['per_page'], $data['start']);
         $this->load->view('TemplateAdmin/Header', $data);
         $this->load->view('Admin/Transaksi', $data);
@@ -303,6 +309,46 @@ class Admin extends CI_Controller
     {
 
         $data['judul'] = 'User Aktif';
+
+        $this->load->library('pagination');
+
+        $config['base_url'] = 'http://localhost/shopsmart/Admin/useraktif';
+        $config['total_rows'] = $this->barang_model->countalluseraktif();
+        $config['per_page'] = 5;
+
+        //style pagination
+        $config['full_tag_open'] = '<nav><ul class="pagination">';
+        $config['full_tag_close'] = ' </ul></nav>';
+
+        $config['first_link'] = 'First';
+        $config['first_tag_open'] = '<li class="page-item">';
+        $config['first_tag_close'] = '</li>';
+
+        $config['last_link'] = 'Last';
+        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_close'] = '</li>';
+
+        $config['next_link'] = 'Next';
+        $config['next_tag_open'] = '<li class="page-item">';
+        $config['next_tag_close'] = '</li>';
+
+        $config['prev_link'] = 'Prev';
+        $config['prev_tag_open'] = '<li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+
+        $config['cur_tag_open'] = '<li class="page-item active"> <a class="page-link" href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+
+        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_close'] = '</li>';
+
+        $config['attributes'] = array('class' => 'page-link');
+
+        //initialize 
+        $this->pagination->initialize($config);
+
+
+        $data['start'] = $this->uri->segment(3);
         $data['sumuser'] = $this->sumuser();
         $data['stokawal'] = $this->stokawal();
         $data['brgterjual'] = $this->barangterjual();
@@ -310,7 +356,9 @@ class Admin extends CI_Controller
         $data['transaksi'] = $this->totaltransaksi();
         $data['useraktif'] = $this->sumuseraktif();
         $data['usertdkaktif'] = $this->sumusertdkaktif();
-        $data['user'] = $this->barang_model->getuseraktif();
+        $data['user'] = $this->barang_model->getusraktif($config['per_page'], $data['start']);
+        $data['sumbrgterkirim'] = $this->sumbrgterkirim();
+        $data['sumbrgblmterkirim'] = $this->sumbrgblmterkirim();
         $this->load->view('TemplateAdmin/Header', $data);
         $this->load->view('Admin/Useraktif', $data);
         $this->load->view('TemplateAdmin/Footer');
@@ -319,6 +367,47 @@ class Admin extends CI_Controller
     public function usertdkaktif()
     {
         $data['judul'] = 'User Tidak Aktif';
+
+        $this->load->library('pagination');
+
+        $config['base_url'] = 'http://localhost/shopsmart/Admin/usertdkaktif';
+        $config['total_rows'] = $this->barang_model->countallusertdkaktif();
+        $config['per_page'] = 5;
+
+        //style pagination
+        $config['full_tag_open'] = '<nav><ul class="pagination">';
+        $config['full_tag_close'] = ' </ul></nav>';
+
+        $config['first_link'] = 'First';
+        $config['first_tag_open'] = '<li class="page-item">';
+        $config['first_tag_close'] = '</li>';
+
+        $config['last_link'] = 'Last';
+        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_close'] = '</li>';
+
+        $config['next_link'] = 'Next';
+        $config['next_tag_open'] = '<li class="page-item">';
+        $config['next_tag_close'] = '</li>';
+
+        $config['prev_link'] = 'Prev';
+        $config['prev_tag_open'] = '<li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+
+        $config['cur_tag_open'] = '<li class="page-item active"> <a class="page-link" href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+
+        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_close'] = '</li>';
+
+        $config['attributes'] = array('class' => 'page-link');
+
+        //initialize 
+        $this->pagination->initialize($config);
+
+
+        $data['start'] = $this->uri->segment(3);
+
         $data['sumuser'] = $this->sumuser();
         $data['stokawal'] = $this->stokawal();
         $data['brgterjual'] = $this->barangterjual();
@@ -326,7 +415,9 @@ class Admin extends CI_Controller
         $data['transaksi'] = $this->totaltransaksi();
         $data['useraktif'] = $this->sumuseraktif();
         $data['usertdkaktif'] = $this->sumusertdkaktif();
-        $data['user'] = $this->barang_model->getusertdkaktif();
+        $data['user'] = $this->barang_model->getusrtdkaktif($config['per_page'], $data['start']);
+        $data['sumbrgterkirim'] = $this->sumbrgterkirim();
+        $data['sumbrgblmterkirim'] = $this->sumbrgblmterkirim();
         $this->load->view('TemplateAdmin/Header', $data);
         $this->load->view('Admin/Usertdkaktif', $data);
         $this->load->view('TemplateAdmin/Footer');
@@ -835,4 +926,344 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('user', 'Dihapus');
         redirect('Admin/usertdkaktif');
     }
+
+    public function brgterkirim()
+    {
+        $data['judul'] = 'Barang Tekirim';
+
+        $this->load->library('pagination');
+
+        $config['base_url'] = 'http://localhost/shopsmart/Admin/brgterkirim';
+        $config['total_rows'] = $this->barang_model->countallbrgterkirim();
+        $config['per_page'] = 5;
+
+        //style pagination
+        $config['full_tag_open'] = '<nav><ul class="pagination">';
+        $config['full_tag_close'] = ' </ul></nav>';
+
+        $config['first_link'] = 'First';
+        $config['first_tag_open'] = '<li class="page-item">';
+        $config['first_tag_close'] = '</li>';
+
+        $config['last_link'] = 'Last';
+        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_close'] = '</li>';
+
+        $config['next_link'] = 'Next';
+        $config['next_tag_open'] = '<li class="page-item">';
+        $config['next_tag_close'] = '</li>';
+
+        $config['prev_link'] = 'Prev';
+        $config['prev_tag_open'] = '<li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+
+        $config['cur_tag_open'] = '<li class="page-item active"> <a class="page-link" href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+
+        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_close'] = '</li>';
+
+        $config['attributes'] = array('class' => 'page-link');
+
+        //initialize 
+        $this->pagination->initialize($config);
+
+
+        $data['start'] = $this->uri->segment(3);
+
+        $data['sumuser'] = $this->sumuser();
+        $data['stokawal'] = $this->stokawal();
+        $data['brgterjual'] = $this->barangterjual();
+        $data['sisa'] = $this->stokakhir();
+        $data['transaksi'] = $this->totaltransaksi();
+        $data['useraktif'] = $this->sumuseraktif();
+        $data['usertdkaktif'] = $this->sumusertdkaktif();
+        $data['sumbrgterkirim'] = $this->sumbrgterkirim();
+        $data['sumbrgblmterkirim'] = $this->sumbrgblmterkirim();
+        $data['brgterkirim'] = $this->barang_model->getbrgterkirim2($config['per_page'], $data['start']);
+        $this->load->view('TemplateAdmin/Header', $data);
+        $this->load->view('Admin/Brgterkirim', $data);
+        $this->load->view('TemplateAdmin/Footer');
+    }
+
+    public function brgblmterkirim()
+    {
+        $data['judul'] = 'Barang Belum Tekirim';
+
+        $this->load->library('pagination');
+
+        $config['base_url'] = 'http://localhost/shopsmart/Admin/brgblmterkirim';
+        $config['total_rows'] = $this->barang_model->countallbrgblmterkirim();
+        $config['per_page'] = 5;
+
+        //style pagination
+        $config['full_tag_open'] = '<nav><ul class="pagination">';
+        $config['full_tag_close'] = ' </ul></nav>';
+
+        $config['first_link'] = 'First';
+        $config['first_tag_open'] = '<li class="page-item">';
+        $config['first_tag_close'] = '</li>';
+
+        $config['last_link'] = 'Last';
+        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_close'] = '</li>';
+
+        $config['next_link'] = 'Next';
+        $config['next_tag_open'] = '<li class="page-item">';
+        $config['next_tag_close'] = '</li>';
+
+        $config['prev_link'] = 'Prev';
+        $config['prev_tag_open'] = '<li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+
+        $config['cur_tag_open'] = '<li class="page-item active"> <a class="page-link" href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+
+        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_close'] = '</li>';
+
+        $config['attributes'] = array('class' => 'page-link');
+
+        //initialize 
+        $this->pagination->initialize($config);
+
+
+        $data['start'] = $this->uri->segment(3);
+
+        $data['sumuser'] = $this->sumuser();
+        $data['stokawal'] = $this->stokawal();
+        $data['brgterjual'] = $this->barangterjual();
+        $data['sisa'] = $this->stokakhir();
+        $data['transaksi'] = $this->totaltransaksi();
+        $data['useraktif'] = $this->sumuseraktif();
+        $data['usertdkaktif'] = $this->sumusertdkaktif();
+        $data['sumbrgterkirim'] = $this->sumbrgterkirim();
+        $data['sumbrgblmterkirim'] = $this->sumbrgblmterkirim();
+        $data['brgtdkterkirim'] = $this->barang_model->getbrgtdkterkirim2($config['per_page'], $data['start']);
+        $this->load->view('TemplateAdmin/Header', $data);
+        $this->load->view('Admin/Barangbelumterkirim', $data);
+        $this->load->view('TemplateAdmin/Footer');
+    }
+
+    public function sumbrgterkirim()
+    {
+        $this->db->select('*');
+        $this->db->from('pembeli');
+        $this->db->join('user', 'user.id = pembeli.usr_penjual');
+        $this->db->where('status_brg','Sudah Dikirim');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function sumbrgblmterkirim()
+    {
+        $this->db->select('*');
+        $this->db->from('pembeli');
+        $this->db->join('user', 'user.id = pembeli.usr_penjual');
+        $this->db->where('status_brg','Sudah Dikirim');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function Pdfbrgterkirim()
+    {
+        $this->load->library('dompdf_gen');
+
+        $data['brg'] = $this->barang_model->getbrgterkirim();
+
+
+        $this->load->view('Admin/LaporanPDFbrgterkirim', $data);
+
+
+        $paper_size = 'A3';
+        $orientation = 'landscape';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $orientation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("Laporan_User.pdf", array('Attachment' => 0));
+    }
+
+    public function Pdfbrgblmterkirim()
+    {
+        $this->load->library('dompdf_gen');
+
+        $data['brg'] = $this->barang_model->getbrgtdkterkirim();
+
+
+        $this->load->view('Admin/LaporanPDFbrgblmterkirim', $data);
+
+
+        $paper_size = 'A3';
+        $orientation = 'landscape';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $orientation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("Laporan_User.pdf", array('Attachment' => 0));
+    }
+
+    public function excelbrgterkirim()
+    {
+        $data['brg'] = $this->barang_model->getbrgterkirim();
+
+        $object = new Spreadsheet();
+
+        $object->getProperties()->setCreator("Data Barang Sudah Terkirim");
+        $object->getProperties()->setLastModifiedBy("Data Barang Sudah Terkirim");
+        $object->getProperties()->setTitle("Data Barang Sudah Terkirim");
+
+        $object->setActiveSheetIndex(0);
+
+        $object->getActiveSheet()->setCellValue('A1', 'NO');
+        $object->getActiveSheet()->setCellValue('B1', 'ID');
+        $object->getActiveSheet()->setCellValue('C1', 'NAMA BARANG');
+        $object->getActiveSheet()->setCellValue('D1', 'HARGA BARANG');
+        $object->getActiveSheet()->setCellValue('E1', 'JUMLAH BARANG');
+        $object->getActiveSheet()->setCellValue('F1', 'TOTAL HARGA');
+        $object->getActiveSheet()->setCellValue('G1', 'PENGIRIMAN');
+        $object->getActiveSheet()->setCellValue('H1', 'PEMABAYARAN');
+        $object->getActiveSheet()->setCellValue('I1', 'STATUS');
+        $object->getActiveSheet()->setCellValue('J1', 'PENERIMA');
+        $object->getActiveSheet()->setCellValue('K1', 'NO TELP PENERIMA');
+        $object->getActiveSheet()->setCellValue('L1', 'ALAMAT LENGKAP');
+        $object->getActiveSheet()->setCellValue('M1', 'PROVINSI');
+        $object->getActiveSheet()->setCellValue('N1', 'KOTA/KABUPATEN');
+        $object->getActiveSheet()->setCellValue('O1', 'KECAMATAN');
+        $object->getActiveSheet()->setCellValue('P1', 'KELURAHAN');
+        $object->getActiveSheet()->setCellValue('Q1', 'PENGIRIM');
+
+
+
+        $baris = 2;
+        $no=1;
+
+        foreach ($data['brg'] as $bt) {
+            $object->getActiveSheet()->setCellValue('A' . $baris, $no++);
+            $object->getActiveSheet()->setCellValue('B' . $baris, $bt['id_barang']);
+            $object->getActiveSheet()->setCellValue('C' . $baris, $bt['nama_brg']);
+            $object->getActiveSheet()->setCellValue('D' . $baris, $bt['harga_brg']);
+            $object->getActiveSheet()->setCellValue('E' . $baris, $bt['jumlah_brg']);
+            $object->getActiveSheet()->setCellValue('F' . $baris, $bt['tot_hrg']);
+            $object->getActiveSheet()->setCellValue('G' . $baris, $bt['pengiriman']);
+            $object->getActiveSheet()->setCellValue('H' . $baris, $bt['pembayaran']);
+            $object->getActiveSheet()->setCellValue('I' . $baris, $bt['status_brg']);
+            $object->getActiveSheet()->setCellValue('J' . $baris, $bt['nama_pb']);
+            $object->getActiveSheet()->setCellValue('K' . $baris, $bt['notelp']);
+            $object->getActiveSheet()->setCellValue('L' . $baris, $bt['alamat']);
+            $object->getActiveSheet()->setCellValue('M' . $baris, $bt['provinsi']);
+            $object->getActiveSheet()->setCellValue('N' . $baris, $bt['kota']);
+            $object->getActiveSheet()->setCellValue('O' . $baris, $bt['kecamatan']);
+            $object->getActiveSheet()->setCellValue('P' . $baris, $bt['kelurahan']);
+            $object->getActiveSheet()->setCellValue('Q' . $baris, $bt['nama']);
+
+            $baris++;
+        }
+
+        $filename = "Data Barang Sudah Terkirim";
+
+        $object->getActiveSheet()->setTitle("Data Barang Sudah Terkirim");
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="'.$filename.'.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        $writer = IOFactory::createWriter($object, 'Xlsx');
+        $writer->save('php://output');
+
+        exit;        
+    }
+
+    public function excelbrgblmterkirim()
+    {
+        $data['brg'] = $this->barang_model->getbrgtdkterkirim();
+
+        $object = new Spreadsheet();
+
+        $object->getProperties()->setCreator("Data Barang Belum Terkirim");
+        $object->getProperties()->setLastModifiedBy("Data Barang Belum Terkirim");
+        $object->getProperties()->setTitle("Data Barang Belum Terkirim");
+
+        $object->setActiveSheetIndex(0);
+
+        $object->getActiveSheet()->setCellValue('A1', 'NO');
+        $object->getActiveSheet()->setCellValue('B1', 'ID');
+        $object->getActiveSheet()->setCellValue('C1', 'NAMA BARANG');
+        $object->getActiveSheet()->setCellValue('D1', 'HARGA BARANG');
+        $object->getActiveSheet()->setCellValue('E1', 'JUMLAH BARANG');
+        $object->getActiveSheet()->setCellValue('F1', 'TOTAL HARGA');
+        $object->getActiveSheet()->setCellValue('G1', 'PENGIRIMAN');
+        $object->getActiveSheet()->setCellValue('H1', 'PEMABAYARAN');
+        $object->getActiveSheet()->setCellValue('I1', 'STATUS');
+        $object->getActiveSheet()->setCellValue('J1', 'PENERIMA');
+        $object->getActiveSheet()->setCellValue('K1', 'NO TELP PENERIMA');
+        $object->getActiveSheet()->setCellValue('L1', 'ALAMAT LENGKAP');
+        $object->getActiveSheet()->setCellValue('M1', 'PROVINSI');
+        $object->getActiveSheet()->setCellValue('N1', 'KOTA/KABUPATEN');
+        $object->getActiveSheet()->setCellValue('O1', 'KECAMATAN');
+        $object->getActiveSheet()->setCellValue('P1', 'KELURAHAN');
+        $object->getActiveSheet()->setCellValue('Q1', 'PENGIRIM');
+
+
+
+        $baris = 2;
+        $no=1;
+
+        foreach ($data['brg'] as $bt) {
+            $object->getActiveSheet()->setCellValue('A' . $baris, $no++);
+            $object->getActiveSheet()->setCellValue('B' . $baris, $bt['id_barang']);
+            $object->getActiveSheet()->setCellValue('C' . $baris, $bt['nama_brg']);
+            $object->getActiveSheet()->setCellValue('D' . $baris, $bt['harga_brg']);
+            $object->getActiveSheet()->setCellValue('E' . $baris, $bt['jumlah_brg']);
+            $object->getActiveSheet()->setCellValue('F' . $baris, $bt['tot_hrg']);
+            $object->getActiveSheet()->setCellValue('G' . $baris, $bt['pengiriman']);
+            $object->getActiveSheet()->setCellValue('H' . $baris, $bt['pembayaran']);
+            $object->getActiveSheet()->setCellValue('I' . $baris, $bt['status_brg']);
+            $object->getActiveSheet()->setCellValue('J' . $baris, $bt['nama_pb']);
+            $object->getActiveSheet()->setCellValue('K' . $baris, $bt['notelp']);
+            $object->getActiveSheet()->setCellValue('L' . $baris, $bt['alamat']);
+            $object->getActiveSheet()->setCellValue('M' . $baris, $bt['provinsi']);
+            $object->getActiveSheet()->setCellValue('N' . $baris, $bt['kota']);
+            $object->getActiveSheet()->setCellValue('O' . $baris, $bt['kecamatan']);
+            $object->getActiveSheet()->setCellValue('P' . $baris, $bt['kelurahan']);
+            $object->getActiveSheet()->setCellValue('Q' . $baris, $bt['nama']);
+
+            $baris++;
+        }
+
+        $filename = "Data Barang Belum Terkirim";
+
+        $object->getActiveSheet()->setTitle("Data Barang Belum Terkirim");
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="'.$filename.'.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        $writer = IOFactory::createWriter($object, 'Xlsx');
+        $writer->save('php://output');
+
+        exit;        
+    }
+
+
+    public function printbrgterkirim()
+    {
+        $data['brg'] = $this->barang_model->getbrgterkirim();
+
+        $this->load->view('Admin/Printbrgterkirim',$data);
+    }
+
+    public function printbrgblmterkirim()
+    {
+        $data['brg'] = $this->barang_model->getbrgtdkterkirim();
+
+        $this->load->view('Admin/Printbrgblmterkirim',$data);
+    }
+
+
+
+    
+
 }

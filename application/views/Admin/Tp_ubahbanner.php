@@ -50,9 +50,33 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?= base_url(); ?>Admin/useraktif" class="nav-link">
+                            <i class="nav-icon fas fa-user-check"></i>
+                                <p>Data User Aktif</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="<?= base_url(); ?>Admin/usertdkaktif" class="nav-link">
+                                <i class="nav-icon fas fa-user-times"></i>
+                                <p>Data User Tidak Aktif</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= base_url(); ?>Admin/barangjualuser" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Barang</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url(); ?>Admin/brgterkirim" class="nav-link">
+                                <i class="nav-icon fas fa-check"></i>
+                                <p>Barang Tekirim</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="<?= base_url(); ?>Admin/brgblmterkirim" class="nav-link">
+                                <i class="nav-icon fas fa-times"></i>
+                                <p>Barang Belum Terkirim</p>
                             </a>
                         </li>
                         <li class="nav-item">

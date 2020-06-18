@@ -61,6 +61,18 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="<?= base_url(); ?>Admin/brgterkirim" class="nav-link">
+                <i class="nav-icon fas fa-check"></i>
+                <p>Barang Tekirim</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url(); ?>Admin/brgblmterkirim" class="nav-link">
+                <i class="nav-icon fas fa-times"></i>
+                <p>Barang Belum Terkirim</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="<?= base_url(); ?>Admin/transaksiuser" class="nav-link">
                 <i class="nav-icon fas fa-search-dollar"></i>
                 <p>Transaksi User</p>
@@ -185,6 +197,28 @@
             <!-- /.info-box-content -->
           </div>
         </div>
+        <div class="col-lg-6 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-success">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total Barang Sudah Terkirim</span>
+                        <span class="info-box-number"><?= $sumbrgterkirim; ?></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-danger">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total Barang Belum Terkirim</span>
+                        <span class="info-box-number"><?= $sumbrgblmterkirim; ?></span>
+                    </div>
+                </div>
+            </div>
       </div>
 
       <div class="content-header">
@@ -230,10 +264,9 @@
                         </thead>
 
                         <tbody>
-                          <?php $i=1; ?>
                           <?php foreach ($user as $usr) : ?>
                             <tr>
-                              <td><?= $i; ?></td>
+                              <td><?= ++$start; ?></td>
                               <td><?= $usr['id']; ?></td>
                               <td><?= $usr['nama']; ?></td>
                               <td><?= $usr['email']; ?></td>
@@ -253,12 +286,12 @@
                                 <a href="<?= base_url(); ?>Admin/hapususrtdkaktif/<?= $usr['id']; ?>" class="btn btn-danger btn-xs hapus-user"><i class="fas fa-trash"></i>Hapus</a>
                               </td>
                             </tr>
-                            <?php  $i++; ?>
                           <?php endforeach; ?>
                         </tbody>
                       </table>
                    </div>
                 </div>
+                <?= $this->pagination->create_links(); ?>
             </section>
           </div>
         </div>

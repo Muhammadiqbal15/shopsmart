@@ -52,4 +52,15 @@
         </div>
         <!-- /.login-card-body -->
     </div>
+    <h6>Akun Admin</h6>
+    <h6>Email : admin150303@gmail.com</h6>
+    <h6>Password : admin123</h6>
+    <br>
+    <h6>Akun User Utama 1</h6>
+    <h6>Email : m44iqbal@gmail.com</h6>
+    <h6>Password : 1235678</h6>
+    <br>
+    <h6>Akun User Utama 2</h6>
+    <h6>Email : taufikherul12@gmail.com</h6>
+    <h6>Password : 11111111</h6>
 </div>

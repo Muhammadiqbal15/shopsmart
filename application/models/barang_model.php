@@ -198,7 +198,7 @@ class barang_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('barang');
-        $this->db->where('jenis_barang', 'Headset&Earphone');
+        $this->db->where('jenis_barang', 'Headset&amp;Earphone');
         $this->db->limit($limit, $start);
         $query = $this->db->get();
         return $query->result();
@@ -208,7 +208,7 @@ class barang_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('barang');
-        $this->db->where('jenis_barang', 'Headset&Earphone');
+        $this->db->where('jenis_barang', 'Headset&amp;Earphone');
         $query = $this->db->get();
         return $query->num_rows();
     }
@@ -370,11 +370,31 @@ class barang_model extends CI_Model
         return $query->result_array();
     }
 
+    public function getusraktif($limit, $start)
+    {
+        $this->db->select("*");
+        $this->db->from('user');
+        $this->db->where('is_active',1);
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function getusertdkaktif()
     {
         $this->db->select("*");
         $this->db->from('user');
         $this->db->where('is_active',0);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getusrtdkaktif($limit, $start)
+    {
+        $this->db->select("*");
+        $this->db->from('user');
+        $this->db->where('is_active',0);
+        $this->db->limit($limit, $start);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -410,4 +430,85 @@ class barang_model extends CI_Model
         $this->db->where('id_kirimbrg',$id);
         $this->db->delete('tb_kirimbrg');
     }
+
+    public function getbrgterkirim()
+    {
+        $this->db->select('*');
+        $this->db->from('pembeli');
+        $this->db->join('user', 'user.id = pembeli.usr_penjual');
+        $this->db->where('status_brg','Sudah Dikirim');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getbrgtdkterkirim()
+    {
+        $this->db->select('*');
+        $this->db->from('pembeli');
+        $this->db->join('user', 'user.id = pembeli.usr_penjual');
+        $this->db->where('status_brg','Belum Dikirim');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function countalluseraktif()
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('is_active', 1);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function countallusertdkaktif()
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('is_active', 0);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function countallbrgterkirim()
+    {
+        $this->db->select('*');
+        $this->db->from('pembeli');
+        $this->db->where('status_brg', 'Sudah Dikirim');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function countallbrgblmterkirim()
+    {
+        $this->db->select('*');
+        $this->db->from('pembeli');
+        $this->db->where('status_brg', 'Belum Dikirim');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function getbrgterkirim2($limit, $start)
+    {
+        $this->db->select('*');
+        $this->db->from('pembeli');
+        $this->db->join('user', 'user.id = pembeli.usr_penjual');
+        $this->db->where('status_brg','Sudah Dikirim');
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getbrgtdkterkirim2($limit, $start)
+    {
+        $this->db->select('*');
+        $this->db->from('pembeli');
+        $this->db->join('user', 'user.id = pembeli.usr_penjual');
+        $this->db->where('status_brg','Belum Dikirim');
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
 }
+
+
