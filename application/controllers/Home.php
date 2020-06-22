@@ -530,9 +530,11 @@ class Home extends CI_Controller
             'status_brg'=> 'Belum Dikirim'
         );
 
-
+  
         $this->barang_model->pembeli($data);
+
         $this->session->set_flashdata('flash', 'Barang');
+
         redirect('Home/sukses');
     }
 
