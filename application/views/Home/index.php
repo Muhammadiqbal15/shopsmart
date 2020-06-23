@@ -130,3 +130,8 @@
 </footer>
 
 <script src="<?= base_url(); ?>assets/AdminLTE-master/plugins/jquery/jquery-3.4.1.min.js"></script>
+
+
+<div class="modal" tabindex="-1" role="dialog" aria-labelledby="..." aria-hidden="true">
+  ...
+</div>
